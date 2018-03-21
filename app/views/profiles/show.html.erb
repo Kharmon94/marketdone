@@ -1,0 +1,85 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container">
+  <div class="row mt-5">
+    <div class="col d-flex justify-content-center">
+      <div class="image-cropper">
+        <#= image_tag @profile.avatar.url(:medium), class: "profile-pic" %>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row pt-3">
+    <div class="col d-flex justify-content-center font-heading font-medium">
+        <%= @profile.username %>
+    </div>
+  </div>
+
+  <!-- if current user show "connect with stripe button, otherwise show "message reader" button -->
+  <div class="row mt-4 mb-5">
+    <div class="col d-flex justify-content-center">
+      <% if @profile.user.id == current_user.id %>
+        <%= link_to image_tag('stripe_connect_button.png'), "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_CLcXFYsjwl2wUbHXDAySGCqLUXCg5p74&scope=read_write" %>
+        <% elsif @profile.user.id != current_user.id %>
+          <%= link_to "Message #{@profile.username}", messages_path, target: "_blank", class: "btn-blue btn font-white" %>
+      <% end %>
+      <!-- FIXME: use this instead of link: user_omniauth_authorize_path(:stripe_connect) -->
+    </div>
+  </div>
+
+  <div class="container bg-white border-grey p-4">
+    <div class="row">
+      <div class="col d-flex justify-content-center">
+        <div class="row">
+          <div class="col text-center">
+            <h4 class="font-weight-bold font-heading mb-3">Name</h4>
+            <p class="font-small"><%= @profile.first_name + " " + @profile.last_name %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col d-flex justify-content-center">
+        <div class="row">
+          <div class="col text-center pt-3">
+            <h4 class="font-weight-bold font-heading mb-3">Bio</h4>
+            <p class="font-small"><%= @profile.bio %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ################# Products ################# -->
+<% if @profile.user.id == current_user.id %>
+  <h3 class="font-heading text-center">My Books</h3>
+  <% else %>
+  <h3 class="font-heading text-center"><%= @profile.username %>'s Books</h3>
+<% end %>
+
+<% @products.each do |product| %>
+  <% if product.user.id == @profile.user.id %>
+    <div class="container bg-white border-grey p-4">
+      <div class="col">
+        <div class="row">
+          <div class="col-6">
+            <#= image_tag product.product_image.url(:medium), class: "product-overview-image" %>
+          </div>
+          <div class="col-6 text-center">
+            <h4 class="font-heading pt-2">
+              <%= product.title %>
+            </h4>
+
+            <%= link_to "View Details", product, target: "_blank", class: "btn-blue btn font-white mt-5", :method => :get %>
+
+          </div>
+        </div>
+        <div class="row bg-green pt-2 pb-2 mt-4 font-white">
+          <div class="col your-price"><strong>Your price:</strong> $<%= product.price %></div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>

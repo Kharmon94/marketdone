@@ -1,0 +1,65 @@
+<div class="jumbotron">
+    <div class="container">
+    </div>
+</div>
+
+<div class="form-group">
+      <%= render 'search_form' %>
+    </div>
+<div class="center">
+  <div class="row">
+
+      <div class="col-md-3">
+            <table>
+              <thead>
+                <tr>
+                  <th>Category</th>
+                  <th colspan="3"></th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% @categories.each do |category| %>
+                  <tr>
+                    <td><%= link_to(category.name, category) %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+      </div>
+
+
+      <div class="col-md-9">
+        <% @products.each do |product| %>
+          <div class="col-md-3">
+            <div class="thumbnail">
+            <%= link_to product do %>
+               <%= image_tag(product.image.url(:thumb), :class => "thumbs") %>
+            <% end %>
+              <div class="caption">
+                <h3><%= product.title %></h3>
+                <p><%= number_to_currency(product.price) %></p>
+
+     
+               
+                <p><em>Sold By:</em> <%= product.user.email %></p>
+                <p><em>Tags<em><%= product.all_tags %></p>
+              </div>
+            </div>
+          </div>
+        <% end %> 
+      </div>
+  </div>
+      
+</div>  
+<div class="row">
+    <div class="col-md-3 col-md-offset-6">
+       
+    </div>
+</div>  
+
+<div class="row">
+  <% if user_signed_in? %>
+    <%= link_to 'New product', new_product_path, class: "btn btn-link" %>
+  <% end %>
+</div>

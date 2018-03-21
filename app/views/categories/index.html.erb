@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<div class="row">
+  <div class="form-group">
+    <%= render 'search_form', class: "form-control" %>
+  </div>
+</div>
+
+<h1>Categories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @categories.each do |category| %>
+      <tr>
+        <td><%= category.name %></td>
+
+        <td><%= link_to 'Show', category %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+<br>
+<div class="row">
+  <% if user_signed_in? %>
+    <%= link_to 'New product', new_product_path, class: "btn btn-link" %>
+  <% end %>
+</div>
+
+<%= link_to 'Home', root_path %>

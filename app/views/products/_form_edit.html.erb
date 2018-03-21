@@ -1,0 +1,95 @@
+<div class="container">
+  <div class="row bg-white p-4">
+    <div class="col">
+      <%= form_for @product, url: "#{product_path}", html: { multipart: true } do |form| %>
+        <% if product.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(book.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+            <ul>
+            <% book.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+
+        <div class="form-group">
+          <div class="col-3">
+            <%= form.label :title, class: "font-weight-bold" %>
+          </div>
+          <div class="col-8">
+            <%= form.text_field :title, id: :product_title, class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-3">
+            <%= form.label :price, class: "font-weight-bold" %>
+          </div>
+          <div class="col-8">
+            <%= form.number_field :price, id: :product_price, class: "form-control" %>
+          </div>
+        </div>
+
+          <div class="form-group">
+             <%= form.label :category %>
+              <%= select_tag(:category_id, options_for_select(@categories), :prompt => "Choose a Category", :class => "form-control") %>
+         </div>
+
+        <div class="form-group">
+          <div class="col-3">
+            <%= form.label :all_tags, class: "font-weight-bold" %>  <em>(Example: XXXXX, XXXXX)</em>
+          </div>
+          <div class="col-8">
+            <%= form.text_field :all_tags, class: "form-control" %>
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <div class="col-3">
+            <%= form.label :postage_cost, class: "font-weight-bold" %>
+          </div>
+          <div class="form-group">
+            <%= form.number_field :shipping_cost, id: :product_shipping_cost, class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-3">
+            <%= form.label :condition, class: "font-weight-bold" %>
+          </div>
+          <div class="col-8">
+            <%= form.text_field :condition, id: :product_condition, class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-3">
+            <%= form.label :product_image, class: "font-weight-bold" %>
+          </div>
+          <div class="col-8">
+            <%= form.file_field :product_image, class: "form-control" %>
+          </div>
+
+        <div class="form-group">
+          <div class="col-3">
+            <%= form.label :description, class: "font-weight-bold" %>
+          </div>
+          <div class="col-8">
+            <%= form.text_area :description, id: :product_description, class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="btn btn-primary">
+            <%= form.submit %>
+          </div>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+</div>
