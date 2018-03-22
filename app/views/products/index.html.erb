@@ -43,7 +43,7 @@
      
                
                 <p><em>Sold By:</em> <%= product.user.email %></p>
-                <p><em>Tags<em><%= product.all_tags %></p>
+                <p><em>Tags:<em> <%= raw product.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %></p>
               </div>
             </div>
           </div>

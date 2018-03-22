@@ -1,12 +1,13 @@
 class Product < ApplicationRecord
-  has_many :charges
-  belongs_to :user  
+  belongs_to :user 
+  has_many :orders 
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
 
   has_attached_file :image, styles: { medium: "300x300", thumb: "100x100", square: "200x200", large: "600x600" }, default_url: "default.png"
   validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
-
+  validates_attachment_presence :image
+  validates_numericality_of :price, greater_than_or_equal_to: 0
  
   def self.search(search)
     if search
@@ -17,18 +18,26 @@ class Product < ApplicationRecord
   end
 
   def self.tagged_with(name)
-    Tag.find_by!(name: name).post
+    Tag.find_by_name!(name).products
   end
 
   def all_tags=(names)
-    self.tags = names.split(',').map do |name|
-      Tag.where(name: name).first_or_create!
+    self.tags = names.split(",").map do |n|
+      Tag.where(name: n.strip).first_or_create!
     end
   end
 
   def all_tags
     tags.map(&:name).join(", ")
   end
+
+  def self.tag_counts
+    Tag.select("tags.*, count(taggings.tag_id) as count").
+      joins(:taggings).group("taggings.tag_id")
+  end
+
+
+
 
   def seller
     return User.find(self.user_id)

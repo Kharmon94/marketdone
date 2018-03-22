@@ -29,7 +29,7 @@
             <%= form.label :price, class: "font-weight-bold" %>
           </div>
           <div class="col-8">
-            <%= form.number_field :price, id: :product_price, class: "form-control" %>
+            <%= form.number_field :price, id: :product_price, step: 0.01, class: "form-control" %>
           </div>
         </div>
 
@@ -53,7 +53,7 @@
             <%= form.label :postage_cost, class: "font-weight-bold" %>
           </div>
           <div class="form-group">
-            <%= form.number_field :shipping_cost, id: :product_shipping_cost, class: "form-control" %>
+            <%= form.number_field :shipping_cost, id: :product_shipping_cost, step: 0.01, class: "form-control" %>
           </div>
         </div>
 
@@ -68,10 +68,10 @@
 
         <div class="form-group">
           <div class="col-3">
-            <%= form.label :product_image, class: "font-weight-bold" %>
+            <%= form.label :image, class: "font-weight-bold" %>
           </div>
           <div class="col-8">
-            <%= form.file_field :product_image, class: "form-control" %>
+            <%= form.file_field :image, class: "form-control" %>
           </div>
 
         <div class="form-group">

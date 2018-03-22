@@ -52,7 +52,7 @@
             <%= form.label :postage_cost, class: "pt-1 font-weight-bold" %>
           </div>
           <div class="col-8">
-            <%= form.number_field :shipping_cost, id: :product_shipping_cost, class: "form-control" %>
+            <%= form.number_field :shipping_cost, id: :product_shipping_cost, step: 0.01, class: "form-control" %>
           </div>
         </div>
 
@@ -77,10 +77,10 @@
 
         <div class="form-group mt-3">
          <div class="col-3">
-            <%= form.label :product_image, class: "pt-1 font-weight-bold" %>
+            <%= form.label :image, class: "pt-1 font-weight-bold" %>
           </div> 
          <div class="col-8">
-            <%= form.file_field :product_image, class: "form-control" %>
+            <%= form.file_field :image, class: "form-control" %>
           </div>
         </div> 
         <div class="actions row mt-5 mb-3">

@@ -10,8 +10,10 @@
     <h3><%= @product.title %></h3>
     <p><%= number_to_currency(@product.price) %></p>
     <p><%= @product.description %></p>
-    <p><%= @product.all_tags %></p>
-    
+    <p><em>Tags:<em> <%= raw @product.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %></p>
+    <div class="center">
+      <%= link_to "Buy It Now", new_product_order_path(@product), class: "btn btn-primary" %>
+    </div>
   </div>
   
 </div>
