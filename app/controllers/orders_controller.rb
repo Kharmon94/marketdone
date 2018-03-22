@@ -12,16 +12,37 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     @order = Order.new(order_params)
-    @product = Prduct.find(params[:product_id])
+    @product = Product.find(params[:product_id])
     @seller = @product.user
 
     @order.product_id = @product.id
     @order.buyer_id = current_user.id
     @order.seller_id = @seller.id
 
+    Stripe.api_key = ENV["STRIPE_API_KEY"]
+    token = params[:stripeToken]
+
+    begin
+      charge = Stripe::Charge.create(
+        :amount => (@product.price * 100).floor,
+        :currency => "usd",
+        :card => token
+        )
+      flash[:notice] = "Thanks for ordering!"
+    rescue Stripe::CardError => e
+      flash[:danger] = e.message
+    end
+
+    # transfer = Stripe::Transfer.create(
+    #   :amount => (@product.price * 90).floor,
+    #   :currency => "usd",
+    #   :recipient => @seller.recipient
+    #   )
+
+
     respond_to do |format|
       if @order.save
-        format.html { redirect_to @order, notice: 'Order successfully created placed. Thank You!' }
+        format.html { redirect_to root_path, notice: 'Order successfully created placed. Thank You!' }
         format.json { render :show, status: :created, location: @order }
       else
         format.html { render :new }

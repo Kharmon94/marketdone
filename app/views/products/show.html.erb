@@ -12,7 +12,7 @@
     <p><%= @product.description %></p>
     <p><em>Tags:<em> <%= raw @product.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %></p>
     <div class="center">
-      <%= link_to "Buy It Now", new_product_order_path(@product), class: "btn btn-primary" %>
+      <%= link_to "Buy It Now", new_product_order_path(@product), class: "btn btn-primary", data: { no_turbolink: true %>
     </div>
   </div>
   
