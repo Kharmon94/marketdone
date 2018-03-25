@@ -10,4 +10,19 @@ class User < ApplicationRecord
   has_many :sales, class_name: "Order", foreign_key: "seller_id"
   has_many :purchases, class_name: "Order", foreign_key: "buyer_id"
 
+  #  def self.from_omniauth(auth)
+  #    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+  #    user.email = auth.info.email
+  #    user.password = Devise.friendly_token[0,20]
+  #  end
+  # end
+
+  # def is_seller?
+  # 	profile.username?
+  # end
+
+  def can_receive_payments?
+    uid? &&  provider? && access_code? && publishable_key?
+  end
+
 end

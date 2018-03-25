@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :orders
-  devise_for :users, controllers: { registrations: 'registrations', omniauth_callbacks: 'users/omniauth_callbacks' }
+  devise_for :users, controllers: { registrations: 'registrations', omniauth_callbacks: 'omniauth_callbacks'}
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   root to: "products#index"
@@ -8,7 +8,8 @@ Rails.application.routes.draw do
   resources :products do
     resources :orders, only: [:new, :create]
   end
-  resources :profiles
+  resources :charges, only: [:new, :create]
+  resources :profiles, only: [:new, :edit, :create]
   resources :categories
   resources :tags
   get 'vendor' => "products#vendor"

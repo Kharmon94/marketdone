@@ -14,9 +14,9 @@
   <% @orders.each do |order| %>
     <tr>
       <td class="center"><%= image_tag order.product.image.url(:thumb) %></td>
-      <td class="center"><%= order.product.name %></td>
+      <td class="center"><%= order.product.title %></td>
       <td class="center"><%= number_to_currency(order.product.price) %></td>
-      <td class="center"><%= order.buyer.name %></td>
+      <td class="center"><%= order.buyer.profile.username %></td>
       <td class="center"><%= order.created_at.strftime("%B %-d, %Y") %></td>
     </tr>
   <% end %>
@@ -25,5 +25,5 @@
 <br>
 
 <% if user_signed_in? %>
-  <%= link_to 'Create New Product', new_product_path, class: "btn btn-link" %>
+  <%= link_to 'Create New Product', new_product_path, class: "btn btn-link", data: { no_turbolink: true }  %>
 <% end %>

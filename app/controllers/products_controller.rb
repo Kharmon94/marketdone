@@ -2,6 +2,7 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :edit, :create]
 
+
   # GET /products
   # GET /products.json
   # def index
@@ -20,8 +21,12 @@ class ProductsController < ApplicationController
 
   # GET /products/new
   def new
-    @product = Product.new
-    @categories = Category.all.map{|c| [ c.name, c.id ] }
+    if current_user.can_receive_payments?
+      @product = Product.new
+      @categories = Category.all.map{|c| [ c.name, c.id ] }
+    else
+      redirect_to profile_path
+    end
   end
 
   # GET /products/1/edit
@@ -89,6 +94,6 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:user_id, :title, :description, :price, :shipping_cost, :sold, :condition, :category_id, :all_tags, :image)
+      params.require(:product).permit(:user_id, :title, :description, :price, :shipping_cost, :sold, :condition, :category_id, :all_tags, :image, :quantity)
     end
 end

@@ -4,7 +4,7 @@
   <div class="row mt-5">
     <div class="col d-flex justify-content-center">
       <div class="image-cropper">
-        <#= image_tag @profile.avatar.url(:medium), class: "profile-pic" %>
+        <%= image_tag @profile.avatar.url(:thumb), class: "profile-pic" %>
       </div>
     </div>
   </div>
@@ -12,22 +12,31 @@
 
   <div class="row pt-3">
     <div class="col d-flex justify-content-center font-heading font-medium">
-        <%= @profile.username %>
+        <h2>Hey! <%= @profile.username %><h2>
     </div>
   </div>
 
   <!-- if current user show "connect with stripe button, otherwise show "message reader" button -->
-  <div class="row mt-4 mb-5">
-    <div class="col d-flex justify-content-center">
+ 
+    <% if @profile.user.uid != present? %>
       <% if @profile.user.id == current_user.id %>
-        <%= link_to image_tag('stripe_connect_button.png'), "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_CLcXFYsjwl2wUbHXDAySGCqLUXCg5p74&scope=read_write" %>
-        <% elsif @profile.user.id != current_user.id %>
-          <%= link_to "Message #{@profile.username}", messages_path, target: "_blank", class: "btn-blue btn font-white" %>
-      <% end %>
-      <!-- FIXME: use this instead of link: user_omniauth_authorize_path(:stripe_connect) -->
-    </div>
-  </div>
+        <div class="panel panel-default">
+          <div class="panel-header text-center">
+            <h4>
+              You wont be able to sell items until you register with Stripe!
+            </h4>
+          </div>
+          <div class="panel-body text-center">
+            <%= link_to 'Connect', stripe_url, class: 'btn btn-lg btn-info', target: '_blank' %>
+          </div>
+        </div>
+       <% end %>
+    <% else %>
 
+        <div> Message me </div>
+
+    
+  <% end %>
   <div class="container bg-white border-grey p-4">
     <div class="row">
       <div class="col d-flex justify-content-center">
@@ -54,7 +63,7 @@
 
 <!-- ################# Products ################# -->
 <% if @profile.user.id == current_user.id %>
-  <h3 class="font-heading text-center">My Books</h3>
+  <h3 class="font-heading text-center">My Products</h3>
   <% else %>
   <h3 class="font-heading text-center"><%= @profile.username %>'s Books</h3>
 <% end %>

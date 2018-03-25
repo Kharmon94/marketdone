@@ -20,24 +20,34 @@ class OrdersController < ApplicationController
     @order.seller_id = @seller.id
 
     Stripe.api_key = ENV["STRIPE_API_KEY"]
-    token = params[:stripeToken]
+        
+    customer = Stripe::Customer.create(
+        email: params[:stripeEmail],
+        source: params[:stripeToken]
+      )
+     begin
+        @amount = (@product.price + @product.shipping_cost).to_i * 100
+        application_fee = (@amount * 0.1).to_i     # 10%
 
-    begin
-      charge = Stripe::Charge.create(
-        :amount => (@product.price * 100).floor,
-        :currency => "usd",
-        :card => token
-        )
-      flash[:notice] = "Thanks for ordering!"
-    rescue Stripe::CardError => e
-      flash[:danger] = e.message
+
+        charge_params = {
+        customer: customer.id,
+        amount: @amount,
+        description: @product.title,
+        currency: 'usd',
+        destination: @product.user.uid,
+        application_fee: application_fee,
+        capture: true
+     
+      }
+
+        Stripe::Charge.create(charge_params) # return a Stripe::Charge object
+          flash[:notice] = "Thanks for ordering!"
+        rescue Stripe::CardError => e
+          flash[:danger] = e.message
     end
 
-    # transfer = Stripe::Transfer.create(
-    #   :amount => (@product.price * 90).floor,
-    #   :currency => "usd",
-    #   :recipient => @seller.recipient
-    #   )
+
 
 
     respond_to do |format|

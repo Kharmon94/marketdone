@@ -17,8 +17,9 @@ gem 'jquery-rails'
 gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
-gem 'haml-rails'
-gem "omniauth"
+gem 'omniauth-stripe-connect'
+# gem 'httparty'
+gem 'gon'
 gem "figaro"
 gem "devise"
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'

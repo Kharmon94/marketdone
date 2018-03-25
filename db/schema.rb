@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180322022328) do
+ActiveRecord::Schema.define(version: 20180323003716) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -102,6 +102,8 @@ ActiveRecord::Schema.define(version: 20180322022328) do
     t.string "publishable_key"
     t.string "access_code"
     t.string "stripe_id"
+    t.string "recipient"
+    t.string "name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["provider"], name: "index_users_on_provider"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
