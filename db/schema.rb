@@ -10,7 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180323003716) do
+ActiveRecord::Schema.define(version: 20180327040432) do
+
+  create_table "business_categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "businesses", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.string "address"
+    t.string "city"
+    t.string "email"
+    t.string "hours"
+    t.string "number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "state_id"
+    t.string "picture_file_name"
+    t.string "picture_content_type"
+    t.integer "picture_file_size"
+    t.datetime "picture_updated_at"
+    t.integer "user_id"
+    t.integer "business_category_id"
+    t.index ["business_category_id"], name: "index_businesses_on_business_category_id"
+    t.index ["state_id"], name: "index_businesses_on_state_id"
+    t.index ["user_id"], name: "index_businesses_on_user_id"
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -69,6 +97,12 @@ ActiveRecord::Schema.define(version: 20180323003716) do
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
+  create_table "states", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "taggings", force: :cascade do |t|
     t.integer "product_id"
     t.integer "tag_id"
@@ -102,8 +136,8 @@ ActiveRecord::Schema.define(version: 20180323003716) do
     t.string "publishable_key"
     t.string "access_code"
     t.string "stripe_id"
-    t.string "recipient"
     t.string "name"
+    t.boolean "subscribed"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["provider"], name: "index_users_on_provider"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<div class="row">
+  <div class="form-group">
+    <%= render 'search_form', class: "form-control" %>
+  </div>
+</div>
+
+<h2>
+  <%= @state.name %>
+</h2>
+
+<div class="col-md-12">
+	<% @businesses.each do |business| %>
+
+		<div class="col-md-3">
+        <div class="thumbnail">
+        <%= link_to business do %>
+            <%= image_tag(business.image.url(:thumb), :class => "thumbs") %>
+        <% end %>
+          <div class="caption">
+            <h3><%= business.title %></h3>
+            <p><%= number_to_currency(business.price) %></p>
+            <p><em>Sold By:</em> <%= business.profile.username %></p>
+          </div>
+        </div>
+      </div>
+
+	<% end %>
+</div>
+<div class="row">
+  <% if user_signed_in? %>
+    <%= link_to 'New business', new_business_path, class: "btn btn-link" %>
+  <% end %>
+</div>
+
+<%= link_to 'Back', states_path %>
+
+

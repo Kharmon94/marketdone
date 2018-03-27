@@ -1,0 +1,48 @@
+<p id="notice"><%= notice %></p>
+
+  <div class="col-md-6">
+    <%= image_tag @business.picture(:medium) %> 
+  </div>
+
+<p>
+  <strong>Title:</strong>
+  <%= @business.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @business.description %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @business.address %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @business.city %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @business.state_id %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @business.email %>
+</p>
+
+<p>
+  <strong>Hours:</strong>
+  <%= @business.hours %>
+</p>
+
+<p>
+  <strong>Number:</strong>
+  <%= @business.number %>
+</p>
+
+<%= link_to 'Edit', edit_business_path(@business) %> |
+<%= link_to 'Back', businesses_path %>

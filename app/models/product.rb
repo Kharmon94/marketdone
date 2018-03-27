@@ -1,5 +1,6 @@
 class Product < ApplicationRecord
   belongs_to :user 
+  belongs_to :category 
   has_many :orders 
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings

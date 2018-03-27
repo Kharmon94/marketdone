@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_one :profile
   has_many :products
+  has_many :businesses
   has_many :charges
   has_many :sales, class_name: "Order", foreign_key: "seller_id"
   has_many :purchases, class_name: "Order", foreign_key: "buyer_id"
@@ -20,6 +21,12 @@ class User < ApplicationRecord
   # def is_seller?
   # 	profile.username?
   # end
+
+  def subscribed?
+ 
+    stripe_id?
+    
+  end
 
   def can_receive_payments?
     uid? &&  provider? && access_code? && publishable_key?
