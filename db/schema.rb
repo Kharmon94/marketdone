@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180327040432) do
+ActiveRecord::Schema.define(version: 20180328183653) do
 
   create_table "business_categories", force: :cascade do |t|
     t.string "name"
@@ -24,15 +24,15 @@ ActiveRecord::Schema.define(version: 20180327040432) do
     t.string "address"
     t.string "city"
     t.string "email"
-    t.string "hours"
+    t.text "hours"
     t.string "number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "state_id"
-    t.string "picture_file_name"
-    t.string "picture_content_type"
-    t.integer "picture_file_size"
-    t.datetime "picture_updated_at"
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.integer "image_file_size"
+    t.datetime "image_updated_at"
     t.integer "user_id"
     t.integer "business_category_id"
     t.index ["business_category_id"], name: "index_businesses_on_business_category_id"
@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 20180327040432) do
     t.string "title"
     t.string "description"
     t.decimal "price", precision: 8, scale: 2
-    t.integer "shipping_cost"
+    t.decimal "shipping_cost", precision: 8, scale: 2
     t.boolean "sold"
     t.string "condition"
     t.datetime "created_at", null: false
@@ -138,6 +138,7 @@ ActiveRecord::Schema.define(version: 20180327040432) do
     t.string "stripe_id"
     t.string "name"
     t.boolean "subscribed"
+    t.boolean "business_created"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["provider"], name: "index_users_on_provider"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

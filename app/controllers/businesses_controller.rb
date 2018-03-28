@@ -6,7 +6,8 @@ class BusinessesController < ApplicationController
   # GET /businesses
   # GET /businesses.json
   def index
-      @products = Product.search(params[:search])
+      @q = Business.search(params[:q])
+      @businesses = @q.result
       @business_categories = BusinessCategory.all
   end
 
@@ -18,13 +19,13 @@ class BusinessesController < ApplicationController
 
   # GET /businesses/new
   def new
-    if current_user.subscribed?
-      @business = Business.new
-      @states = State.all.map{|s| [ s.name, s.id ] }
-      @business_categories = BusinessCategory.all.map{|s| [ s.name, s.id ] }
-    else
-      redirect_to new_subscribe_path
-    end
+      if current_user.subscribed? 
+          @business = Business.new
+          @states = State.all.map{|s| [ s.name, s.id ] }
+          @business_categories = BusinessCategory.all.map{|s| [ s.name, s.id ] }
+      else
+        redirect_to new_subscriber_path
+      end
   end
 
   # GET /businesses/1/edit
@@ -42,7 +43,7 @@ class BusinessesController < ApplicationController
     @business.business_category_id = params[:business_category_id]
     @states = State.all.map{|s| [ s.name, s.id ] }
     @business_categories = BusinessCategory.all.map{|s| [ s.name, s.id ] }
-   
+    current_user.business_created = true
 
     respond_to do |format|
       if @business.save
@@ -98,6 +99,6 @@ class BusinessesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def business_params
-      params.require(:business).permit(:title, :description, :address, :city, :email, :hours, :number, :state_id, :business_category_id )
+      params.require(:business).permit( :title, :description, :address, :city, :email, :hours, :number, :state_id, :business_category_id, :image )
     end
 end

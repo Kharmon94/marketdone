@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :categories, only: [:index, :show]
   resources :charges, only: [:new, :create]
   resources :profiles, only: [:new, :edit, :create]
-  resources :subscribe
+  resources :subscribers
   resources :businesses
   resources :business_categories, only: [:index, :show]
   resources :states, only: [:index, :show]

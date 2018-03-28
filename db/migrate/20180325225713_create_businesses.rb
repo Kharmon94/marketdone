@@ -6,7 +6,7 @@ class CreateBusinesses < ActiveRecord::Migration[5.1]
       t.string :address
       t.string :city
       t.string :email
-      t.string :hours
+      t.text :hours
       t.string :number
       
 

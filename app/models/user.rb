@@ -11,6 +11,8 @@ class User < ApplicationRecord
   has_many :sales, class_name: "Order", foreign_key: "seller_id"
   has_many :purchases, class_name: "Order", foreign_key: "buyer_id"
 
+  validates :businesses, length: {maximum: 1}
+
   #  def self.from_omniauth(auth)
   #    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
   #    user.email = auth.info.email
@@ -27,6 +29,12 @@ class User < ApplicationRecord
     stripe_id?
     
   end
+
+  # def hasbusiness?
+
+  #   business.business_created = true
+
+  # end
 
   def can_receive_payments?
     uid? &&  provider? && access_code? && publishable_key?

@@ -3,13 +3,13 @@ class BusinessCategoriesController < ApplicationController
     # GET /categories
   # GET /categories.json
   def index
-    @business_categories = Business_category.all
+    @business_categories = BusinessCategory.all
   end
 
   # GET /categories/1
   # GET /categories/1.json
   def show
-    @title = Business_category.name
+    @title = BusinessCategory.name
     @businesses = @business_category.businesses
   end
 
@@ -19,7 +19,7 @@ class BusinessCategoriesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_business_category
-      @business_category = Business_category.find(params[:id])
+      @business_category = BusinessCategory.find(params[:id])
     end
 
 

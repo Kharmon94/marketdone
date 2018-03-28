@@ -10,13 +10,14 @@
     <h3><%= @product.title %></h3>
     <p><%= number_to_currency(@product.price) %></p>
     <p><%= @product.description %></p>
+    <p><em>Shipping: </em><%= number_to_currency(@product.shipping_cost) %></p>
     <p><em>Tags:<em> <%= raw @product.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %></p>
     <p class="mt-5">
                   <%= form_tag charges_path do %>
 
                     <%= hidden_field_tag "product_id", @product.id %>
 
-                    <%= select_field :quantity, options_for_select([1,2,3]) %> 
+                   
 
                     <article>
                       <% if flash[:error].present? %>

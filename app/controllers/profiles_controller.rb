@@ -6,6 +6,7 @@ class ProfilesController < ApplicationController
   # GET /profiles/1.json
   def show
     @products = Product.where(user: current_user).order("created_at DESC")
+    @businesses = Business.where(user: current_user).order("created_at DESC")
   end
 
   # GET /profiles/new
@@ -20,6 +21,7 @@ class ProfilesController < ApplicationController
   def current
     @profile = current_user.profile
     @products = Product.all
+    @businesses = Business.all
     if @profile.nil?
       new
       render 'new'

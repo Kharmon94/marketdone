@@ -18,7 +18,9 @@
 
   <!-- if current user show "connect with stripe button, otherwise show "message reader" button -->
  
-    <% if @profile.user.uid != !present? %>
+    <% if @profile.user.uid != present? %>
+      
+
       <% if @profile.user.id == current_user.id %>
         <div class="panel panel-default">
           <div class="panel-header text-center">
@@ -30,11 +32,12 @@
             <%= link_to 'Connect', stripe_url, class: 'btn btn-lg btn-info', target: '_blank' %>
           </div>
         </div>
-       <% end %>
+      <% end %> 
+
+       
     <% else %>
-
+        
         <div> Message me </div>
-
     
   <% end %>
   <div class="container bg-white border-grey p-4">
@@ -63,6 +66,35 @@
 
 <!-- ################# Products ################# -->
 <% if @profile.user.id == current_user.id %>
+  <h3 class="font-heading text-center">My Business</h3>
+  <% else %>
+  <h3 class="font-heading text-center"><%= @profile.username %>'s Business</h3>
+<% end %>
+
+<% @businesses.each do |business| %>
+  <% if business.user.id == @profile.user.id %>
+    <div class="container bg-white border-grey p-4">
+      <div class="col">
+        <div class="row">
+          <div class="col-6">
+            <%= image_tag business.image.url(:medium), class: "product-overview-image" %>
+          </div>
+          <div class="col-6 text-center">
+            <h4 class="font-heading pt-2">
+              <%= business.title %>
+            </h4>
+
+            <%= link_to "View Details", business, target: "_blank", class: "btn-blue btn font-white mt-5", :method => :get %>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+
+<!-- ################# Products ################# -->
+<% if @profile.user.id == current_user.id %>
   <h3 class="font-heading text-center">My Products</h3>
   <% else %>
   <h3 class="font-heading text-center"><%= @profile.username %>'s Books</h3>
@@ -84,9 +116,6 @@
             <%= link_to "View Details", product, target: "_blank", class: "btn-blue btn font-white mt-5", :method => :get %>
 
           </div>
-        </div>
-        <div class="row bg-green pt-2 pb-2 mt-4 font-white">
-          <div class="col your-price"><strong>Your price:</strong> $<%= product.price %></div>
         </div>
       </div>
     </div>

@@ -10,13 +10,16 @@ class ProductsController < ApplicationController
   # end
 
   def index
-      @products = Product.search(params[:search])
+      @q = Product.search(params[:q])
+      @products = @q.result
       @categories = Category.all
   end
 
   # GET /products/1
   # GET /products/1.json
   def show
+      @q = Product.search(params[:q])
+      @products = @q.result
   end
 
   # GET /products/new
