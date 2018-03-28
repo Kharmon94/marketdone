@@ -16,91 +16,60 @@
         <% end %>
 
 
-        <div class="field row">
-          <div class="col-3">
-            <%= form.label :username, class: "pt-1 font-weight-bold" %>
-          </div>
-          <div class="col-8">
-            <%= form.text_field :username, id: :profile_username, class: "width-large p-1 rounded" %>
-          </div>
+        <div class="form-group">
+            <%= form.label :username %>
+            <%= form.text_field :username, id: :profile_username, class: "form-control" %>
         </div>
 
-        <div class="field row mt-3">
-          <div class="col-3">
+        <div class="form-group">
             <%= form.label :first_name, class: "pt-1 font-weight-bold" %>
-          </div>
-          <div class="col-8">
-            <%= form.text_field :first_name, id: :profile_first_name, class: "width-large p-1 rounded" %>
-          </div>
+            <%= form.text_field :first_name, id: :profile_first_name, class: "form-control" %>
         </div>
 
-        <div class="field row mt-3">
-          <div class="col-3">
-            <%= form.label :last_name, class: "pt-1 font-weight-bold" %>
-          </div>
-          <div class="col-8">
-            <%= form.text_field :last_name, id: :profile_last_name, class: "width-large p-1 rounded" %>
-          </div>
+        <div class="form-group">
+            <%= form.label :last_name %>      
+            <%= form.text_field :last_name, id: :profile_last_name, class: "form-control" %>
         </div>
 
-        <div class="field row mt-3">
-          <div class="col-3">
-            <%= form.label :street_address, class: "pt-1 font-weight-bold" %>
-          </div>
-          <div class="col-8">
-            <%= form.text_field :street_address, id: :profile_street_address, class: "width-large p-1 rounded" %>
-          </div>
+        <div class="form-group">
+            <%= form.label :street_address %>
+            <%= form.text_field :street_address, id: :profile_street_address, class: "form-control" %>
         </div>
 
-        <div class="field row mt-3">
-          <div class="col-3">
-            <%= form.label :city, class: "pt-1 font-weight-bold" %>
-          </div>
-          <div class="col-8">
-            <%= form.text_field :city, id: :profile_city, class: "width-large p-1 rounded" %>
-          </div>
+        <div class="form-group">
+            <%= form.label :city %>
+            <%= form.text_field :city, id: :profile_city, class: "form-control" %>
         </div>
 
-        <div class="field row mt-3">
-          <div class="col-3">
-            <%= form.label :state, class: "pt-1 font-weight-bold" %>
-          </div>
-          <div class="col-8">
-            <%= form.text_field :state, id: :profile_state, class: "width-large p-1 rounded" %>
-          </div>
+
+        <div class="form-group">
+            <%= form.label :state %>
+            <%= form.text_field :state, id: :profile_state, class: "form-control" %>
+     
         </div>
 
-        <div class="field row mt-3">
-          <div class="col-3">
-            <%= form.label :postcode, class: "pt-1 font-weight-bold" %>
-          </div>
-          <div class="col-8">
-            <%= form.text_field :zipcode, id: :profile_zipcode, class: "width-large p-1 rounded" %>
-          </div>
+        <div class="form-group">
+            <%= form.label :postcode %>
+            <%= form.text_field :zipcode, id: :profile_zipcode, class: "form-control" %>
         </div>
 
-        <div class="field row mt-3">
-          <div class="col-3">
-            <%= form.label :bio, class: "pt-1 font-weight-bold" %>
-          </div>
-          <div class="col-8">
-            <%= form.area_field :bio, id: :profile_bio, class: "width-large p-1 rounded" %>
-          </div>
+        <div class="form-group">
+            <%= form.label :bio %>
+            <%= form.text_area :bio, id: :profile_bio, class: "form-control" %>
+          
         </div mt-3>
 
-        <div class="field row mt-3">
-          <div class="col-3">
-            <%= form.label :avatar, class: "pt-1 font-weight-bold" %>
-          </div>
-          <div class="col-8">
-            <%= form.file_field :avatar, class: "width-large p-1 rounded" %>
-          </div>
-        </div>
         
-        <div class="actions row mt-5 mb-3">
-          <div class="col d-flex justify-content-center">
+        <div class="form-group">
+            <%= form.label :avatar %>
+            <%= form.file_field :avatar, class: "form-control" %>
+        
+        </div>
+
+
+        <div class="form-group">
+          
             <%= form.submit %>
-          </div>
         </div>
       <% end %>
 
