@@ -13,7 +13,10 @@ Rails.application.routes.draw do
   resources :charges, only: [:new, :create]
   resources :profiles, only: [:new, :edit, :create]
   resources :subscribers
-  resources :businesses
+  resources :businesses do
+      collection { post :search, to: 'businesses#index' }
+  end
+
   resources :business_categories, only: [:index, :show]
   resources :states, only: [:index, :show]
   resources :orders

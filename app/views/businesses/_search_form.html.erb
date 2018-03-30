@@ -1,25 +1,13 @@
-	<div class="row center">
-	<%= search_form_for @q, html: { class: "form-group" } do |f| %>
-		<div class="col-md-8 offset-md-3" style="margin-left: 15%">
-			
-			
-			<%= f.search_field :title_or_description_or_city_or_email_cont, class: "form-control", placeholder: "Search..." %>
-
-			
-		
-		</div>
-		
-		<div >
-			<%= submit_tag 'Search', name: nil, class: 'btn btn-primary' %>
-		</div>
-
-	<% end %>
-
-</div>
-<div class="row center">
-	<div class="col-md-8 offset-md-3" style="margin-left: 15%">
-		<em>Recommended Search: Name, Type, State (eg. NY), City</em>
-	</div>
-</div>
-		
-	
+<%= search_form_for @search, url: search_businesses_path, method: :post do |f| %>
+  <%= f.condition_fields do |c| %>
+    <%= render "condition_fields", f: c %>
+  <% end %>
+  <p><%= link_to_add_fields "Add Conditions", f, :condition %></p>
+  <div class="field">
+    Sort:
+    <%= f.sort_fields do |s| %>
+      <%= s.sort_select %>
+    <% end %>
+  </div>
+  <div class="actions"><%= f.submit "Search" %></div>
+<% end %>

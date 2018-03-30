@@ -6,8 +6,10 @@ class BusinessesController < ApplicationController
   # GET /businesses
   # GET /businesses.json
   def index
-      @q = Business.search(params[:q])
-      @businesses = @q.result
+      @search = Business.search(params[:q])
+      @businesses = @search.result
+      @search.build_condition if @search.conditions.empty?
+      @search.build_sort if @search.sorts.empty?
       @business_categories = BusinessCategory.all
   end
 
@@ -19,6 +21,7 @@ class BusinessesController < ApplicationController
 
   # GET /businesses/new
   def new
+    if current_user.businesses.empty?
       if current_user.subscribed? 
           @business = Business.new
           @states = State.all.map{|s| [ s.name, s.id ] }
@@ -26,6 +29,9 @@ class BusinessesController < ApplicationController
       else
         redirect_to new_subscriber_path
       end
+    else
+      redirect_to profile_path
+    end
   end
 
   # GET /businesses/1/edit

@@ -2,7 +2,7 @@ class CreateCategories < ActiveRecord::Migration[5.1]
   def change
     create_table :categories do |t|
       t.string :name
-      add_reference :products, :categories, foreign_key: true
+      add_reference :products, :category
       t.timestamps
     end
   end

@@ -11,8 +11,14 @@ class StatesController < ApplicationController
   # GET /states/1.json
   def show
     @title = State.name
-    @businesses = @state.businesses
+    # @businesses = @state.businesses.order("city DESC").all
     @business_categories = BusinessCategory.all
+
+    if @state.businesses.all.collect == (params[:category])
+        @businesses= @state.businesses.send(params[:category])   
+    else
+        @businesses = @state.businesses.order(:city)   
+    end 
   end
 
   # POST /states
