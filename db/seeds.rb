@@ -40,7 +40,8 @@
 		{ name: 'Physical Fitness Services' },
 		{ name: 'Professional Services' },
 		{ name: 'Public Services & Government' },
-		{ name: 'Real Estate' }
+		{ name: 'Real Estate' },
+		{ name: 'Spiritual Services' }
 
 	])
 	
@@ -126,4 +127,4 @@
 
 
 	])
-	# AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+	AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
