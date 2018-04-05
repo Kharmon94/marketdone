@@ -6,35 +6,43 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-	# Category.destroy_all
-	# State.destroy_all
+	Category.destroy_all
+	State.destroy_all
+	BusinessCategory.destroy_all
 
 	business_categories = BusinessCategory.create([
-		{ name: 'Active Life' },
+		{ name: 'Appliance Installations' },
 		{ name: 'Arts & Entertainment' },
-		{ name: 'Automotive' },
+		{ name: 'Art Gallery Boutiques' },
+		{ name: 'Automotive Services' },
 		{ name: 'Beauty & Spas' },
-		{ name: 'Education' },
+		{ name: 'Business Services' },
+		{ name: "Children's Services" },
+		{ name: 'Computer & Technology Services' },
+		{ name: 'Clothing/Accessories Boutiques' },
+		{ name: 'Dry Cleaning & Laundry'},
+		{ name: 'Education Services' },
 		{ name: 'Event Planning & Services' },
 		{ name: 'Financial Services' },
-		{ name: 'Food & Catering' },
+		{ name: 'Food & Catering Services' },
 		{ name: 'Baking & Pastry' },
-		{ name: 'Restaurants' },
-		{ name: 'Health & Medical' },
-		{ name: 'Home Services' },
+		{ name: 'Restaurants & Cafe Services' },
+		{ name: 'Health & Medical Services' },
+		{ name: 'Home Improvement Services' },
 		{ name: 'Hotels & Travel' },
-		{ name: 'Local Events' },
-		{ name: 'Local Services' },
-		{ name: 'Media' },
+		{ name: 'Massage Therapy & Acupuncture Services' },
+		{ name: 'Modeling Services' },
+		{ name: 'Moving & Removal Companies' },
+		{ name: 'Media Promotion & Services' },
 		{ name: 'Nightlife' },
 		{ name: 'Pets' },
+		{ name: 'Photography & Videography Services' },
+		{ name: 'Physical Fitness Services' },
 		{ name: 'Professional Services' },
 		{ name: 'Public Services & Government' },
-		{ name: 'Real Estate' },
-		{ name: 'Religious Organizations' },
-		{ name: 'Shopping' }
+		{ name: 'Real Estate' }
 
-		])
+	])
 	
 	
 	categories = Category.create([
@@ -61,9 +69,9 @@
 
 
 
-		])
+	])
 
-	states = State.create([
+	states = State.create!([
 		{ name: 'AL'},
 		{ name: 'AK'},
 		{ name: 'AZ'},
@@ -117,6 +125,5 @@
 		{ name: 'WY'}
 
 
-
-		])
-	
+	])
+	# AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?

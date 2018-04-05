@@ -9,14 +9,34 @@
     <%= javascript_include_tag "https://js.stripe.com/v2/" %>
     <%= tag :meta, :name => "stripe-key", :content => ENV["STRIPE_PUBLIC_KEY"] %>
     <%= Gon::Base.render_data %>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+
 
      
   </head>
 
   <body>
+    <div class="row align-items-center">
+
+      <div class="col-md-12 center" align="center">
+        <%= link_to image_tag("https://s3.us-east-2.amazonaws.com/ypmarketnew/assets/image.png", :class => 'toplogo'), root_path %>
+      </div>
+      
+    </div>
+    
   	<%= render 'partials/navbar' %>
-    <script type="text/javascript" src="http://yoursite.com/mapdata.js"></script>   
-    <script  type="text/javascript" src="http://yoursite.com/worldmap.js"></script>
+
+    <% flash.each do |name, msg| %>
+      <% if msg.is_a?(String) %>
+        <div class="alert alert-<%= name == :notice ? "success" : "danger" %> alert-dismissable">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <%= content_tag :div, msg, :id => "flash_#{name}" %>
+        </div>
+      <% end %>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>

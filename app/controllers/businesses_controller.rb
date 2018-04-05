@@ -1,16 +1,17 @@
 class BusinessesController < ApplicationController
   before_action :set_business, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :edit, :create]
-
+  has_scope :by_business_category_id, type: :array
 
   # GET /businesses
   # GET /businesses.json
   def index
-      @search = Business.search(params[:q])
-      @businesses = @search.result
-      @search.build_condition if @search.conditions.empty?
-      @search.build_sort if @search.sorts.empty?
-      @business_categories = BusinessCategory.all
+      @w = Business.search(params[:w])
+      @search = Business.search(params[:w])
+      @businesses = @search.result.paginate(:page => params[:page], :per_page => 20).order('created_at DESC')
+      @business_categories = BusinessCategory.all.paginate(:page => params[:page], :per_page => 20).order('created_at DESC')
+      @businesses = @businesses.where(business_category: params["business_category"]) if params["business_category"].present?
+      @businesses = @businesses.where(state: params["state"]) if params["state"].present?
   end
 
   # GET /businesses/1

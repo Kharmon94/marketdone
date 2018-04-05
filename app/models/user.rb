@@ -4,14 +4,18 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
+
+
   has_one :profile
   has_many :products
   has_many :businesses
   has_many :charges
+  has_many :reviews
   has_many :sales, class_name: "Order", foreign_key: "seller_id"
   has_many :purchases, class_name: "Order", foreign_key: "buyer_id"
 
   validates :businesses, length: {maximum: 1}
+ 
 
   #  def self.from_omniauth(auth)
   #    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

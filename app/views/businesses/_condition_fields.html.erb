@@ -2,7 +2,7 @@
   <%= f.attribute_fields do |a| %>
     <%= a.attribute_select associations: [:business_category] %>
   <% end %>
-  <%= f.predicate_select %>
+ 
   <%= f.value_fields do |v| %>
     <%= v.text_field :value %>
   <% end %>

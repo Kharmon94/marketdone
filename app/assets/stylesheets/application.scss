@@ -12,171 +12,110 @@
  *
  *= require_tree .
  *= require_self
+ *= stub "active_admin"
  */
 
-@import "bootstrap-sprockets";
-// @import "bootstrap";
 
-
-
-@import url('https://fonts.googleapis.com/css?family=Gentium+Book+Basic|Open+Sans:400,700');
-
-// font-family: 'Gentium Book Basic', serif;
-// font-family: 'Open Sans', sans-serif;
-
-.jumbotron{
-    background: url("https://s3.us-east-2.amazonaws.com/marketnew/products/images/000/000/assets/logo.png") no-repeat center center; 
-    -webkit-background-size: 100% 100%;
-    -moz-background-size: 100% 100%;
-    -o-background-size: 100% 100%;
-    background-size: 70% 100%;
-    height: 380px;
-    width: 100%
-
-}
 
 #map{
   width: 60%;
   height: 60%;
 }
-// * {
-//  box-sizing: border-box;
-//  list-style: none;
-// }
 
-// .width-large {
-//   width: 98%;
-// }
+#profile_pic{
+  border-radius: 50%;
+  border-style: solid;
+  border-color: black;
+}
 
-// body {
-//   background-color: white;
-//   font-family: 'Open Sans', sans-serif;
-// }
+body {
+  font-family: 'Quicksand', sans-serif;
+}
 
-// .bg-white {
-//   background-color: #FFF;
-// }
+.toplogo{
+  height: 5%;
+  width: 5%; 
+}
 
-// .bg-green {
-//   background-color: #49DA90;
-// }
+a:hover { 
+    background-color: lavender;
+}
 
-// .font-white {
-//   color: white;
-// }
+#pro_business{
+  background-color: rgba(80, 14, 107, 0.9);
+}
 
-// .btn-blue {
-//   background-color: #00BFD8;
-// }
+#thumbnail_p{
+  padding: 4%;
 
-// .font-heading {
-//   font-family: 'Gentium Book Basic', serif;
-// }
+}
 
-// .font-body {
-//   font-family: 'Open Sans', sans-serif;
-// }
+#prod_row{
+  background-color: rgba(80, 14, 107, 0.9);
+  margin-top: 5%;
+  border-radius: 10px;
 
-// .font-medium {
-//   font-size: 1.5em;
-// }
+}
 
-// .font-medium {
-//   font-size: 1.2em;
-// }
-
-// // .border-grey {
-// //   margin: 10% auto;
-// //   padding: 5%;
-// //   border: 1px solid lightgrey;
-// // }
-
-
-// /********** NAVBAR **********/
-
-.navlogo{
-  height: 30%;
-  width: 30%; 
+#pic_row{
+  margin-top: 3%;
 }
 
 .navbar {
   background-color: white;
   color: black;
   border: none;
-  margin-top: 0.5%;
+  margin-top: 1%;
 }
 
 #nav_ops{
   margin-top: 1.4%;
 }
 
-// /********** HOMEPAGE **********/
+.promo_b{
+  height: 91.5px !important;
+  width: 98%
+}
 
-// .product-overview-image {
-//   max-width: 90%;
-// }
+.promo_a{
+  height: 91.5px !important;
+  width: 98%
+}
 
-// .your-price {
-//   font-size: 1.2em;
-// }
+#signup{
+  background-color: lavender;
+  border-radius: 25px;
+  padding-left: 40px;
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-bottom: 30px;
+  margin-top: 4%;
+  padding: 30px;
+  background-opacity: 0.35;
+  z-index: -100;
+  width: 500px;
+}
 
-// .rrp {
-//   text-decoration: line-through;
-// }
+#login{
+  background-color: lavender;
+  border-radius: 25px;
+  padding-left: 40px;
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-top: 4%;
+  padding: 30px;
+  background-opacity: 0.35;
+  z-index: -100;
+  width: 500px;
+}
 
-// /********** PROFILE **********/
-// .image-cropper {
-//     width: 150px;
-//     height: 150px;
-//     position: relative;
-//     overflow: hidden;
-//     border-radius: 50%;
-// }
-
-// .profile-pic {
-//   display: inline;
-//   margin: 0 auto;
-//   margin-left: -25%; //centers the image
-//   height: 100%;
-//   width: auto;
-// }
-
-// /********** MESSAGES **********/
-
-// #profile-chat-list-item {
-//   padding: 5px;
-//   margin: 20px;
-// }
-
-// #profile-chat-list-item a {
-//   color: #611D59;
-// }
-
-// .panel-heading a {
-//   color: #611D59;
-// }
-
-// #conversation-list-item {
-//   margin: 20px;
-//   padding: 1em 2em;
-//   border-radius: 10px;
-// }
-
-// .message-from-me {
-//   background-color: #00BFD8;
-//   color: white;
-// }
-
-// .message-from-other {
-//   background-color: #49DA90;
-//   color: white;
-// }
-
-// .message-sender-username {
-//   font-size: 0.7em;
-//   color: black;
-// }
-
-// .message-body {
-
-// }
+#edit{
+  background-color: lavender;
+  border-radius: 25px;
+  padding-left: 40px;
+  margin-left: 50px;
+  margin-right: 50px;
+  padding: 30px;
+  background-opacity: 0.35;
+  z-index: -100;
+}

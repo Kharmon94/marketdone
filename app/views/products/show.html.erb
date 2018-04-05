@@ -43,6 +43,8 @@
                     </script>
                 <% end %>
     </p>
+    <%= render @product.reviews %>
+    <%= link_to "Add Review", new_product_review_path(@product) %>
   </div>
   
 </div>

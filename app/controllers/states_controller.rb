@@ -1,5 +1,6 @@
 class StatesController < ApplicationController
   before_action :set_state, only: [:show]
+  # has_scope :by_business_category_id, type: :array
 
   # GET /states
   # GET /states.json
@@ -11,14 +12,8 @@ class StatesController < ApplicationController
   # GET /states/1.json
   def show
     @title = State.name
-    # @businesses = @state.businesses.order("city DESC").all
-    @business_categories = BusinessCategory.all
+    @businesses = @state.businesses.order("city DESC").all
 
-    if @state.businesses.all.collect == (params[:category])
-        @businesses= @state.businesses.send(params[:category])   
-    else
-        @businesses = @state.businesses.order(:city)   
-    end 
   end
 
   # POST /states

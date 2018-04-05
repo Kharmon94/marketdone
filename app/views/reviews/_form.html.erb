@@ -1,0 +1,20 @@
+<%= simple_form_for([@product, @product.reviews.build]) do |f| %>
+	<%= f.input :rating %>
+	<%= f.input :comment %>
+	<%= f.button :submit %>
+<% end %>
+
+	<% if user_signed_in? %>
+
+		<% if review.user_id == current_user.id %>
+
+			<div class="links btn-group">
+
+				<%= link_to "Edit", edit_product_review_path(review.product, review), class: "btn btn-custom" %>
+				<%= link_to "Delete", product_review_path(review.product, review), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-custom" %>
+
+			</div>
+		
+		<% end %>	
+
+	<% end %>
