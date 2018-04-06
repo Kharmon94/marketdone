@@ -106,12 +106,11 @@
                <%= image_tag(product.image.url(:thumb), :class => "thumbs") %>
             <% end %>
               <div class="caption" align="center">
-                <h3><%= product.title %></h3>
+                <h4><%= product.title %></h4>
                 <p><%= number_to_currency(product.price) %></p>
                 <p><%= link_to product.category.name %></p>
                
                 <p><em>Sold By:</em> <%= link_to product.user.profile.username, profile_path(current_user) %></p>
-                <p><em>Tags:<em> <%= raw product.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %></p>
               </div>
             </div>
           </div>
