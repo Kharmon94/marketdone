@@ -12,6 +12,27 @@ Subscription fee's Can be changed at anytime based on our discretion.
 
 Any reports or complaints concerning fraudulent or illegal behavior will result in termination of your account and subscription will not be refunded, <strong>LEGAL ACTION WILL BE TAKEN IF REQUIRED.</strong>
                 </h5>
+               <form action="/yourscript.cgi-or-your-page.html" method="POST" onsubmit="return checkCheckBox(this)">
+
+          <!--Enter your form contents here-->
+
+          <b>By submitting, I agree that all info entered was done accurately & truthfully.</b><br />
+          I accept all terms and conditions: <input type="checkbox" value="0" name="agree">
+
+          </form>
+
+        <script>
+            function checkCheckBox(f){
+            if (f.agree.checked == false )
+            {
+            alert('Please check the box to continue.');
+            return false;
+            }else
+            return true;
+            }
+        //-->
+        </script>
+
                 <%= render 'form' %>
             </div>
         </div>
