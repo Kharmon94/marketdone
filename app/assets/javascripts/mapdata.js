@@ -8,9 +8,9 @@ var simplemaps_usmap_mapdata={
     popups: "detect",
     
     //State defaults
-    state_description: "State Description",
+    state_description: "Click for black businesses in this area!",
     state_color: "#88A4BC",
-    state_hover_color: "#3B729F",
+    state_hover_color: "#5b0586",
     state_url: "",
     border_size: 1.5,
     all_states_inactive: "no",
@@ -74,209 +74,207 @@ var simplemaps_usmap_mapdata={
   state_specific: {
     HI: {
       name: "Hawaii",
-      url: "http://localhost:9000/states/62"
+      url: "https://www.theblackwomanisgodstores.com/businesses?utf8=%E2%9C%93&business_category=&state=12"
     },
     AK: {
       name: "Alaska",
-      url: "http://localhost:9000/states/52"
+      url: "https://www.theblackwomanisgodstores.com/businesses?utf8=%E2%9C%93&business_category=&state=2"
     },
     FL: {
       name: "Florida",
-      inactive: "no",
-      url: "http://localhost:9000/states/60"
+      url: "https://www.theblackwomanisgodstores.com/businesses?utf8=%E2%9C%93&business_category=&state=10"
     },
     NH: {
       name: "New Hampshire",
-      url: "http://localhost:9000/states/80"
+      url: "https://www.theblackwomanisgodstores.com/businesses?utf8=%E2%9C%93&business_category=&state=30"
     },
     VT: {
       name: "Vermont",
-      url: "http://localhost:9000/states/96"
+      url: "https://www.theblackwomanisgodstores.com/businesses?utf8=%E2%9C%93&business_category=&state=46"
     },
     ME: {
       name: "Maine",
-      url: "http://localhost:9000/states/70"
+      url: "https://www.theblackwomanisgodstores.com/businesses?utf8=%E2%9C%93&business_category=&state=20"
     },
     RI: {
       name: "Rhode Island",
-      url: "http://localhost:9000/states/90"
+      url: "https://www.theblackwomanisgodstores.com/businesses?utf8=%E2%9C%93&business_category=&state=40"
     },
     NY: {
       name: "New York",
-      url: "http://localhost:9000/states/83"
+      url: "https://www.theblackwomanisgodstores.com/businesses?utf8=%E2%9C%93&business_category=&state=33"
     },
     PA: {
       name: "Pennsylvania",
-      url: "http://localhost:9000/states/89"
+      url: "https://www.theblackwomanisgodstores.com/businesses?utf8=%E2%9C%93&business_category=&state=39"
     },
     NJ: {
       name: "New Jersey",
-      url: "http://localhost:9000/states/81"
+      url: "https://www.theblackwomanisgodstores.com/businesses?utf8=%E2%9C%93&business_category=&state=31"
     },
     DE: {
       name: "Delaware",
-      url: "http://localhost:9000/states/58"
+      url: "https://www.theblackwomanisgodstores.com/businesses?utf8=%E2%9C%93&business_category=&state=8"
     },
     MD: {
       name: "Maryland",
-      url: "http://localhost:9000/states/71"
+      url: "https://www.theblackwomanisgodstores.com/businesses?utf8=%E2%9C%93&business_category=&state=21"
     },
     VA: {
       name: "Virginia",
-      url: "http://localhost:9000/states/97"
+      url: "https://www.theblackwomanisgodstores.com/businesses?utf8=%E2%9C%93&business_category=&state=47"
     },
     WV: {
       name: "West Virginia",
-      url: "http://localhost:9000/states/99"
+      url: "https://www.theblackwomanisgodstores.com/businesses?utf8=%E2%9C%93&business_category=&state=49"
     },
     OH: {
       name: "Ohio",
-      url: "http://localhost:9000/states/86"
+      url: "https://www.theblackwomanisgodstores.com/businesses?utf8=%E2%9C%93&business_category=&state=36"
     },
     IN: {
       name: "Indiana",
-      url: "http://localhost:9000/states/65"
+      url: "https://www.theblackwomanisgodstores.com/businesses?utf8=%E2%9C%93&business_category=&state=15"
     },
     IL: {
       name: "Illinois",
-      url: "http://localhost:9000/states/64"
+      url: "https://www.theblackwomanisgodstores.com/businesses?utf8=%E2%9C%93&business_category=&state=14"
     },
     CT: {
       name: "Connecticut",
-      url: "http://localhost:9000/states/57"
+      url: "https://www.theblackwomanisgodstores.com/businesses?utf8=%E2%9C%93&business_category=&state=7"
     },
     WI: {
       name: "Wisconsin",
-      url: "http://localhost:9000/states/100"
+      url: "https://www.theblackwomanisgodstores.com/businesses?utf8=%E2%9C%93&business_category=&state=50"
     },
     NC: {
       name: "North Carolina",
-      url: "http://localhost:9000/states/84"
+      url: "https://www.theblackwomanisgodstores.com/businesses?utf8=%E2%9C%93&business_category=&state=34"
     },
     DC: {
       name: "District of Columbia",
-      url: "http://localhost:9000/states/59"
+      url: "https://www.theblackwomanisgodstores.com/businesses?utf8=%E2%9C%93&business_category=&state=9"
     },
     MA: {
       name: "Massachusetts",
-      url: "http://localhost:9000/states/72"
+      url: "https://www.theblackwomanisgodstores.com/businesses?utf8=%E2%9C%93&business_category=&state=22"
     },
     TN: {
       name: "Tennessee",
-      url: "http://localhost:9000/states/93"
+      url: "https://www.theblackwomanisgodstores.com/businesses?utf8=%E2%9C%93&business_category=&state=43"
     },
     AR: {
       name: "Arkansas",
-      url: "http://localhost:9000/states/54"
+      url: "https://www.theblackwomanisgodstores.com/businesses?utf8=%E2%9C%93&business_category=&state=4"
     },
     MO: {
       name: "Missouri",
-      url: "http://localhost:9000/states/76"
+      url: "https://www.theblackwomanisgodstores.com/businesses?utf8=%E2%9C%93&business_category=&state=26"
     },
     GA: {
       name: "Georgia",
-      url: "http://localhost:9000/states/61"
+      url: "https://www.theblackwomanisgodstores.com/businesses?utf8=%E2%9C%93&business_category=&state=11"
     },
     SC: {
       name: "South Carolina",
-      url: "http://localhost:9000/states/91"
+      url: "https://www.theblackwomanisgodstores.com/businesses?utf8=%E2%9C%93&business_category=&state=41"
     },
     KY: {
       name: "Kentucky",
-      zoomable: "no",
-      url: "http://localhost:9000/states/68"
+      url: "https://www.theblackwomanisgodstores.com/businesses?utf8=%E2%9C%93&business_category=&state=18"
     },
     AL: {
       name: "Alabama",
-      url: "http://localhost:9000/states/51"
+      url: "https://www.theblackwomanisgodstores.com/businesses?utf8=%E2%9C%93&business_category=&state=1"
     },
     LA: {
       name: "Louisiana",
-      url: "http://localhost:9000/states/69"
+      url: "https://www.theblackwomanisgodstores.com/businesses?utf8=%E2%9C%93&business_category=&state=19"
     },
     MS: {
       name: "Mississippi",
-      url: "http://localhost:9000/states/75"
+      url: "https://www.theblackwomanisgodstores.com/businesses?utf8=%E2%9C%93&business_category=&state=25"
     },
     IA: {
       name: "Iowa",
-      url: "http://localhost:9000/states/66"
+      url: "https://www.theblackwomanisgodstores.com/businesses?utf8=%E2%9C%93&business_category=&state=16"
     },
     MN: {
       name: "Minnesota",
-      url: "http://localhost:9000/states/74"
+      url: "https://www.theblackwomanisgodstores.com/businesses?utf8=%E2%9C%93&business_category=&state=24"
     },
     OK: {
       name: "Oklahoma",
-      url: "http://localhost:9000/states/87"
+      url: "https://www.theblackwomanisgodstores.com/businesses?utf8=%E2%9C%93&business_category=&state=37"
     },
     TX: {
       name: "Texas",
-      url: "http://localhost:9000/states/94"
+      url: "https://www.theblackwomanisgodstores.com/businesses?utf8=%E2%9C%93&business_category=&state=44"
     },
     NM: {
       name: "New Mexico",
-      url: "http://localhost:9000/states/82"
+      url: "https://www.theblackwomanisgodstores.com/businesses?utf8=%E2%9C%93&business_category=&state=32"
     },
     KS: {
       name: "Kansas",
-      url: "http://localhost:9000/states/67"
+      url: "https://www.theblackwomanisgodstores.com/businesses?utf8=%E2%9C%93&business_category=&state=17"
     },
     NE: {
       name: "Nebraska",
-      url: "http://localhost:9000/states/78"
+      url: "https://www.theblackwomanisgodstores.com/businesses?utf8=%E2%9C%93&business_category=&state=28"
     },
     SD: {
       name: "South Dakota",
-      url: "http://localhost:9000/states/92"
+      url: "https://www.theblackwomanisgodstores.com/businesses?utf8=%E2%9C%93&business_category=&state=42"
     },
     ND: {
       name: "North Dakota",
-      url: "http://localhost:9000/states/85"
+      url: "https://www.theblackwomanisgodstores.com/businesses?utf8=%E2%9C%93&business_category=&state=35"
     },
     WY: {
       name: "Wyoming",
-      url: "http://localhost:9000/states/101"
+      url: "https://www.theblackwomanisgodstores.com/businesses?utf8=%E2%9C%93&business_category=&state=51"
     },
     MT: {
       name: "Montana",
-      url: "http://localhost:9000/states/77"
+      url: "https://www.theblackwomanisgodstores.com/businesses?utf8=%E2%9C%93&business_category=&state=27"
     },
     CO: {
       name: "Colorado",
-      url: "http://localhost:9000/states/56"
+      url: "https://www.theblackwomanisgodstores.com/businesses?utf8=%E2%9C%93&business_category=&state=6"
     },
     UT: {
       name: "Utah",
-      url: "http://localhost:9000/states/95"
+      url: "https://www.theblackwomanisgodstores.com/businesses?utf8=%E2%9C%93&business_category=&state=45"
     },
     AZ: {
       name: "Arizona",
-      url: "http://localhost:9000/states/53"
+      url: "https://www.theblackwomanisgodstores.com/businesses?utf8=%E2%9C%93&business_category=&state=3"
     },
     NV: {
       name: "Nevada",
-      url: "http://localhost:9000/states/79"
+      url: "https://www.theblackwomanisgodstores.com/businesses?utf8=%E2%9C%93&business_category=&state=29"
     },
     OR: {
       name: "Oregon",
-      url: "http://localhost:9000/states/88"
+      url: "https://www.theblackwomanisgodstores.com/businesses?utf8=%E2%9C%93&business_category=&state=38"
     },
     WA: {
       name: "Washington",
-      url: "http://localhost:9000/states/98"
+      url: "https://www.theblackwomanisgodstores.com/businesses?utf8=%E2%9C%93&business_category=&state=48"
     },
     CA: {
       name: "California",
-      url: "http://localhost:9000/states/55"
+      url: "https://www.theblackwomanisgodstores.com/businesses?utf8=%E2%9C%93&business_category=&state=5"
     },
     MI: {
       name: "Michigan",
-      url: "http://localhost:9000/states/73"
+      url: "https://www.theblackwomanisgodstores.com/businesses?utf8=%E2%9C%93&business_category=&state=23"
     },
     ID: {
       name: "Idaho",
-      url: "http://localhost:9000/states/63"
+      url: "https://www.theblackwomanisgodstores.com/businesses?utf8=%E2%9C%93&business_category=&state=13"
     },
     GU: {
       name: "Guam",
