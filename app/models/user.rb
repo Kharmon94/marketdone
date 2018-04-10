@@ -11,10 +11,15 @@ class User < ApplicationRecord
   has_many :businesses
   has_many :charges
   has_many :reviews
-  has_many :sales, class_name: "Order", foreign_key: "seller_id"
-  has_many :purchases, class_name: "Order", foreign_key: "buyer_id"
+  # has_many :sales, class_name: "Order", foreign_key: "seller_id"
+  # has_many :purchases, class_name: "Order", foreign_key: "buyer_id"
 
   validates :businesses, length: {maximum: 1}
+
+  has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }
+  validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
+  # validates_attachment_presence :image
+  validates :username, :first_name, :last_name, :street_address, :city, :zipcode, presence: true
  
 
   #  def self.from_omniauth(auth)
@@ -24,7 +29,7 @@ class User < ApplicationRecord
   #  end
   # end
 
-  # def is_seller?
+  # def is_seller?s
   # 	profile.username?
   # end
 

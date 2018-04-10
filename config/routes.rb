@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  devise_for :users, controllers: { registrations: 'registrations', omniauth_callbacks: 'omniauth_callbacks'}
+  devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks'}
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   root to: "products#index"
@@ -12,9 +12,10 @@ Rails.application.routes.draw do
     # resources :orders, only: [:new, :create]
     resources :reviews
   end
+  resources :users
   resources :categories, only: [:index, :show]
   resources :charges, only: [:new, :create]
-  resources :profiles, only: [:new, :edit, :create]
+  # resources :profiles, only: [:new, :edit, :create]
   resources :subscribers
   resources :businesses do
       collection { post :search, to: 'businesses#index' }
@@ -28,8 +29,8 @@ Rails.application.routes.draw do
   # get 'vendor' => "products#vendor"
   # get 'sales' => "orders#sales"
   # get 'purchases' => "orders#purchases"
-  get 'profile', to: 'profiles#current'
-  get 'profile/connect_stripe', to: 'profiles#connect_stripe'
+  # get 'profile', to: 'profiles#current'
+  # get 'profile/connect_stripe', to: 'profiles#connect_stripe'
   get 'charges/new'
   get 'charges/create'
   get 'pages/about'

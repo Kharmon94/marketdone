@@ -1,6 +1,13 @@
 class UsersController < ApplicationController
 
+  def show
+    @user = User.find(params[:id])
+    @products = Product.all
+    @businesses = Business.all
+  end
+
   def update
+    @user = User.update(user_params)
     @user = User.find(params[:id])
     if @user.update(user_params)
       if @user.stripe_temporary_token.present?
@@ -16,6 +23,10 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
+  def create
+    @user = User.create(user_params)
+  end
+
 
   private
 
@@ -27,6 +38,15 @@ class UsersController < ApplicationController
                                  :uid,
                                  :publishable_key,
                                  :access_code,
+                                 :image,
+                                 :first_name,
+                                 :last_name,
+                                 :username,
+                                 :street_address,
+                                 :city,
+                                 :zipcode,
+                                 :birthday,
+                                 :bio
                                 )
   end
 
