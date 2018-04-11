@@ -8,15 +8,17 @@
 
   <div class="col-md-6">
     <h3><%= @product.title %></h3>
-    <p><%= number_to_currency(@product.price) %></p>
-    <p><%= @product.description %></p>
-    <p><em>Shipping: </em><%= number_to_currency(@product.shipping_cost) %></p>
-    <p><em>Tags:<em> <%= raw @product.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %></p>
+    <p><em>Price: </em><%= number_to_currency(@product.price) %></p>
+    <p><em>Shipping Price: </em><%= number_to_currency(@product.shipping_cost) %></p>
+    <p><em>Color:</em> <%= @product.color %></p>
+    <p><em>Condition:</em> <%= @product.condition %></p>
+    <p><em>Description:</em> <%= @product.description %></p>
+    <input id="payment_quantity"></input>
     <p class="mt-5">
                   <%= form_tag charges_path do %>
 
                     <%= hidden_field_tag "product_id", @product.id %>
-
+                    <input type="hidden" name="item_quantity_1" value="1"/>
                    
 
                     <article>
@@ -30,7 +32,7 @@
 
                     <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                             data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-                            data-description="<%= @product.title %>"
+                            data-description="NAME: <%= @product.title %>, COLOR: <%= @product.color %> "
                             data-amount="<%= (@product.price + @product.shipping_cost) * 100 %>"
                             data-billing-address="true"
                             data-shipping-address="true"
@@ -43,9 +45,22 @@
                     </script>
                 <% end %>
     </p>
-    <%= render @product.reviews %>
+    <script>
+      $('#payment_quantity').keyup(function() {
+          var quantity = $('#payment_quantity').val();
+          $("input[name='item_quantity_1']").val(quantity);
+          return false;
+      });
+    </script>
+    
     <%= link_to "Add Review", new_product_review_path(@product) %>
   </div>
+  <div class="row">
+    <div class="col-md-6">
+       <%= render @product.reviews %>
+    </div>
+  </div>
+
   
 </div>
 
@@ -63,3 +78,13 @@
     </div>
   </div>
 </div>
+
+<script>
+  $('.review-rating').raty({
+    path: '/assets',
+    readOnly: true,
+    score: function(){
+      return $(this).attr('data-score')
+    }
+  });
+</script>

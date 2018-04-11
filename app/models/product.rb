@@ -10,7 +10,7 @@ class Product < ApplicationRecord
   validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
   validates_attachment_presence :image
   validates_numericality_of :price, greater_than_or_equal_to: 0
-  # validates :title, :description, :price, :shipping_cost, presence: true
+  validates :title, :description, :price, :shipping_cost, presence: true
   # def self.search(search)
   #   if search
   #     where('title LIKE ? OR description LIKE ? OR tag LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%" ).order('id DESC')

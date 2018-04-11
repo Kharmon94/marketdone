@@ -1,12 +1,19 @@
 <%= simple_form_for([@product, @product.reviews.build]) do |f| %>
-	<%= f.input :rating %>
+	<%= f.select :rating, [1,2,3,4,5]%>
 	<%= f.input :comment %>
 	<%= f.button :submit %>
 <% end %>
 
+<script>
+	$('#star-rating').raty({
+		path: '/assets'
+		scoreName: 'review[rating]'
+	});
+</script>
+
 	<% if user_signed_in? %>
 
-		<% if review.user_id == current_user.id %>
+		<% if @review.user_id == current_user.id %>
 
 			<div class="links btn-group">
 
