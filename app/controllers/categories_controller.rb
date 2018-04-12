@@ -10,7 +10,8 @@ class CategoriesController < ApplicationController
   # GET /categories/1.json
   def show
     @title = Category.name
-    @products = @category.products
+    @q = Product.search(params[:q])
+    @products = @q.result.paginate(:page => params[:page], :per_page => 20).order('created_at DESC')
   end
 
   # GET /categories/new
