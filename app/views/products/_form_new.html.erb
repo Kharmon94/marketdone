@@ -70,6 +70,16 @@
           </div>
         </div>
 
+        <div class="form-group mt-3">
+          <div class="col-3">
+            <%= form.label :size, class: "pt-1 font-weight-bold" %>
+          </div>
+          <div class="col-8">
+            <%= form.select :size, ["X-SMALL", "SMALL", "MEDIUM", "LARGE", "X-LARGE", "XX-LARGE", "XXX-LARGE"], multiple: true, class: "form-control" %>
+          </div>
+        </div>
+
+
         <%= form_for @week_selection do |f| %>
   <% days = ['Mon', 'Tue', 'Wen', 'Thu', 'Fri', 'Sat', 'Sun'] %>
   <% days.each do |day| %>
