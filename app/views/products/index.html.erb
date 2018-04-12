@@ -104,7 +104,7 @@
                 <p><%= number_to_currency(product.price) %></p>
                 <p><%= link_to product.category.name %></p>
                
-                <p><em>Sold By:</em> <%= link_to product.user.username, user_path(product), class: "people_link" %></p>
+                <p><em>Sold By:</em> <%= product.user.username %></p>
               </div>
             </div>
           </div>
