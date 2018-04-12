@@ -28,7 +28,7 @@ class ProductsController < ApplicationController
       @product = Product.new
       @categories = Category.all.map{|c| [ c.name, c.id ] }
     else
-      redirect_to root_path
+      redirect_to user_path(current_user)
     end
   end
 
