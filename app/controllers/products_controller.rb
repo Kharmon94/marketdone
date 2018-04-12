@@ -28,7 +28,7 @@ class ProductsController < ApplicationController
       @product = Product.new
       @categories = Category.all.map{|c| [ c.name, c.id ] }
     else
-      redirect_to profile_path
+      redirect_to root_path
     end
   end
 
@@ -50,7 +50,7 @@ class ProductsController < ApplicationController
         format.json { render :show, status: :created, location: @product }
       else
         format.html { render :new }
-        format.json { render json: @book.errors, status: :unprocessable_entity }
+        format.json { render json: @product.errors, status: :unprocessable_entity }
       end
     end
   end
