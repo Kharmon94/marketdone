@@ -6,14 +6,21 @@
   </div>
 </div>
 
-<h2>
-  <%= @category.name %>
-</h2>
+<div class="row" align="center">
+  <div class="col-md-12 center" align="center">
+    <h2>
+      <%= @category.name %>
+    </h2>
+  </div>
 
-<div class="col-md-12">
-	<% @products.each do |product| %>
+</div>
 
-		<div class="col-md-3 center" align="center">
+
+<div class="row">
+  <div class="col-md-12">
+  <% @products.each do |product| %>
+
+    <div class="col-md-3 center" align="center">
         <div class="thumbnail_p">
         <%= link_to product do %>
             <%= image_tag(product.image.url(:thumb), :class => "thumbs") %>
@@ -26,8 +33,10 @@
         </div>
       </div>
 
-	<% end %>
+  <% end %>
+  </div>
 </div>
+
 <div class="row">
   <% if user_signed_in? %>
     <%= link_to 'New product', new_product_path, class: "btn btn-link" %>
