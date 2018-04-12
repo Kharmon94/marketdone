@@ -81,13 +81,13 @@
 
 
         <%= form_for @week_selection do |f| %>
-  <% days = ['Mon', 'Tue', 'Wen', 'Thu', 'Fri', 'Sat', 'Sun'] %>
-  <% days.each do |day| %>
-    <%= f.check_box :days, { multiple: true }, day, false %>
-    label day
-  <% end %>
-  <%= f.submit %>
-<% end %>
+          <% days = ['Mon', 'Tue', 'Wen', 'Thu', 'Fri', 'Sat', 'Sun'] %>
+          <% days.each do |day| %>
+            <%= f.check_box :days, { multiple: true }, day, false %>
+            label day
+          <% end %>
+          <%= f.submit %>
+        <% end %>
 
         <div class="form-group mt-3">
           <div class="col-3">

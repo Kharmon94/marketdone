@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20180412015809) do
+=======
+ActiveRecord::Schema.define(version: 20180411034833) do
+>>>>>>> d878e64756eafe1fab92db4bdc0bb8a334add2ec
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -77,6 +81,7 @@ ActiveRecord::Schema.define(version: 20180412015809) do
     t.datetime "updated_at", null: false
   end
 
+<<<<<<< HEAD
   create_table "follows", force: :cascade do |t|
     t.string "followable_type", null: false
     t.integer "followable_id", null: false
@@ -91,6 +96,8 @@ ActiveRecord::Schema.define(version: 20180412015809) do
     t.index ["follower_type", "follower_id"], name: "index_follows_on_follower_type_and_follower_id"
   end
 
+=======
+>>>>>>> d878e64756eafe1fab92db4bdc0bb8a334add2ec
   create_table "mailboxer_conversation_opt_outs", force: :cascade do |t|
     t.string "unsubscriber_type"
     t.integer "unsubscriber_id"

@@ -24,6 +24,7 @@ gem 'simple_form'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 gem 'activeadmin'
+gem 'mailboxer'
 # gem 'httparty'
 gem 'gon'
 gem "figaro"

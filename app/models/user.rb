@@ -4,9 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
+  acts_as_messageable
 
-
-  has_one :profile
+  # has_one :profile
   has_many :products
   has_many :businesses
   has_many :charges
@@ -18,7 +18,7 @@ class User < ApplicationRecord
 
   has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
-  # validates_attachment_presence :image
+  validates_attachment_presence :image
   validates :username, :first_name, :last_name, :street_address, :city, :zipcode, presence: true
  
 
@@ -37,6 +37,10 @@ class User < ApplicationRecord
  
     stripe_id?
     
+  end
+
+  def mailboxer_email(object)
+    self.email
   end
 
   # def hasbusiness?
