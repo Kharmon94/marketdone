@@ -112,7 +112,10 @@
         <% end %> 
       </div>
     </div> 
-   <%= will_paginate @products, renderer: BootstrapPagination::Rails %> 
+    <div class="row">
+      <%= will_paginate @products, renderer: BootstrapPagination::Rails %>
+    </div>
+    
  </div>     
 
 
