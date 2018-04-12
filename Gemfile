@@ -25,6 +25,7 @@ gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 gem 'activeadmin'
 gem 'mailboxer'
+gem 'effective_obfuscation'
 # gem 'httparty'
 gem 'gon'
 gem "figaro"

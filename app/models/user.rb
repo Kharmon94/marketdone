@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
   acts_as_messageable
+  acts_as_obfuscated :format => "###-####-###"
 
   # has_one :profile
   has_many :products
