@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20180412015809) do
-=======
-ActiveRecord::Schema.define(version: 20180411034833) do
->>>>>>> d878e64756eafe1fab92db4bdc0bb8a334add2ec
+ActiveRecord::Schema.define(version: 20180412171304) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -81,7 +77,6 @@ ActiveRecord::Schema.define(version: 20180411034833) do
     t.datetime "updated_at", null: false
   end
 
-<<<<<<< HEAD
   create_table "follows", force: :cascade do |t|
     t.string "followable_type", null: false
     t.integer "followable_id", null: false
@@ -96,8 +91,6 @@ ActiveRecord::Schema.define(version: 20180411034833) do
     t.index ["follower_type", "follower_id"], name: "index_follows_on_follower_type_and_follower_id"
   end
 
-=======
->>>>>>> d878e64756eafe1fab92db4bdc0bb8a334add2ec
   create_table "mailboxer_conversation_opt_outs", force: :cascade do |t|
     t.string "unsubscriber_type"
     t.integer "unsubscriber_id"
@@ -210,8 +203,9 @@ ActiveRecord::Schema.define(version: 20180411034833) do
     t.text "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
     t.integer "product_id"
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "states", force: :cascade do |t|

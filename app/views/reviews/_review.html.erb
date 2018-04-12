@@ -1,18 +1,7 @@
-<div class="review-rating" data-score= <%= review.rating %> >
+<div class="center" align="center" style="border-style: solid; border-color: black; border-radius: 10px; border-width: 0.5px; margin-top: 2%; padding: 2%">
+	
+	<div class="review-rating" data-score= <%= review.rating %> style= "margin-top: 1.5%"></div>
+	<strong><h5>Comment:</h5></strong>
+	<p><%= review.comment %></p>
 </div>
-<p><%= review.comment %></p>
 
-		<% if user_signed_in? %>
-
-			<% if @review.user_id == current_user.id %>
-
-				<div class="links btn-group">
-
-					<%= link_to "Edit", edit_product_review_path(review.product, review), class: "btn btn-custom" %>
-					<%= link_to "Delete", product_review_path(review.product, review), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-custom" %>
-
-				</div>
-			
-			<% end %>	
-
-		<% end %>
