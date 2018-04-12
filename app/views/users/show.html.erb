@@ -2,14 +2,16 @@
   <div class="row" style="margin-top: 7%;">
    
       <div class="col-md-7" align="center">
-     
 
-      <% if @user.id == current_user.id %>
-        <h2>Hey <%= @user.username %>!<h2>
-        <% else %>
-        <h3 class="font-heading text-center"><%= @user.username %>'s Profile</h3>
-      <% end %>
-        
+          <% if @user.id == current_user.id %>
+            <%= image_tag @user.image(:thumb), id: "profile_pic" %> 
+            <h2>Hey <%= @user.username %>!<h2>
+            <%= link_to " Conversations", conversations_path %>
+            <% else %>
+            <strong><h3><%= @user.username %>'s Profile</h3></strong>
+            <%= link_to "Message", new_conversation_path %>
+          <% end %>
+            
       </div>
 
       <div class="col-md-5" align="center">
@@ -67,16 +69,14 @@
 </div>
 
 <div class="row" style="margin-top: 5%">
-  <!-- ################# Products ################# -->
     <% if @user.id == current_user.id %>
       <h3 class="font-heading text-center">My Products</h3>
       <% else %>
       <h3 class="font-heading text-center"><%= @user.username %>'s Products</h3>
     <% end %>
 
-        <% if @user.uid != present? %>
+      <% if @user.provider == nil %>
           
-
           <% if @user.id == current_user.id %>
             <div class="panel panel-default">
               <div class="panel-header text-center">
@@ -88,18 +88,21 @@
                 <%= link_to 'Connect', stripe_url, class: 'btn btn-lg btn-info', target: '_blank' %>
               </div>
             </div>
-          <% end %> 
+          <% end %>  
 
-           
-        <% else %>
-            
-           CONNECTED
         
       <% end %>
+</div>
 
+<div class="row" id="prod_row" style="margin-top: 2%">
+  <!-- ################# Products ################# -->
+
+
+
+   <% @products.each do |product| %>
     <div id="t_backdrop">
-      <div class="col-md-9" id="thumbnail_p" align="center">
-        <% @products.each do |product| %>
+      <div class="col-md-3 center" id="thumbnail_p" align="center">
+     
           <% if product.user.id == @user.id %>
 
                 <%= image_tag product.image.url(:thumb), class: "product-overview-image" %>
@@ -122,8 +125,9 @@
               </div>
                   
           <% end %>
-        <% end %>
+      
       </div>
+        <% end %>
     </div> 
 
 

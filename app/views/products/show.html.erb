@@ -13,12 +13,11 @@
     <p><em>Color:</em> <%= @product.color %></p>
     <p><em>Condition:</em> <%= @product.condition %></p>
     <p><em>Description:</em> <%= @product.description %></p>
-    <input id="payment_quantity"></input>
     <p class="mt-5">
                   <%= form_tag charges_path do %>
 
                     <%= hidden_field_tag "product_id", @product.id %>
-                    <input type="hidden" name="item_quantity_1" value="1"/>
+                    
                    
 
                     <article>
@@ -53,10 +52,11 @@
       });
     </script>
     
-    <%= link_to "Add Review", new_product_review_path(@product) %>
+    
   </div>
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-6" id="review_dis">
+      <%= link_to "Add Review", new_product_review_path(@product), :class => "btn btn-primary" %>
        <%= render @product.reviews %>
     </div>
   </div>
