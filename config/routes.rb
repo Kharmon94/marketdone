@@ -12,7 +12,12 @@ Rails.application.routes.draw do
     # resources :orders, only: [:new, :create]
     resources :reviews
   end
-  resources :users
+  resources :users do
+    member do
+      post :follow
+      post :unfollow
+    end
+  end
   resources :categories, only: [:index, :show]
   resources :charges, only: [:new, :create]
   # resources :profiles, only: [:new, :edit, :create]
