@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   def show
-    @user = User.find_by_id(params[:id])
+    @user = User.find(params[:id])
     @products = Product.all
     @businesses = Business.all
   end
