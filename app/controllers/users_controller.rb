@@ -23,6 +23,16 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
+  def follow
+    user = User.find(params[:id])
+    current_user.follow!(user) # => This assumes you have a variable current_user who is authenticated
+  end
+
+  def unfollow
+    user = User.find(params[:id])
+    current_user.unfollow!(user) # => This assumes you have a variable current_user who is authenticated
+  end
+
   def create
     @user = User.create(user_params)
   end
