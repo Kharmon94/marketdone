@@ -6,7 +6,7 @@ class Product < ApplicationRecord
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
 
-  has_attached_file :image, styles: { medium: "300x300", thumb: "100x100", square: "200x200", large: "600x600" }, default_url: "default.png"
+  has_attached_file :image, styles: { medium: "300x300", thumb: "100x80", square: "200x200", large: "600x600" }, default_url: "default.png"
   validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
   validates_attachment_presence :image
   validates_numericality_of :price, greater_than_or_equal_to: 0
