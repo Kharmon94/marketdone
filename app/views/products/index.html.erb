@@ -63,6 +63,8 @@
       </div>
 </div>
 
+
+
 <div class="row" style="margin-top: 2%">
     <div class="col-sm-6" style="margin-top: 1%">
         <%= link_to image_tag("https://s3.us-east-2.amazonaws.com/ypmarketnew/assets/Promote+Your+BusinessToday.png", :class => 'promo_a'), new_business_path, target: "_blank" %>
@@ -72,6 +74,12 @@
     </div>
 </div>
 
+<div class="row" style="background-color: lavender; padding: 10px; margin: 2%; border-radius: 10px; ">
+  <div class="col-md-12 center" align="center">
+      <h4>Peace Peace Family! Thank you so much for your support. The love given to the platform has been phenomenal. We are expecting minor thechnical difficulties. As the platform grows we will add many awesome features and extentions. We are constantly working to provide the best experience for all of our users.<br> <strong>Thank you!</strong> </h4>
+  </div>
+
+</div>
 <hr>
 
 
@@ -94,7 +102,7 @@
     <div id="t_backdrop">
       <div class="col-md-9" id="thumbnail_p">
         <% @products.each do |product| %>
-          <div class="col-md-4">
+          <div class="col-md-2">
             <div class="thumbnail">
             <%= link_to product do %>
                <%= image_tag(product.image.url(:thumb), :class => "thumbs") %>
