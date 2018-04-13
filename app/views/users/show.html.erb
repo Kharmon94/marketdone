@@ -21,16 +21,7 @@
                   <h4 class="font-weight-bold font-heading mb-3"><strong>Bio</strong></h4>
                   <p class="font-small"><%= @user.bio %></p>
                 </div>
-                <div style="background-color: lavender; border-radius: 10px;">
-                  <div>
-                    <h4>Followers</h4>
-                    <%= @user.followers_count %>
-                  </div>
-                  <div>
-                    <%= link_to('Follow', follow_user_path(@user), method: :post) %>
-                    <%= link_to('Unfollow', unfollow_user_path(@user), method: :post) %>
-                  </div>
-                </div>
+
 
               </div>
             </div>
