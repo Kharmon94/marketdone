@@ -13,7 +13,7 @@
     <p><em>Color:</em> <%= @product.color %></p>
     <p><em>Condition:</em> <%= @product.condition %></p>
     <p><em>Description:</em> <%= @product.description %></p>
-    <%= product.user.username %>
+    <%= link_to product.user.username, user_path(product) %>
     <p class="mt-5">
                   <%= form_tag charges_path do %>
 
