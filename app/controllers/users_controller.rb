@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   def show
-    @user = User.find_by(params[:id])
+    @user = User.find(params[:id])
     @products = Product.all
     @businesses = Business.all
   end
@@ -24,12 +24,12 @@ class UsersController < ApplicationController
   end
 
   def follow
-    user = User.find_by(params[:id])
+    user = User.find(params[:id])
     current_user.follow!(user) # => This assumes you have a variable current_user who is authenticated
   end
 
   def unfollow
-    user = User.find_by(params[:id])
+    user = User.find(params[:id])
     current_user.unfollow!(user) # => This assumes you have a variable current_user who is authenticated
   end
 
