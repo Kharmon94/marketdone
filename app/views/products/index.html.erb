@@ -99,27 +99,30 @@
           </div>
       </div>
 
-    <div id="t_backdrop">
-      <div class="col-md-9" id="thumbnail_p">
+    <div class="col-md-9" align="center">
         <% @products.each do |product| %>
-          <div class="col-md-2">
-            <div class="thumbnail">
-            <%= link_to product do %>
-               <%= image_tag(product.image.url(:thumb), :class => "thumbs") %>
-            <% end %>
-              <div class="caption" align="center">
-                <h4><%= product.title %></h4>
-                <p><%= number_to_currency(product.price) %></p>
-                <p><%= link_to product.category.name %></p>
-               
-                <p><em>Sold By:</em> <%= link_to product.user.username, user_path(product) %></p>
-              </div>
-            </div>
-          </div>
+          <div  id="t_backdrop">
+            <!-- <div id="thumbnail_p"> -->
+                <div class="col-md-3" style="margin-top: 2%; height: 80%">
+                  <div class="thumbnail">
+                  <%= link_to product do %>
+                     <%= image_tag(product.image.url(:thumb), :class => "thumbs") %>
+                  <% end %>
+                    <div class="caption" align="center">
+                      <h4><%= product.title %></h4>
+                      <p><%= number_to_currency(product.price) %></p>
+                      <p><%= link_to product.category.name %></p>
+                     
+                      <p><em>Sold By:</em> <%= link_to product.user.username, user_path(product) %></p>
+                    </div>
+                  </div>
+                </div>
+            <!--     </div> -->
+              <% end %> 
           
-        <% end %> 
-      </div>
-    </div> 
+          </div> 
+    </div>
+
     <div class="row" style="margin-left: 5%">
       <%= will_paginate @products, renderer: BootstrapPagination::Rails %>
     </div>
