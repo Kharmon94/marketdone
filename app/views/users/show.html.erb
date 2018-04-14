@@ -6,11 +6,11 @@
           <% if @user.id == current_user.id %>
             <%= image_tag @user.image(:thumb), id: "profile_pic" %> 
             <h2>Hey <%= @user.username %>!<h2>
-            <%= link_to " Conversations", conversations_path %>
+            <!-- <#= link_to " Conversations", conversations_path %> -->
             <% else %>
             <%= image_tag @user.image(:thumb), id: "profile_pic" %> 
             <strong><h3><%= @user.username %>'s Profile</h3></strong>
-            <%= link_to "Message", new_conversation_path(@user) %>
+            <!-- <#= link_to "Message", new_conversation_path(@user) %> -->
           <% end %>
             
       </div>
