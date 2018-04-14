@@ -17,24 +17,38 @@
 
 
 <div class="row">
-  <div class="col-md-12">
-  <% @products.each do |product| %>
+    <div class="col-md-12" align="center" style="background-color: lavender">
+                <% @products.each do |product| %>
+            <div  id="t_backdrop">
+              <!-- <div id="thumbnail_p"> -->
+                  <div class="col-md-3 center" align="center" style="margin-top: 2%; height: 100% !important">
+                    <div class="thumbnail" style="height: 80% !important">
+                    <%= link_to product do %>
+                      <div style=" height: 110% !important">
+                        <%= image_tag(product.image.url(:thumb), :class => "thumbs", :id => "thumbs") %>
+                      </div>
+                       
+                    <% end %>
+                      <div class="caption" align="center" style="width: 125px; height: 350px; padding: 3%; word-wrap: break-word">
+                        <h4><%= product.title %></h4>
+                        <p><%= number_to_currency(product.price) %></p>
+                        <p><%= link_to product.category.name, category_path(product.category) %></p>
+                        
+                        <p><em>Sold By:</em> <%= link_to product.user.username, user_path(product.user) %></p>
+                      </div>
+                    </div>
+                  </div>
+              <!--     </div> -->
+                <% end %> 
+            </div>
 
-    <div class="col-md-3 center" align="center">
-        <div class="thumbnail_p">
-        <%= link_to product do %>
-            <%= image_tag(product.image.url(:thumb), :class => "thumbs") %>
-        <% end %>
-          <div class="caption">
-            <h3><%= product.title %></h3>
-            <p><%= number_to_currency(product.price) %></p>
-            <p><em>Sold By:</em> <%= product.user.username %></p>
-          </div>
-        </div>
-      </div>
+    <div class="row" style="margin-left: 5%">
+        <%= will_paginate @products, renderer: BootstrapPagination::Rails %>
+    </div>
 
-  <% end %>
   </div>
+
+
 </div>
 
 <div class="row">
