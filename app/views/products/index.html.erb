@@ -115,8 +115,8 @@
                       <h4><%= product.title %></h4>
                       <p><%= number_to_currency(product.price) %></p>
                       <p><%= link_to product.category.name %></p>
-                     
-                      <p><em>Sold By:</em> <%= link_to product.user.username, user_path(product) %></p>
+                      
+                      <p><em>Sold By:</em> <%= link_to product.user.username, user_path(product.user) %></p>
                     </div>
                   </div>
                 </div>
