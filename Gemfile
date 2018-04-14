@@ -26,6 +26,7 @@ gem 'will_paginate-bootstrap'
 gem 'activeadmin'
 gem 'mailboxer'
 gem 'effective_obfuscation'
+gem "puma_worker_killer"
 gem "socialization"
 # gem 'httparty'
 gem 'gon'
