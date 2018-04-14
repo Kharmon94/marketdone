@@ -14,10 +14,14 @@
   </div>
 
 </div>
-
-
 <div class="row">
-    <div class="col-md-12" align="center" style="background-color: lavender">
+  <% if user_signed_in? %>
+    <%= button_to 'New product', new_product_path, class: "btn btn-primary" %>
+  <% end %>
+</div>
+
+<div class="row" id="prod_row">
+    <div class="col-md-12" align="center" >
                 <% @products.each do |product| %>
             <div  id="t_backdrop">
               <!-- <div id="thumbnail_p"> -->
@@ -47,13 +51,12 @@
     </div>
 
   </div>
+  <div class="row" align="center">
+    <%= button_to 'Back', categories_path, class: "btn btn-primary" %>
+  </div>
 
 
 </div>
 
-<div class="row">
-  <% if user_signed_in? %>
-    <%= link_to 'New product', new_product_path, class: "btn btn-link" %>
-  <% end %>
-</div>
-<%= link_to 'Back', categories_path %>
+
+
