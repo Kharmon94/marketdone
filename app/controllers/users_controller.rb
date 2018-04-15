@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.update(user_params)
-    @user = User.find(params[:id])
+    @user = User.find_by_id(params[:id])
     if @user.update(user_params)
       if @user.stripe_temporary_token.present?
         customer = Stripe::Customer.create(
