@@ -121,8 +121,11 @@
                       <h4><%= product.title %></h4>
                       <p><%= number_to_currency(product.price) %></p>
                       <p><%= link_to product.category.name, category_path(product.category) %></p>
-                      
-                      <p><em>Sold By:</em> <%= link_to product.user.username, user_path(product.user) %></p>
+                      <% if user_signed_in? %>
+                        <p><em>Sold By:</em> <%= link_to product.user.username, user_path(product.user) %></p>
+                      <% else %>
+                        <p><em>Sold By:</em> <%= product.user.username %></p>
+                      <% end %>
                     </div>
                   </div>
                 </div>
