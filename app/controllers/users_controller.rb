@@ -28,11 +28,13 @@ class UsersController < ApplicationController
   def follow
     user = User.find_by_id(params[:id])
     current_user.follow!(user) # => This assumes you have a variable current_user who is authenticated
+    redirect_to user_path(user)
   end
 
   def unfollow
     user = User.find_by_id(params[:id])
     current_user.unfollow!(user) # => This assumes you have a variable current_user who is authenticated
+    redirect_to user_path(user)
   end
 
   def create

@@ -1,4 +1,7 @@
 class ConversationsController < ApplicationController
+
+	before_action :authenticate_user!, only: [ :index, :new, :show, :create ]
+
 	def index
 		@conversations = current_user.mailbox.conversations
 		
@@ -13,7 +16,7 @@ class ConversationsController < ApplicationController
 	end
 
 	def create
-		recipient = User.find(params[:user_id])
+		recipient = User.find_by_id(params[:user_id])
 		receipt   = current_user.send_message(recipient, params[:body], params[:subject])
 		redirect_to conversation_path(receipt.conversation)
 	end
