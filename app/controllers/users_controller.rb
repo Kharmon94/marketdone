@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+ before_action :authenticate_user!, only: [ :update, :show, :create ]
+
   def show
     @user = User.find_by_id(params[:id])
     @products = Product.all
