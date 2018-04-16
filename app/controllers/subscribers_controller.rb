@@ -6,7 +6,7 @@ class SubscribersController < ApplicationController
 
 	def update
 	#gets the credit card details submitted in the form
-   Stripe.api_key = ENV["STRIPE_API_KEY"]
+   
     token = params[:stripeToken]
 
     #create a product
