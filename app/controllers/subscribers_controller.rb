@@ -6,22 +6,10 @@ class SubscribersController < ApplicationController
 
 	def update
 	#gets the credit card details submitted in the form
-   
+
     token = params[:stripeToken]
 
-    #create a product
-    product = Stripe::Product.create({
-      name: 'The Black Woman Is God Business Map',
-      type: 'service',
-    })
-
-    plan = Stripe::Plan.create({
-      product: 'plan_CfIMakVxUJCgRv',
-      nickname: 'Business Map',
-      interval: 'month',
-      currency: 'usd',
-      amount: 4999,
-    })
+  begin
 
     #create a customer
     customer = Stripe::Customer.create(
@@ -29,10 +17,17 @@ class SubscribersController < ApplicationController
       email: current_user.email
     )
 
-    current_user.subscribed = true
     current_user.stripe_id = customer.id
-    current_user.save
+    
+    subscription = Stripe::Subscription.create({
+      customer: customer.id,
+      items: [{plan: 'plan_CfIMakVxUJCgRv'}],
+    })
 
+    
+    current_user.subscribed = true
+    current_user.save
+  end
 
     redirect_to new_business_path, notice: "Your subscription was set up successfully! Post Up Your Business!"
 
