@@ -6,12 +6,26 @@ class SubscribersController < ApplicationController
 
 	def update
 	#gets the credit card details submitted in the form
+   Stripe.api_key = ENV["STRIPE_API_KEY"]
     token = params[:stripeToken]
+
+    #create a product
+    product = Stripe::Product.create({
+      name: 'The Black Woman Is God Business Map',
+      type: 'service',
+    })
+
+    plan = Stripe::Plan.create({
+      product: 'plan_CfIMakVxUJCgRv',
+      nickname: 'Business Map',
+      interval: 'month',
+      currency: 'usd',
+      amount: 4999,
+    })
 
     #create a customer
     customer = Stripe::Customer.create(
-      card: token,
-      plan: plan_CfIMakVxUJCgRv,
+      source: token,
       email: current_user.email
     )
 
