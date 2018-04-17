@@ -1,17 +1,24 @@
 <div class="container">
   <div class="row m-5 text-center">
-    <div class="col bg-white p-4">
-      <h2>Thanks, you paid <strong>$<%= @amount / 100 %>.00</strong>!</h2>
-    </div>
-    <div>
-    	<h5>The Black Woman Is God Stores Acts solely as an intermediary between business owners and customers.
-			We ARE NOT responsible for any businesses or actions by any individual using this platform.</h5>
-    </div>
-    <div>
-    	<p>
-    		All sellers are required to send tracking numbers per order within 48 hours of purchase. Sellers are also inclined to responsibly correspond with messages and inquiries from customers regarding purchases made on the platform.<br>
-    		If there is any complications with any Seller please contact support at Theblackwomanisgodstores@gmail.com
-    	</p>
+	    <div class="col bg-white p-4">
+	      <h2>Thanks, you paid <strong>$<%= @amount / 100 %>.00</strong>!</h2>
+	    </div>
+	    <div style="margin-top: 3%">
+	    	<h5><strong>The Black Woman Is God Stores Acts solely as an intermediary between business owners and customers.
+				We ARE NOT responsible for any businesses or actions by any individual using this platform.</strong></h5>
+	    </div>
+	    <div style="margin-top: 1%">
+	    	<p>
+	    		All sellers are required to send tracking numbers per order within 48 hours of purchase. Sellers are also inclined to responsibly correspond with messages and inquiries from customers regarding purchases made on the platform.<br>
+	    		If there is any complications with any Seller please contact support at Theblackwomanisgodstores@gmail.com
+	    	</p>
+	    </div>
+	    <div style="margin-top: 1%">
+	    	<h3>
+	    		Terms And Conditions:<br>
+	    		<%= link_to "Terms and Conditions", pages_terms_path, class: "btn btn-link" %>
+	    	</h3>
+	    </div>
     </div>
   </div>
 </div>
