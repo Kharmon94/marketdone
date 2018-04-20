@@ -59,6 +59,7 @@
 			    <th class="center">Category</th>
 			    <th class="center">Owner</th>
 			    <th class="center">City</th>
+			     <th class="center">State</th>
 			</tr>
 			
 			<% @businesses.each do |business| %>
@@ -89,6 +90,11 @@
 				<th>
 					<p> <%= business.city %></p>
 				</th>
+					
+				<th>
+					<p> <%= business.state.name %></p>
+				</th>
+
 
 						
 			</tr>
