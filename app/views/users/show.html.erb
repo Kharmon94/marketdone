@@ -64,6 +64,7 @@
                   <%= business.title %>
                 </h4>
             <%= link_to "View Details", business, target: "_blank", class: "btn-blue btn font-white mt-5", :method => :get %>
+            <% if @user.id == current_user.id %>
               <div class="btn-group">
                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                   Action <span class="caret"></span>
@@ -73,7 +74,9 @@
                   <li><%= link_to "Edit", edit_business_path(business), class: "btn btn-link" %></li>
                   <li><%= link_to 'Destroy', business, method: :delete, data: { confirm: "Are you sure? Remember to cancel subscription please email Theblackwomanisgodstores@gmail.com. You Are only allowed ONE business on the site if subscribed" }, class: "btn btn-link" %></li>
                 </ul>
+
               </div>
+            <% end %>
           </div>
               
       <% end %>
