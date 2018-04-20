@@ -35,7 +35,7 @@ class StatesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_state
-      @state = State.find(params[:id])
+      @state = State.find_by_id(params[:id])
     end
 
     def set_business_category

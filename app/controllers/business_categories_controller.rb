@@ -19,7 +19,7 @@ class BusinessCategoriesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_business_category
-      @business_category = BusinessCategory.find(params[:id])
+      @business_category = BusinessCategory.find_by_id(params[:id])
     end
 
 

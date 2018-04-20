@@ -78,7 +78,7 @@
 				</th>
 
 				<th>
-					<strong><p><em>Owner:</em> <%= link_to business.user.profile.username, profile_path(current_user) %></p></strong>
+					<strong><p><em>Owner:</em> <%= link_to business.user.username, user_path(business.user) %></p></strong>
 				</th>
 
 				<th>
