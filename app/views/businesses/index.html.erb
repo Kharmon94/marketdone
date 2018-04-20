@@ -95,7 +95,9 @@
 
 			<% end %> 
 	  	</table>
-	   
+	     <div class="row" style="margin-left: 5%">
+      		<%= will_paginate @businesses, renderer: BootstrapPagination::Rails %>
+   		 </div>
 	  </div>
 </div>
 
