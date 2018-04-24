@@ -31,6 +31,7 @@
 		{ name: 'Health & Medical Services' },
 		{ name: 'Home Improvement Services' },
 		{ name: 'Hotels & Travel' },
+		{ name: 'Landscaping Services' },
 		{ name: 'Massage Therapy & Acupuncture Services' },
 		{ name: 'Modeling Services' },
 		{ name: 'Moving & Removal Companies' },
