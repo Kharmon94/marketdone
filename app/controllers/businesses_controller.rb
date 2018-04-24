@@ -31,7 +31,7 @@ class BusinessesController < ApplicationController
         redirect_to new_subscriber_path
       end
     else
-      redirect_to profile_path
+      redirect_to user_path(current_user)
     end
   end
 
