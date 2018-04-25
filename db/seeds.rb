@@ -8,6 +8,7 @@
 
 	# Category.destroy_all
 	# State.destroy_all
+	Business.destroy_all
 	BusinessCategory.destroy_all
 
 	business_categories = BusinessCategory.create([
