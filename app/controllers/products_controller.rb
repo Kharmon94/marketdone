@@ -32,6 +32,8 @@ class ProductsController < ApplicationController
     end
   end
 
+  
+
   # GET /products/1/edit
   def edit
     @categories = Category.all.map{|c| [ c.name, c.id ] }
@@ -88,7 +90,7 @@ class ProductsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
-      @product = Product.find(params[:id])
+      @product = Product.find_by_id(params[:id])
     end
 
     def set_category
