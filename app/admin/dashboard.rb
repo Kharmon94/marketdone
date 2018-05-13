@@ -14,10 +14,10 @@ ActiveAdmin.register_page "Dashboard" do
     #
     # columns do
     #   column do
-    #     panel "Recent Posts" do
+    #     panel "Recent Products" do
     #       ul do
-    #         Post.recent(5).map do |post|
-    #           li link_to(post.title, admin_post_path(post))
+    #         Product.recent(10).map do |product|
+    #           li link_to(product.title, admin_product_path(product))
     #         end
     #       end
     #     end
@@ -25,7 +25,7 @@ ActiveAdmin.register_page "Dashboard" do
 
     #   column do
     #     panel "Info" do
-    #       para "Welcome to ActiveAdmin."
+    #       para "Welcome to The Admin Panel"
     #     end
     #   end
     # end

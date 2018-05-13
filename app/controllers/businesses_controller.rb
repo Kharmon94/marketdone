@@ -8,8 +8,8 @@ class BusinessesController < ApplicationController
   def index
       @w = Business.search(params[:w])
       @search = Business.search(params[:w])
-      @businesses = @search.result.paginate(:page => params[:page], :per_page => 20).order('created_at DESC')
-      @business_categories = BusinessCategory.all.paginate(:page => params[:page], :per_page => 20).order('created_at DESC')
+      @businesses = @search.result.order('created_at DESC').page(params[:page])
+      @business_categories = BusinessCategory.all.order('created_at DESC').page(params[:page])
       @businesses = @businesses.where(business_category: params["business_category"]) if params["business_category"].present?
       @businesses = @businesses.where(state: params["state"]) if params["state"].present?
   end

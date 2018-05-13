@@ -11,7 +11,8 @@ class ProductsController < ApplicationController
 
   def index
       @q = Product.search(params[:q])
-      @products = @q.result.paginate(:page => params[:page], :per_page => 8).order('created_at DESC')
+      @products = @q.result.order('created_at DESC').page(params[:page])
+      @products = @products.where(category: params["category"]) if params["category"].present?
       @categories = Category.all
   end
 

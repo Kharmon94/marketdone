@@ -15,7 +15,7 @@
     <p><em>Description:</em> <%= @product.description %></p>
     <%= link_to @product.user.username, user_path(@product) %>
     <p class="mt-5">
-                  <%= form_tag charges_path do %>
+                <%= form_tag charges_path do %>
 
                     <%= hidden_field_tag "product_id", @product.id %>
                     

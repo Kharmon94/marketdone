@@ -11,7 +11,7 @@ class CategoriesController < ApplicationController
   def show
     @title = Category.name
     @q = Product.search(params[:q])
-    @products = @q.result.paginate(:page => params[:page], :per_page => 20).order('created_at DESC')
+    @products = @q.result.order('created_at DESC').page(params[:page])
   end
 
   # GET /categories/new
@@ -20,7 +20,7 @@ class CategoriesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_category
-      @category = Category.find(params[:id])
+      @category = Category.find_by_id(params[:id])
     end
 
 
