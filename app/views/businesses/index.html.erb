@@ -1,3 +1,10 @@
+<div class="row" align="center">
+	<div class="col-md-12" align="center">
+	  <img src="https://s3.us-east-2.amazonaws.com/ypmarketnew/assets/blkbuzservcblkgold.png" style="width: 250px; height: 250px" >
+	</div>
+</div>
+
+
 <p id="notice"><%= notice %></p>
 
 <div class="row" style="margin-top: 3%;">
@@ -8,21 +15,31 @@
 
 <div class="row" style="margin-top: 3%">
 	<div class="col-md-12 center" align="center">
-			<strong><h5>If map is not showing plaese refresh the page. Thank You!</h5></strong>
+			<strong><h5>If map is not showing please press this button. Thank You!</h5></strong>
+			        <div>
+			          <button class="btn" onclick="myFunction()">Reload</button>
+
+			          <script>
+			            function myFunction(){
+			              location.reload();
+			            }
+			          </script>
+			        </div>
 			<strong><h4>Double Click your state to find business near you!</h4></strong>
 	</div>
-
 </div>
-    <script type="text/javascript" src="http://yoursite.com/mapdata.js"></script>   
-    <script  type="text/javascript" src="http://yoursite.com/worldmap.js"></script>
+
+
 <div class="row">
 	<div class="col-md-12 center" align="center">
+		
+		<script type="text/javascript" src="http://yoursite.com/mapdata.js"></script>   
+		<script  type="text/javascript" src="http://yoursite.com/worldmap.js"></script>
+
 		<div class="usa" id="map"></div>
+
 	</div>
 </div>
-
-    <script type="text/javascript" src="http://yoursite.com/mapdata.js"></script>   
-    <script  type="text/javascript" src="http://yoursite.com/worldmap.js"></script>
 
 <div class="row" style="margin-top: 3%">
 	<div class="col-md-12" align="center">
