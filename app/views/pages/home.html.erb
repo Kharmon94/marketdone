@@ -1,1 +1,182 @@
-home.html.erb
+<div class="row" id="pic_row">
+
+  <div id="myCarousel" class="carousel slide" data-ride="carousel" style="height: 370px">
+
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="3"></li>
+      </ol>
+
+
+      <div class="carousel-inner">
+
+          <div class="item active" align="center">
+            <a href="home">
+              <img src="https://s3.us-east-2.amazonaws.com/ypmarketnew/assets/BLACKWOMANISGOD+GOLD.png" style="height: 370px; width: 370px;" align="center">
+            </a>
+            
+          </div>
+
+          <div class="item" align="center">
+            <a href="https://www.youtube.com/channel/UCtKtmiQ2GlWlqPDzXwrR4NA" target="_blank">
+              <img src="https://s3.us-east-2.amazonaws.com/ypmarketnew/assets/20170331_211825.png" style="height: 330px; width: 330px;" align="center">
+            </a>
+          </div>
+
+          <div class="item" align="center">
+            <a href="/businesses">
+              <img src="https://s3.us-east-2.amazonaws.com/ypmarketnew/assets/blkbuzservcblkgold.png" style="height: 370px; width: 370px;" align="center">
+            </a>
+            
+          </div>
+
+          <div class="item" align="center">
+            <a href="/products">
+              <img src="https://s3.us-east-2.amazonaws.com/ypmarketnew/assets/STORE+GOLD.png" style="height: 350px; width: 350px;" align="center">
+            </a>
+            
+          </div>
+
+      </div>
+
+      <!-- Left and right controls -->
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+        <span class="sr-only"></span>
+      </a>
+
+      <a class="right carousel-control" href="#myCarousel" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        <span class="sr-only"></span>
+      </a>
+
+  </div>
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+        // Activate Carousel
+        $("#myCarousel").carousel({interval: 4000});
+        
+        // Enable Carousel Indicators
+        $(".item1").click(function(){
+            $("#myCarousel").carousel(0);
+        });
+        $(".item2").click(function(){
+            $("#myCarousel").carousel(1);
+        });
+        $(".item3").click(function(){
+            $("#myCarousel").carousel(2);
+        });
+        $(".item4").click(function(){
+            $("#myCarousel").carousel(3);
+        });
+        
+        // Enable Carousel Controls
+        $(".left").click(function(){
+            $("#myCarousel").carousel("prev");
+        });
+        $(".right").click(function(){
+            $("#myCarousel").carousel("next");
+        });
+    });
+  </script>
+
+
+</div>
+
+<div class="row" align="center" style="margin-bottom: 10%">
+    <a href="#homeproducts">
+      <img src="https://s3.us-east-2.amazonaws.com/ypmarketnew/assets/icon_017280_256.png" style="width: 40px; height: 40px; a:hover: none;" align="center">
+    </a>
+</div>
+
+<hr>
+
+
+      <div class="row" id="homeproducts" align="center">
+        <div class="col-md-12" align="center">
+          <img src="https://s3.us-east-2.amazonaws.com/ypmarketnew/assets/STORE+GOLD.png" style="width: 250px; height: 250px" >
+        </div>
+      </div>
+
+      <div class="row"  style="background-image: url(https://s3.us-east-2.amazonaws.com/ypmarketnew/assets/bacground1440.png); border-radius: 20px">
+        <div class="col-md-12" align="center">
+            <% @products.each do |product| %>
+
+              <div  id="t_backdrop">
+                  <div class="col-md-3" style="margin-top: 2%; height: 100% !important">
+                      <div class="thumbnail" style="height: 80% !important">
+                          <%= link_to product do %>
+                            <div style=" height: 110% !important">
+                              <%= image_tag(product.image.url(:thumb), :class => "thumbs", :id => "thumbs") %>
+                            </div>
+                           
+                          <% end %>
+                          <div class="caption" align="center" style="width: 125px; height: 250px; padding: 3%; word-wrap: break-word">
+                            <h4><%= product.title %></h4>
+                            <p><%= number_to_currency(product.price) %></p>
+                            <p><%= link_to product.category.name, category_path(product.category) %></p>
+                            <p><em>Sold By:</em> <%= link_to product.user.username, user_path(product.user) %></p>
+                          </div>
+                      </div>
+                  </div>
+              </div>  
+
+            <% end %> 
+          
+        </div>
+
+        <div class="row" align="center" >
+          <%= button_to "ENTER STORE", products_path, class: "btn", style: "background-color: #D4AF37; color: black; margin-bottom: 15px;" %>
+        </div>
+
+      </div>
+
+
+
+      <hr>
+
+      <div class="row" align="center">
+        <div class="col-md-12" align="center">
+          <img src="https://s3.us-east-2.amazonaws.com/ypmarketnew/assets/blkbuzservcblkgold.png" style="width: 250px; height: 250px" >
+        </div>
+        <div>
+          <button class="btn" onclick="myFunction()">Reload</button>
+
+          <script>
+            function myFunction(){
+              location.reload();
+            }
+          </script>
+        </div>
+      </div>
+
+
+
+    <script type="text/javascript" src="http://yoursite.com/mapdata.js"></script>   
+    <script  type="text/javascript" src="http://yoursite.com/worldmap.js"></script>
+    
+    <div class="row" align="center">
+    
+        <div class="usa" id="map"></div>
+
+    </div> 
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+

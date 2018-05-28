@@ -14,10 +14,11 @@
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav">
-      <li><%= link_to "Marketplace", products_path %></li>
-      <li><%= link_to "Black Business Services", businesses_path %></li>
-      <li><%= link_to "About Us", pages_about_path %></li>
-      <li><%= link_to "Contact", pages_contact_path %></li>
+      <li><%= link_to image_tag("https://s3.us-east-2.amazonaws.com/ypmarketnew/assets/BLACKWOMANISGOD+GOLD.png", :class => "navhomepic"), pages_home_path %></li>
+      <li><%= link_to image_tag("https://s3.us-east-2.amazonaws.com/ypmarketnew/assets/STORE+GOLD.png", :class => "navstorepic"), products_path %></li>
+      <li><%= link_to image_tag("https://s3.us-east-2.amazonaws.com/ypmarketnew/assets/blkbuzservcblkgold.png", :class => "navbizpic"), businesses_path %></li>
+      <li><%= link_to image_tag("https://s3.us-east-2.amazonaws.com/ypmarketnew/assets/aboutusgold.png", :class => "navaboutpic"), pages_about_path %></li>
+      <li><%= link_to image_tag("https://s3.us-east-2.amazonaws.com/ypmarketnew/assets/contactgold.png", :class => "navcontactpic"), pages_contact_path %></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <% if user_signed_in? %>
@@ -37,8 +38,8 @@
           </ul>
         </li>
       <% else %>
-        <li><%= link_to "Sign Up", new_user_registration_path %></li>
-        <li><%= link_to "Sign In", new_user_session_path %></li>
+        <li><%= link_to image_tag("https://s3.us-east-2.amazonaws.com/ypmarketnew/assets/signupgold.png", :class => "navsignuppic"), new_user_registration_path %></li>
+        <li><%= link_to image_tag("https://s3.us-east-2.amazonaws.com/ypmarketnew/assets/signingold.png", :class => "navsigninpic"), new_user_session_path %></li>
       <% end %>
     </ul>
   </div><!-- /.navbar-collapse -->
