@@ -23,7 +23,7 @@
     <ul class="nav navbar-nav navbar-right">
       <% if user_signed_in? %>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.username %>'s Account <b class="caret"></b></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: #D4AF37; opacity: 0.85; " ><%= current_user.username %>'s Account <b class="caret"></b></a>
           <ul class="dropdown-menu">
             <li><%= link_to "View Profile", user_path(current_user) %></li>
             <li><a href="https://dashboard.stripe.com/" target="_blank">Manage Sales</a></li>
@@ -32,7 +32,7 @@
         </li>
 
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.username %> <b class="caret"></b></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: #D4AF37; opacity: 0.85; " ><%= current_user.username %> <b class="caret"></b></a>
           <ul class="dropdown-menu">
             <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
           </ul>

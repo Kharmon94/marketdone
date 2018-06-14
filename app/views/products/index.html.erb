@@ -30,42 +30,53 @@
       </div>
   </div>
 
-  <div class="row">
-    <%= form_tag products_path, method: 'get' do %>
-      <div class="col-md-4 form-group">
-          <%= label_tag :category %>
-          <%= select_tag(:category, options_from_collection_for_select(Category.all, :id, :name, params[:category]), { include_blank: true }) %>
-           <%= submit_tag "submit", :name => nil, :class => "btn btn-primary" %>  
-      </div>
-    <% end %>
-  </div>
-  
+
   <div class="row" id="prod_row">
-    
+      <div class="col-md-3 form-group" id="catrow" class="dropdown-menu">
+        <%= form_tag products_path, method: 'get' do %>
+            <%= label_tag :category %>
+            <%= select_tag(:category, options_from_collection_for_select(Category.all, :id, :name, params[:category]), { include_blank: true }) %>
+            <br>
+            <br>
+            <%= label_tag :min_price %>
+            <%= text_field_tag :min_price, params[:min_price] %>
+            <br>
+            <br>
+            <%= label_tag :max_price %>
+            <%= text_field_tag :max_price, params[:max_price] %>
+            <br>
+            <br>
+            <%= submit_tag "submit", :name => nil, :class => "btn btn-primary", :style => "background-color: #D4AF37; color: black;" %>  
+        <% end %>
+      </div>
+  
 
     <div class="col-md-9" align="center">
-        <% @products.each do |product| %>
-          <div  id="t_backdrop">
-            <!-- <div id="thumbnail_p"> -->
-                <div class="col-md-3
-                " style="margin-top: 2%; height: 80% !important">
-                  <div class="thumbnail" style="height: 50% !important">
-                  <%= link_to product do %>
-                    <div style=" height: 110% !important">
-                      <%= image_tag(product.image.url(:thumb), :class => "thumbs", :id => "thumbs") %>
-                    </div>
-                     
-                  <% end %>
-                    <div class="caption" align="center" style="width: 125px; height: 350px; padding: 3%; word-wrap: break-word">
-                      <h4><%= product.title %></h4>
-                      <p><%= number_to_currency(product.price) %></p>
-                      <p><%= link_to product.category.name, category_path(product.category) %></p>
-                      <p><em>Sold By:</em> <%= link_to product.user.username, user_path(product.user) %></p>
-                    </div>
+            <% @products.each do |product| %>
+
+              <div  id="t_backdrop">
+                  <div class="col-md-3" style=" height: 100% !important">
+                      <div class="thumbnail" style="height: 60% !important;">
+                          <%= link_to product do %>
+                            <div style="height: 200px; width: 200px; opacity: 0.88; padding: 15px; background-color: #D4AF37; border-radius: 5px">
+                                <div style=" height: 110% !important">
+                                  <%= image_tag(product.image.url(:thumb), :class => "thumbs", :id => "thumbs") %>
+                                </div>
+                            </div>
+
+                           
+                          <% end %>
+                          <div class="caption"style=" width: 250px; height: 200px; padding: 3%; word-wrap: break-word; color: #D4AF37 !important; font-size: 17px; opacity: 0.85" >
+                            <h4><%= product.title %></h4>
+                            <h3><strong><%= number_to_currency(product.price) %></strong></h3>
+                            <p><%= link_to product.category.name, category_path(product.category), :style => "color: #D4AF37" %></p>
+                            <p><em>Seller:</em><br> <%= link_to product.user.username, user_path(product.user), :style => "color: #D4AF37" %></p>
+                          </div>
+                      </div>
                   </div>
-                </div>
-            <!--     </div> -->
-              <% end %> 
+              </div>  
+
+            <% end %> 
           
           </div> 
     </div>

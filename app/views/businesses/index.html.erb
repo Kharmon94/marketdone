@@ -13,21 +13,7 @@
       </div>
 </div>
 
-<div class="row" style="margin-top: 3%">
-	<div class="col-md-12 center" align="center">
-			<strong><h5>If map is not showing please press this button. Thank You!</h5></strong>
-			        <div>
-			          <button class="btn" onclick="myFunction()">Reload</button>
 
-			          <script>
-			            function myFunction(){
-			              location.reload();
-			            }
-			          </script>
-			        </div>
-			<strong><h4>Double Click your state to find business near you!</h4></strong>
-	</div>
-</div>
 
 
 <div class="row">
@@ -42,32 +28,42 @@
 </div>
 
 <div class="row" style="margin-top: 3%">
-	<div class="col-md-12" align="center">
-		<h3>Businesses</h3>
-	</div>
-	<div class="col-md-12">
-		<%= form_tag businesses_path, method: 'get' do %>
-			<div class="col-md-4 form-group">
-				<%= label_tag :business_category %>
-			  	<%= select_tag(:business_category, options_from_collection_for_select(BusinessCategory.all, :id, :name, params[:business_category]), { include_blank: true }) %>
-			</div>
-			<div class="col-md-4 form-group">
-				<%= label_tag :state %>
-			  	<%= select_tag(:state, options_from_collection_for_select(State.all, :id, :name, params[:state]), { include_blank: true }) %>
-			</div>
+	<div class="col-md-12 center" align="center">
+			<strong><h5>If map is not showing please press this button. Thank You!</h5></strong>
+			        <div>
+			          <button class="btn" style="background-color: #D4AF37; color: black;" onclick="myFunction()">Reload</button>
 
-			 <%= submit_tag "submit", :name => nil, :class => "btn btn-primary" %>      
-		<% end %>
+			          <script>
+			            function myFunction(){
+			              location.reload();
+			            }
+			          </script>
+			        </div>
+			<strong><h4>Double Click your state to find business near you!</h4></strong>
 	</div>
-
 </div>
 
 
+<div class="row" style="margin-top: 3%">
 
+		<%= form_tag businesses_path, method: 'get' do %>
+			<div class="col-md-3 form-group" style="color: #D4AF37">
+				<%= label_tag :business_category %>
+			  	<%= select_tag(:business_category, options_from_collection_for_select(BusinessCategory.all, :id, :name, params[:business_category]), { include_blank: true }) %>
+				<br>
+				<br>
+				<%= label_tag :state %>
+			  	<%= select_tag(:state, options_from_collection_for_select(State.all, :id, :name, params[:state]), { include_blank: true }) %>
+				<br>
+				<br>
+				<%= submit_tag "submit", :name => nil, :class => "btn btn-primary", :style => "background-color: #D4AF37; color: black;" %>  
+			</div>
 
-<div class="row">
-	<div class="col-md-12" align="center">
-	  	<table class="table table-striped table-bordered">
+			     
+		<% end %>
+		
+		<div class="col-md-9" align="center">
+	  	<table class="table">
 			
 	  		<tr>
 			    <th class="center"></th>
@@ -81,15 +77,15 @@
 			
 			<% @businesses.each do |business| %>
 
-			<tr>
-				<th>
+			<tr class="business_table">
+				<th style="background-color: #D4AF37;">
 					<%= link_to business do %>
 	       				<%= image_tag(business.image.url(:thumb), :class => "thumbs") %>
 	    			<% end %>
 				</th>
 
 				<th>
-					<h3><%= link_to business.title, business_path(business) %></h3>
+					<h3><%= link_to business.title, business_path(business), style: "color: #D4AF37;" %></h3>
 				</th>
 
 				<th>
@@ -101,7 +97,7 @@
 				</th>
 
 				<th>
-					<strong><p><em>Owner:</em> <%= link_to business.user.username, user_path(business.user) %></p></strong>
+					<strong><p><em>Owner:</em> <%= link_to business.user.username, user_path(business.user), style: "color: #D4AF37;" %></p></strong>
 				</th>
 
 				<th>
@@ -122,7 +118,16 @@
       		<%= paginate @businesses %>
    		 </div>
 	  </div>
+
 </div>
+
+</div>
+
+
+
+
+
+
 
 
 	

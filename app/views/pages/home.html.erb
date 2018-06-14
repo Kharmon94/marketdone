@@ -1,3 +1,4 @@
+
 <div class="row" id="pic_row">
 
   <div id="myCarousel" class="carousel slide" data-ride="carousel" style="height: 370px">
@@ -93,33 +94,35 @@
     </a>
 </div>
 
-<hr>
 
 
       <div class="row" id="homeproducts" align="center">
         <div class="col-md-12" align="center">
-          <img src="https://s3.us-east-2.amazonaws.com/ypmarketnew/assets/STORE+GOLD.png" style="width: 250px; height: 250px" >
+          <img src="https://s3.us-east-2.amazonaws.com/ypmarketnew/assets/STORE+GOLD.png" style="width: 250px; height: 225px" >
         </div>
       </div>
 
-      <div class="row"  style="background-image: url(https://s3.us-east-2.amazonaws.com/ypmarketnew/assets/bacground1440.png); border-radius: 20px">
+      <div class="row"  style="/*background-image: url(https://s3.us-east-2.amazonaws.com/ypmarketnew/assets/bacground1440.png);*/ border-radius: 20px">
         <div class="col-md-12" align="center">
             <% @products.each do |product| %>
 
               <div  id="t_backdrop">
-                  <div class="col-md-3" style="margin-top: 2%; height: 100% !important">
-                      <div class="thumbnail" style="height: 80% !important">
+                  <div class="col-md-3" style=" height: 100% !important">
+                      <div class="thumbnail" style="height: 60% !important;">
                           <%= link_to product do %>
-                            <div style=" height: 110% !important">
-                              <%= image_tag(product.image.url(:thumb), :class => "thumbs", :id => "thumbs") %>
+                            <div style="height: 200px; width: 250px; opacity: 0.88; padding: 15px; background-color: #D4AF37; border-radius: 5px">
+                                <div style=" height: 110% !important">
+                                  <%= image_tag(product.image.url(:medium), :class => "thumbs", :id => "thumbs") %>
+                                </div>
                             </div>
+
                            
                           <% end %>
-                          <div class="caption" align="center" style="width: 125px; height: 250px; padding: 3%; word-wrap: break-word">
+                          <div class="caption" align="center" style=" width: 250px; height: 200px; padding: 3%; word-wrap: break-word; color: #D4AF37 !important; font-size: 17px; opacity: 0.85" >
                             <h4><%= product.title %></h4>
-                            <p><%= number_to_currency(product.price) %></p>
-                            <p><%= link_to product.category.name, category_path(product.category) %></p>
-                            <p><em>Sold By:</em> <%= link_to product.user.username, user_path(product.user) %></p>
+                            <h3><strong><%= number_to_currency(product.price) %></strong></h3>
+                            <p><%= link_to product.category.name, category_path(product.category), :style => "color: #D4AF37" %></p>
+                            <p><em>Seller:</em><br> <%= link_to product.user.username, user_path(product.user), :style => "color: #D4AF37" %></p>
                           </div>
                       </div>
                   </div>
@@ -130,22 +133,28 @@
         </div>
 
         <div class="row" align="center" >
-          <%= button_to "ENTER STORE", products_path, class: "btn", style: "background-color: #D4AF37; color: black; margin-bottom: 15px;" %>
+          <%= link_to "ENTER STORE", products_path, class: "btn", style: "background-color: #D4AF37; color: black; margin-bottom: 15px;" %>
         </div>
 
       </div>
 
 
 
-      <hr>
 
       <div class="row" align="center">
         <div class="col-md-12" align="center">
           <img src="https://s3.us-east-2.amazonaws.com/ypmarketnew/assets/blkbuzservcblkgold.png" style="width: 250px; height: 250px" >
         </div>
-        <div>
-          <button class="btn" onclick="myFunction()">Reload</button>
+        <script type="text/javascript" src="http://yoursite.com/mapdata.js"></script>   
+        <script  type="text/javascript" src="http://yoursite.com/worldmap.js"></script>
+        
+        <div class="row" align="center">
+        
+            <div class="usa" id="map"></div>
 
+        </div> 
+        <div>
+          <button class="btn" style="background-color: #D4AF37; color: black;" onclick="myFunction()">ACTIVATE MAP</button>
           <script>
             function myFunction(){
               location.reload();
@@ -156,14 +165,7 @@
 
 
 
-    <script type="text/javascript" src="http://yoursite.com/mapdata.js"></script>   
-    <script  type="text/javascript" src="http://yoursite.com/worldmap.js"></script>
-    
-    <div class="row" align="center">
-    
-        <div class="usa" id="map"></div>
 
-    </div> 
 
 
 
