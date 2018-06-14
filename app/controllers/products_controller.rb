@@ -13,6 +13,8 @@ class ProductsController < ApplicationController
       @q = Product.search(params[:q])
       @products = @q.result.order('created_at DESC').page(params[:page])
       @products = @products.where(category: params["category"]) if params["category"].present?
+      @products = @products.where("price > ?", params["min_price"]) if params["min_price"].present?
+      @products = @products.where("price < ?", params["max_price"]) if params["max_price"].present?
       @categories = Category.all
   end
 

@@ -11,7 +11,9 @@
     <%= Gon::Base.render_data %>
     
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+  
+    
+    <link href="https://fonts.googleapis.com/css?family=Audiowide|Gugi|Iceland|Monoton|Squada+One" rel="stylesheet">
     <script type="text/javascript" src="http://yoursite.com/mapdata.js"></script>   
     <script  type="text/javascript" src="http://yoursite.com/worldmap.js"></script>
     <style>
@@ -36,7 +38,33 @@
       ::-webkit-scrollbar-thumb:hover {
           background: #D4AF37; 
       }
+
+       /* Fade in */
+        .animate-bottom {
+          position: relative;
+          -webkit-animation-name: animatebottom;
+          -webkit-animation-duration: 1s;
+          animation-name: animatebottom;
+          animation-duration: 1s
+        }
+
+        @-webkit-keyframes animatebottom {
+          from { bottom:-100px; opacity:0 } 
+          to { bottom:0px; opacity:1 }
+        }
+
+        @keyframes animatebottom { 
+          from{ bottom:-100px; opacity:0 } 
+          to{ bottom:0; opacity:1 }
+        }
+
+        #myDiv {
+          display: none;
+          text-align: center;
+        }
     </style>
+
+
 
      
   </head>

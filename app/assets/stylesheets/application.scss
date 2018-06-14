@@ -29,7 +29,11 @@
 }
 
 body {
-  font-family: 'Quicksand', sans-serif;
+  // font-family: 'Play', sans-serif;
+  // font-family: 'Squada One', cursive;
+  // font-family: 'Monoton', cursive;
+  // font-family: 'Gugi', cursive;
+  font-family: 'Iceland', cursive;
   background-color: black;
   color: white;
 }
@@ -37,6 +41,11 @@ body {
 .toplogo{
   height: 150px;
   width: 180px; 
+}
+
+#catrow{
+  color: #D4AF37;
+  font-size: 17px;
 }
 
 a:hover { 
@@ -47,13 +56,27 @@ a:hover {
   background-color: rgba(80, 14, 107, 0.9);
 }
 
+.business_table{
+  font-size: 15px;
+  color: #D4AF37; 
+  opacity: 0.4
+}
+
+.business_table:hover{
+  opacity: 0.9
+}
+
 .thumbnail{
 
-  background-color: #D4AF37;
+  background-color: black;
+  // background-color: #D4AF37;
+  // background-image: url("https://s3.us-east-2.amazonaws.com/ypmarketnew/assets/bacground1440.png");
   border-color: black;
   border-width: 7px;
-  padding-top: 40%;
-  opacity: 0.55;
+  padding-top: 6%;
+  opacity: 0.3;
+  border-radius: 10px;
+
 }
 .thumbnail:hover{
   opacity: 0.8;
@@ -64,12 +87,13 @@ a:hover {
 }
 
 #thumbs{
-  height: 100px !important
+  height: 150px !important
   
 }
 
 #prod_row{
-  background-image: url("https://s3.us-east-2.amazonaws.com/ypmarketnew/assets/bacground1440.png");
+  // background-image: url("https://s3.us-east-2.amazonaws.com/ypmarketnew/assets/bacground1440.png");
+  background-color: black; 
   margin-top: 5%;
   border-radius: 10px;
 

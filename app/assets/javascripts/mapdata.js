@@ -9,8 +9,8 @@ var simplemaps_usmap_mapdata={
     
     //State defaults
     state_description: "Click for black businesses in this area!",
-    state_color: "#88A4BC",
-    state_hover_color: "#5b0586",
+    state_color: "#D4AF37",
+    state_hover_color: "#00000",
     state_url: "",
     border_size: 1.5,
     all_states_inactive: "no",
@@ -29,7 +29,7 @@ var simplemaps_usmap_mapdata={
     location_border: 2,
     location_hover_border: 2.5,
     all_locations_inactive: "no",
-    all_locations_hidden: "no",
+    all_locations_hidden: "yes",
     
     //Label defaults
     label_color: "#d5ddec",
