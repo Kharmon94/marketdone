@@ -36,8 +36,8 @@ Rails.application.routes.draw do
   resources :tags, only: [:index, :show]
 
   # get 'vendor' => "products#vendor"
-  # get 'sales' => "orders#sales"
-  # get 'purchases' => "orders#purchases"
+  get 'sales' => "orders#sales"
+  get 'purchases' => "orders#purchases"
   # get 'profile', to: 'profiles#current'
   # get 'profile/connect_stripe', to: 'profiles#connect_stripe'
   get 'charges/new'

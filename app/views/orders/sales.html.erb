@@ -1,9 +1,9 @@
 <div class="center">
-  <h2>Your Sales History</h2>
+  <h2>Your Sales History:</h2>
 </div>
 
-<table class="table table-striped table-bordered">
-  <tr>
+<table class="table">
+  <tr style="color: #D4AF37; font-size: 20px" align="center">
     <th class="center">Image</th>
     <th class="center">Item</th>
     <th class="center">Price</th>
@@ -12,11 +12,11 @@
   </tr>
 
   <% @orders.each do |order| %>
-    <tr>
-      <td class="center"><%= image_tag order.product.image.url(:thumb) %></td>
+    <tr class="business_table">
+      <td class="center" align="center" style="background-color: #D4AF37;"><%= image_tag order.product.image.url(:thumb) %></td>
       <td class="center"><%= order.product.title %></td>
       <td class="center"><%= number_to_currency(order.product.price) %></td>
-      <td class="center"><%= order.buyer.profile.username %></td>
+      <td class="center"><%= order.buyer.username %></td>
       <td class="center"><%= order.created_at.strftime("%B %-d, %Y") %></td>
     </tr>
   <% end %>
@@ -25,5 +25,5 @@
 <br>
 
 <% if user_signed_in? %>
-  <%= link_to 'Create New Product', new_product_path, class: "btn btn-link", data: { no_turbolink: true }  %>
+  <%= link_to 'Sell Your Product', new_product_path, class: "btn", style: "background-color: #D4AF37; color: black; margin-bottom: 15px;", data: { no_turbolink: true }  %>
 <% end %>

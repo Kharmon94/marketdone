@@ -1,4 +1,5 @@
 class ReviewsController < ApplicationController
+before_action :authenticate_user!
 before_action :find_product
 
 
@@ -37,6 +38,6 @@ before_action :find_product
 
 
 		def find_product
-			@product = Product.find(params[:product_id])
+			@product = Product.find_by_id(params[:product_id])
 		end
 end

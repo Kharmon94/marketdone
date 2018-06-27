@@ -96,7 +96,7 @@
 
                            
                           <% end %>
-                          <div class="caption" style=" width: 200px; height: 200px; padding: 3%; word-wrap: break-word; color: #D4AF37 !important; font-size: 17px; opacity: 0.85" >
+                          <div class="caption" style=" width: 200px; height: 200px; padding: 3%; word-wrap: break-word; color: #D4AF37 !important; font-size: 17px; opacity: 0.85; text-overflow: ellipsis;" >
                             <h4><%= product.title %></h4>
                             <h3><strong><%= number_to_currency(product.price) %></strong></h3>
                             <p><%= link_to product.category.name, category_path(product.category), :style => "color: #D4AF37" %></p>
