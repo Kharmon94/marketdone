@@ -2,6 +2,7 @@
 	
 	<div class="review-rating" data-score= <%= review.rating %> style= "margin-top: 1.5%"></div>
 	<strong><h5>Comment:</h5></strong>
+	<p><%= review.user.try(:username) %></p>
 	<p><%= review.comment %></p>
 </div>
 
