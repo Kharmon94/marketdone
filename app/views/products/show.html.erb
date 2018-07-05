@@ -14,6 +14,9 @@
     <p><em>Condition:</em> <%= @product.condition %></p>
     <p><em>Description:</em> <%= @product.description %></p>
     <%= link_to @product.user.username, user_path(@product) %>
+    
+      <%= link_to "Buy It Now", new_product_order_path(@product), class: "btn btn-primary", data: { no_turbolink: true } %>
+    
     <p class="mt-5">
                 <%= form_tag charges_path do %>
 
@@ -45,13 +48,7 @@
                     </script>
                 <% end %>
     </p>
-    <script>
-      $('#payment_quantity').keyup(function() {
-          var quantity = $('#payment_quantity').val();
-          $("input[name='item_quantity_1']").val(quantity);
-          return false;
-      });
-    </script>
+
     
     
   </div>

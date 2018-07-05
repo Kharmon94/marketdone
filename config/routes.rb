@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   root to: "pages#home"
 
   resources :products do
-    # resources :orders, only: [:new, :create]
+    resources :orders, only: [:new, :create]
     resources :reviews
   end
   resources :users do
