@@ -1,0 +1,48 @@
+
+<div class="row">
+  <div class="col-md-6">
+    <%= image_tag @product.image(:medium) %> 
+  </div>
+
+  <div class="col-md-6">
+    <h3><%= @product.title %></h3>
+    <p><em>Price: </em><%= number_to_currency(@product.price) %></p>
+    <p><em>Shipping Price: </em><%= number_to_currency(@product.shipping_cost) %></p>
+    <p><em>Color:</em> <%= @product.color %></p>
+    <p><em>Condition:</em> <%= @product.condition %></p>
+    <p><em>Description:</em> <%= @product.description %></p>
+    <%= link_to @product.user.username, user_path(@product) %>
+   
+   
+                <%= form_tag charges_path do %>
+
+                    <%= hidden_field_tag "product_id", @product.id %>
+                    
+                   
+
+                    <article>
+                      <% if flash[:error].present? %>
+                        <div id="error_explanation">
+                          <p><%= flash[:error] %></p>
+                        </div>
+                      <% end %>
+                    </article>
+
+
+                    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                            data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                            data-description="NAME: <%= @product.title %>, COLOR: <%= @product.color %> "
+                            data-amount="<%= (@product.price + @product.shipping_cost) * 100 %>"
+                            data-billing-address="true"
+                            data-shipping-address="true"
+                            <% if user_signed_in? %>
+                              data-email="<%= current_user.email %>"
+                            <% end %>
+                            data-allow-remember-me="true"
+                            data-locale="auto">
+
+                    </script>
+                <% end %>
+
+
+</div>

@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row" style="margin-top: 7%;">
    
-      <div class="col-md-7" align="center">
+      <div class="col-md-12" align="center">
 
           <% if @user.id == current_user.id %>
             <%= image_tag @user.image(:medium), id: "profile_pic" %> 
@@ -12,30 +12,28 @@
             <strong><h3><%= @user.username %>'s Profile</h3></strong>
             <!-- <#= link_to "Message", new_conversation_path(@user) %> -->
           <% end %>
-            
-      </div>
-
-      <div class="col-md-5" align="center">
-            <div class="col d-flex justify-content-center">
-              <div class="row">
-                <div class="col text-center pt-3">
-                  <h4 class="font-weight-bold font-heading mb-3"><strong>Bio</strong></h4>
-                  <p class="font-small"><%= @user.bio %></p>
-                </div>
-                <div style="background-color: lavender; border-radius: 10px;">
+            <div style="background-color: #D4AF37; border-radius: 10px; color: black;">
                   <div>
                     <h4>Followers</h4>
                     <%= @user.followers_count %>
                   </div>
-                  <div>
+                  <div style="font-size: 15px">
                     <%= link_to('Follow', follow_user_path(@user), method: :post) %>
                     <%= link_to('Unfollow', unfollow_user_path(@user), method: :post) %>
                   </div>
                 </div>
 
-              </div>
-            </div>
+             <div class="row">
+                <div class="col text-center pt-3" >
+                  <h4 ><strong>Bio</strong></h4>
+                  <p class="font-small" style="width: 20%"><%= @user.bio %></p>
+                </div>
+
+
+              </div>  
       </div>
+
+
         
       
    

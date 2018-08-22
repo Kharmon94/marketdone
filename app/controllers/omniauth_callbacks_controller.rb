@@ -16,7 +16,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       flash[:notice] = 'Stripe Account Created And Connected' 
     else
       session["devise.stripe_connect_data"] = request.env["omniauth.auth"]
-      redirect_to profile_path
+      redirect_to user_path
     end
   end
 
