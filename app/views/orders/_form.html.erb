@@ -8,68 +8,120 @@
   </div>
   <div class="col-md-8">
 
-    <%= form_for([@product, @order]) do |f| %>
-      <% if @order.errors.any? %>
-        <div id="error_explanation" class="alert alert-danger alert-dismissable">
-          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-          <h4><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h4>
 
-          <ul>
-          <% @order.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
+   <%= form_for([@product, @order], :html => {id: "order_form"})  do |f| %>
+      
+
+   
+        <%= hidden_field_tag "product_id", @product.id %>
+        <%= hidden_field_tag 'stripeToken' %>
+        <%= hidden_field_tag 'stripeEmail' %>
+
+       
+
+          <% if @order.errors.any? %>
+            <div id="error_explanation" class="alert alert-danger alert-dismissable">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              <h4><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h4>
+
+              <ul>  
+              <% @order.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+              </ul>
+            </div>
           <% end %>
-          </ul>
-        </div>
-      <% end %>
 
-      <div id="stripe_error" class="alert alert-danger" style="display:none">
-        <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
-      </div>
+                              <article>
+                      <% if flash[:error].present? %>
+                        <div id="error_explanation">
+                          <p><%= flash[:error] %></p>
+                        </div>
+                      <% end %>
+                    </article>
 
-      <div class="form-group">
-        <%= f.label :address %>
-        <%= f.text_field :address, class: "form-control" %>
-      </div>
-      <div class="form-group">
-        <%= f.label :city %>
-        <%= f.text_field :city, class: "form-control" %>
-      </div>
-      <div class="form-group">
-        <%= f.label :state %>
-        <%= f.text_field :state, class: "form-control" %>
-      </div>
-      <div class="form-group">
-        <%= f.label :zip %>
-        <%= f.text_field :zip, class: "form-control" %>
-      </div>
+          <div id="stripe_error" class="alert alert-danger" style="display:none">
+            <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
+          </div>
 
-      <div class="form-group">
-        <div class="row">
-          <div class="col-md-8">
-            <%= label_tag :card_number, "Credit Card Number" %>
-            <%= text_field_tag :card_number, nil, { :name => nil, :'data-stripe' => "number", class: "form-control" } %>
+          <div class="form-group">
+            <%= f.label :address %>
+            <%= f.text_field :address, class: "form-control" %>
           </div>
-          <div class="col-md-4">
-            <%= label_tag :card_code, "CVC" %>
-            <%= text_field_tag :card_code, nil, { :name => nil, :'data-stripe' => "cvc", class: "form-control" } %>
+          <div class="form-group">
+            <%= f.label :city %>
+            <%= f.text_field :city, class: "form-control" %>
           </div>
-        </div>
-      </div>
-      <div class="form-group">
-        <%= label_tag nil, "Expiration Date" %>
-        <div class="row">
-          <div class="col-md-3">
-            <%= select_month nil, { use_two_digit_numbers: true }, { :name => nil, :'data-stripe' => "exp-month", class: "form-control" } %>
+          <div class="form-group">
+            <%= f.label :state %>
+            <%= f.text_field :state, class: "form-control" %>
           </div>
-          <div class="col-md-3">
-            <%= select_year nil, { start_year: Date.today.year, end_year: Date.today.year+10 }, { :name => nil, :'data-stripe' => "exp-year", class: "form-control" } %>
+          <div class="form-group">
+            <%= f.label :zip %>
+            <%= f.text_field :zip, class: "form-control" %>
           </div>
-        </div>
-      </div>
 
-      <div class="form-group">
-        <%= f.submit "Complete Order", class: "btn btn-success", id: "new_order" %>
-      </div>
-    <% end %>
+          <div class="form-group">
+            <%= f.submit "Complete Order", class: "btn btn-success", id: "new_order" %>
+          </div>
+
+                    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                            data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                            data-description="NAME: <%= @product.title %>, COLOR: <%= @product.color %> "
+                            data-amount="<%= (@product.price + @product.shipping_cost) * 100 %>"
+                            <% if user_signed_in? %>
+                              data-email="<%= current_user.email %>"
+                            <% end %>
+                            data-allow-remember-me="true"
+                            data-locale="auto">
+
+                    </script>
+              
+ <% end %>
+          <script src="https://checkout.stripe.com/checkout.js"></script>
+
+<!--          <#%= form_tag charges_path(product_id: @product.id), class: 'order_form' do %> -->
+
+
+<!-- 
+          <script>
+              var handler = StripeCheckout.configure({
+                key: "<#%= Rails.configuration.stripe[:publishable_key] %>",
+                image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+                locale: 'auto',
+                token: function(token, args) {
+
+
+                    // token.id = document.getElementById("stripeToken");
+                    // token.email = document.getElementById("stripeEmail");
+                    $("#stripeToken").val(token.id);
+                    $("#stripeEmail").val(token.email);
+                    // document.getElementById("chargeForm").submit().preventDefault();
+                    document.getElementById("order_form").submit().preventDefault();
+                  // You can access the token ID with `token.id`.
+                  // Get the token ID to your server-side code for use.
+                }
+              });
+
+              document.getElementById('new_order').addEventListener('submit', function(e) {
+                // Open Checkout with further options:
+                handler.open({
+                  description: "NAME: <%= @product.title %>",
+                  amount: <#%= (@product.price + @product.shipping_cost) * 100 %>
+                });
+                e.preventDefault();
+
+              });
+
+              // Close Checkout on page navigation:
+              window.addEventListener('popstate', function() {
+                handler.close();
+                // document.getElementById("new_order").submit();
+              });
+          </script> -->
+      
+     
+<!--      <#% end %> -->
+
   </div>
 </div>
