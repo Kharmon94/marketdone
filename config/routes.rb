@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   root to: "pages#home"
 
   resources :products do
-    resources :orders, only: [:new, :create]
+    resources :orders, only: [:new, :create, :checkout]
     resources :reviews
   end
   resources :users do
@@ -38,6 +38,7 @@ Rails.application.routes.draw do
   # get 'vendor' => "products#vendor"
   get 'sales' => "orders#sales"
   get 'purchases' => "orders#purchases"
+  get 'checkout' => "orders#checkout"
   # get 'profile', to: 'profiles#current'
   # get 'profile/connect_stripe', to: 'profiles#connect_stripe'
   get 'charges/new'

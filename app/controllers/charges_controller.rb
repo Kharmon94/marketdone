@@ -8,7 +8,7 @@ class ChargesController < ApplicationController
   def create
 
     # puts "---- #{@product.inspect}"
-    @amount = ((@product.price + @product.shipping_cost).to_i * 100)* params[:quantity]
+    @amount = ((@product.price + @product.shipping_cost).to_i * 100)
     application_fee = (@amount * 0.1).to_i     # 10%
 
     customer = Stripe::Customer.create(
@@ -42,7 +42,7 @@ class ChargesController < ApplicationController
   private
 
   def set_item
-    @product = Product.find(params[:product_id])
+    @product = Product.find_by_id(params[:id])
    
   end
 
