@@ -61,9 +61,6 @@
             <%= f.text_field :zip, class: "form-control" %>
           </div>
 
-          <div class="form-group">
-            <%= f.submit "Complete Order", class: "btn btn-success", id: "new_order" %>
-          </div>
 
                     <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                             data-key="<%= Rails.configuration.stripe[:publishable_key] %>"

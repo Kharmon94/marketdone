@@ -8,71 +8,121 @@
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= devise_error_messages! %>
 
-      <div class="form-group">
-        <%= f.label :first_name %><br />
-        <%= f.text_field :first_name, autofocus: true, class: "form-control" %>
-      </div>
+        <div class="row">
+          <div class="col-md-6">
+              <div class="form-group">
+                <%= f.label :first_name %><br />
+                <%= f.text_field :first_name, autofocus: true, class: "form-control" %>
+              </div>
+          </div>
+          <div class="col-md-6">
+              <div class="form-group">
+                <%= f.label :last_name %><br />
+                <%= f.text_field :last_name, autofocus: true, class: "form-control" %>
+              </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <%= f.label :username %><br />
+              <%= f.text_field :username, autofocus: true, class: "form-control" %>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <%= f.label :email %><br />
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-3">
+            <div class="form-group">
+              <%= f.label :street_address %><br />
+              <%= f.text_field :street_address, autofocus: true, class: "form-control" %>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="form-group">
+              <%= f.label :city %><br />
+              <%= f.text_field :city, autofocus: true, class: "form-control" %>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <%= f.label :zipcode %><br />
+              <%= f.text_field :zipcode, autofocus: true, class: "form-control" %>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <%= f.label :country %>
+              <%= f.country_select(:country, {selected: @user.country}, {class: "form-control"}) %>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-3">
+              <div class="form-group">
+                <%= f.label :birthday %><br />
+                <%= f.date_field :birthday, autofocus: true, class: "form-control" %>
+              </div>
+          </div>
+
+          <div class="col-md-9">
+            <div class="form-group">
+              <%= f.label :bio %><br />
+              <%= f.text_area :bio, autofocus: true, class: "form-control" %>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="row">
+
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+          <% end %>
+
+          <div class="col-md-4">
+              <div class="form-group">
+               
+                <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+                <% if @minimum_password_length %>
+                  
+                   <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+                  <em><%= @minimum_password_length %> characters minimum</em>
+                <% end %>
+              </div>
+          </div>
+          <div class="col-md-4">
+              <div class="form-group">
+               
+                <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+                 <%= f.label :password_confirmation %><br />
+              </div>
+          </div>
+          <div class="col-md-4">
+              <div class="form-group">
+                
+                <%= f.file_field :image, class: "form-control" %>
+               <p><strong> Profile </strong><%= f.label :image %></p>
+              </div>
+          </div>
+        </div>
+
+ 
+ 
+
+
 
       <div class="form-group">
-        <%= f.label :last_name %><br />
-        <%= f.text_field :last_name, autofocus: true, class: "form-control" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :username %><br />
-        <%= f.text_field :username, autofocus: true, class: "form-control" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :password %>
-        <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> characters minimum)</em>
-        <% end %><br />
-        <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :password_confirmation %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
-      </div> 
-
-      <div class="form-group">
-        <%= f.label :street_address %><br />
-        <%= f.text_field :street_address, autofocus: true, class: "form-control" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :city %><br />
-        <%= f.text_field :city, autofocus: true, class: "form-control" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :zipcode %><br />
-        <%= f.text_field :zipcode, autofocus: true, class: "form-control" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :birthday %><br />
-        <%= f.date_field :birthday, autofocus: true, class: "form-control" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :bio %><br />
-        <%= f.text_area :bio, autofocus: true, class: "form-control" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :image %>
-        <%= f.file_field :image, class: "form-control" %>  
-      </div>
-
-      <div class="form-group">
-        <%= f.submit "Sign up" %>
+        <%= f.submit "Sign up", class: "btn", style: "background-color: black; color: #D4AF37;" %>
       </div>
     <% end %>
 

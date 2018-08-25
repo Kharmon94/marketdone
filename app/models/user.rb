@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
   acts_as_messageable
-  acts_as_obfuscated :format => '###-####-###'
+  # acts_as_obfuscated :format => '###-####-###'
   acts_as_follower
   acts_as_followable
 
@@ -20,8 +20,8 @@ class User < ApplicationRecord
   validates :businesses, length: {maximum: 1}
 
   has_attached_file :image, styles: { medium: "200x200>", thumb: "100x100>" }
-  validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
-  validates_attachment_presence :image
+  validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/, default_url: "default.png"
+  # validates_attachment_presence :image
   validates :username, :first_name, :last_name, :street_address, :city, :zipcode, presence: true
  
 
