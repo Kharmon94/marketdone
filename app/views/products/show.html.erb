@@ -2,21 +2,27 @@
       <%= render 'search_form' %>
     </div>
 <div class="row">
-  <div class="col-md-6">
-    <%= image_tag @product.image(:medium) %> 
-    <h2><%= @product.title %></h2>
+  <div class="col-md-6" align="center">
+    <%= image_tag @product.image(:medium), style: "width: 45%; height: 45%;" %>
+    <div style="color: #D4AF37;">
+      <h2><%= @product.title %></h2>
+      <p style="font-size: 25px"><em>Price: </em><%= number_to_currency(@product.price) %></p>
+      <p style="font-size: 25px"><em>Shipping Price: </em><%= number_to_currency(@product.shipping_cost) %></p>
+    </div> 
+
   </div>
 
-  <div class="col-md-6">
+  <div class="col-md-6" style="background-color: #D4AF37; padding: 20px; border-radius: 10px; color: black;" align="center">
     
-    <p style="font-size: 25px"><em>Price: </em><%= number_to_currency(@product.price) %></p>
-    <p style="font-size: 25px"><em>Shipping Price: </em><%= number_to_currency(@product.shipping_cost) %></p>
     <p style="font-size: 25px"><em>Color:</em> <%= @product.color %></p>
     <p style="font-size: 25px"><em>Condition:</em> <%= @product.condition %></p>
-    <p style="font-size: 25px"><em>Description:</em> <%= @product.description %></p>
-    <p style="font-size: 25px"> Seller: <%= link_to @product.user.username, user_path(@product) %></p><br>
+    <div style="background-color: black; padding: 4%; margin: 2%; border-radius: 10px;">
+          <p style="font-size: 25px; color: #D4AF37"><em>Description:</em> <%= @product.description %></p>
+    </div>
+
+    <p style="font-size: 25px"> <strong>Seller: <%= link_to @product.user.username, user_path(@product), :style => "color: black;" %></strong></p><br>
     
-      <%= link_to "Buy It Now", new_product_order_path(@product), class: "btn btn-primary", style: "margin-top: 5%", data: { no_turbolink: true } %>
+      <%= link_to "Buy It Now", new_product_order_path(@product), class: "btn", style: "margin-top: 3%; background-color: black; color: #D4AF37", data: { no_turbolink: true } %>
     
     
   </div> 
@@ -28,7 +34,10 @@
   <div class="row" >
 
     <div class="col-md-12" style="margin-top: 5%" id="review_row" >
-        <%= link_to "Add Review", new_product_review_path(@product), :class => "btn btn-primary" %>
+      <div align="center">
+        <%= link_to "Add Review", new_product_review_path(@product), :class => "btn", :style => "background-color: #D4AF37; color: black" %>
+      </div>
+        
       <div id="review_dis">
 
             <%= render @product.reviews %>
@@ -42,8 +51,8 @@
         <% if @product.user.id == current_user.id %>
           <div class="row m-4">
             <div class="col text-center">
-              <%= link_to 'Edit', edit_product_path(@product) %> |
-              <%= link_to 'Delete', @product, method: :delete, data: { confirm: 'Are you sure?' } %>
+              <%= link_to 'Edit', edit_product_path(@product), :style => "color: #D4AF37;" %> |
+              <%= link_to 'Delete', @product, method: :delete, data: { confirm: 'Are you sure?' }, :style => "color: #D4AF37;" %>
             </div>
           </div>
         <% end %>

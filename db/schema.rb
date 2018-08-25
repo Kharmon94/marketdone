@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180414184645) do
+ActiveRecord::Schema.define(version: 20180823180417) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -228,6 +228,23 @@ ActiveRecord::Schema.define(version: 20180414184645) do
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
+  create_table "shopping_cart_items", force: :cascade do |t|
+    t.integer "owner_id"
+    t.string "owner_type"
+    t.integer "quantity"
+    t.integer "item_id"
+    t.string "item_type"
+    t.integer "price_cents", default: 0, null: false
+    t.string "price_currency", default: "USD", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "shopping_carts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "states", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -284,6 +301,7 @@ ActiveRecord::Schema.define(version: 20180414184645) do
     t.text "bio"
     t.integer "followers_count", default: 0
     t.string "uuid"
+    t.string "country"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["provider"], name: "index_users_on_provider"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

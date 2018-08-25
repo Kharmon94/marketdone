@@ -59,6 +59,7 @@ class UsersController < ApplicationController
                                  :street_address,
                                  :city,
                                  :zipcode,
+                                 :country,
                                  :birthday,
                                  :bio
                                 )

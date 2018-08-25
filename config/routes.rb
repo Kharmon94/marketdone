@@ -35,7 +35,8 @@ Rails.application.routes.draw do
   # resources :orders
   resources :tags, only: [:index, :show]
 
-  # get 'vendor' => "products#vendor"
+  # get 'vendor' => "products#vendor"\
+  get 'cancel_plan' => 'subscribers#cancel_plan'
   get 'sales' => "orders#sales"
   get 'purchases' => "orders#purchases"
   get 'checkout' => "orders#checkout"
