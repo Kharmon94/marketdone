@@ -363,7 +363,6 @@ DEPENDENCIES
   puma_worker_killer
   rails (~> 5.1.5)
   rails_12factor
-  ransack
   sass-rails (~> 5.0)
   selenium-webdriver
   simple_form

@@ -10,8 +10,9 @@ class ProductsController < ApplicationController
   # end
 
   def index
-      @q = Product.search(params[:q])
-      @products = @q.result.order('created_at DESC').page(params[:page])
+      @products = Product.search(params[:search]).page(params[:page])
+      # @q = Product.search(params[:q])
+      # @products = @q.result.order('created_at DESC').page(params[:page])
       @products = @products.where(category: params["category"]) if params["category"].present?
       @products = @products.where("price > ?", params["min_price"]) if params["min_price"].present?
       @products = @products.where("price < ?", params["max_price"]) if params["max_price"].present?
@@ -21,8 +22,7 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
-      @q = Product.search(params[:q])
-      @products = @q.result
+     @products = Product.search(params[:search]).page(params[:page])
   end
 
   # GET /products/new

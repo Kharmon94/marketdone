@@ -12,13 +12,14 @@ class Product < ApplicationRecord
   validates_numericality_of :price, greater_than_or_equal_to: 0
   validates :title, :description, :price, :shipping_cost, presence: true
   paginates_per 20
-  # def self.search(search)
-  #   if search
-  #     where('title LIKE ? OR description LIKE ? OR tag LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%" ).order('id DESC')
-  #   else
-  #     order('id DESC') 
-  #   end
-  # end
+  
+  def self.search(search)
+    if search
+      where('title LIKE ? OR description LIKE ?', "%#{search}%", "%#{search}%" ).order('id DESC')
+    else
+      order('id DESC') 
+    end
+  end
 
   def self.tagged_with(name)
     Tag.find_by_name!(name).products

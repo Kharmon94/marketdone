@@ -13,13 +13,13 @@ class Business < ApplicationRecord
 
 
 
-# def self.search(find)
-#     if find
-#       where('title LIKE ? OR description LIKE ? OR address LIKE ? OR email LIKE ? OR state LIKE ?', "%#{find}%", "%#{find}%", "%#{find}%", "%#{find}%", "%#{find}%",).order('id DESC')
-#     else
-#       order('id DESC') 
-#     end
-#  end
+def self.search(find)
+    if find
+      where('title LIKE ? OR description LIKE ? OR address LIKE ? OR email LIKE ?', "%#{find}%", "%#{find}%", "%#{find}%", "%#{find}%").order('id DESC')
+    else
+      order('id DESC') 
+    end
+ end
 
   # def self.filter(filter)
   #   if filter
