@@ -19,24 +19,29 @@
   <div class="row" id="prod_row">
       <div class="col-md-3 form-group" id="catrow" class="dropdown-menu" >
 
-          <div class="row" style="margin-top: 3%;">
-            <h3>Search A Product</h3>
+<!--           <div class="row" style="margin-top: 3%;">
+      
               <div class="form-group">
-                  <%= render 'search_form' %>
+                  <%#= render 'search_form' %>
               </div>
-          </div>
+          </div> -->
 
           <hr>
           <br>
           <br>
           <br>
 
-          <h3>
-            Filter Products:
-          </h3>
+
 
 
           <%= form_tag products_path, method: 'get' do %>
+              <h3>Search A Product</h3>
+              <%= text_field_tag :search, params[:search], class: "form-control" %>
+              <br>
+             
+              <h3>Filter Products:</h3>
+              <br>
+              <br>
               <%= label_tag :category %>
               <%= select_tag(:category, options_from_collection_for_select(Category.all, :id, :name, params[:category]), { include_blank: true }) %>
               <br>
@@ -49,7 +54,7 @@
               <%= text_field_tag :max_price, params[:max_price] %>
               <br>
               <br>
-              <%= submit_tag "submit", :name => nil, :class => "btn btn-primary", :style => "background-color: #D4AF37; color: black;" %>  
+              <%= submit_tag "Search", :name => nil, :class => "btn btn-primary", :style => "background-color: #D4AF37; color: black;" %>  
           <% end %>
 
               <hr style="color: #D4AF37">

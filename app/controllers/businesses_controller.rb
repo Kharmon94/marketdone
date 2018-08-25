@@ -6,9 +6,10 @@ class BusinessesController < ApplicationController
   # GET /businesses
   # GET /businesses.json
   def index
-      @w = Business.search(params[:w])
-      @search = Business.search(params[:w])
-      @businesses = @search.result.order('created_at DESC').page(params[:page])
+      @businesses = Business.search(params[:find]).page(params[:page])
+      # @w = Business.search(params[:w])
+      # @search = Business.search(params[:w])
+      # @businesses = @search.result.order('created_at DESC').page(params[:page])
       @business_categories = BusinessCategory.all.order('created_at DESC').page(params[:page])
       @businesses = @businesses.where(business_category: params["business_category"]) if params["business_category"].present?
       @businesses = @businesses.where(state: params["state"]) if params["state"].present?
