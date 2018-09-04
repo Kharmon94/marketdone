@@ -20,6 +20,17 @@
           <p style="font-size: 25px; color: #D4AF37"><em>Description:</em> <%= @product.description %></p>
     </div>
 
+    <div>
+      <%= @product.color_variants.each do |color_variant| %>
+          <%= color_variant.try(:id) %>
+          <ul>
+            <% color_variant.size_variants.each do |size_variant| %>
+              <li><%= size_variant.try(:id) %></li>
+            <% end %>
+          </ul>
+      <% end %>
+    </div>
+
     <p style="font-size: 25px"> <strong>Seller: <%= link_to @product.user.username, user_path(@product), :style => "color: black;" %></strong></p><br>
     
       <%= link_to "Buy It Now", new_product_order_path(@product), class: "btn", style: "margin-top: 3%; background-color: black; color: #D4AF37", data: { no_turbolink: true } %>
