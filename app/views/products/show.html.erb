@@ -22,10 +22,11 @@
 
     <div>
       <%= @product.color_variants.each do |color_variant| %>
-          <%= color_variant.try(:id) %>
+          <%= color_variant.try(:color) %>
           <ul>
             <% color_variant.size_variants.each do |size_variant| %>
-              <li><%= size_variant.try(:id) %></li>
+              <li><%= size_variant.try(:size) %></li>
+              <li><%= size_variant.try(:quantity) %></li>
             <% end %>
           </ul>
       <% end %>
