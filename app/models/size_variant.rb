@@ -1,4 +1,4 @@
 class SizeVariant < ApplicationRecord
-	attr_accessor :size, :quantity, :color_variant_id
-	belongs_to :color_variant
+	attr_accessor :size, :product_id
+	belongs_to :product
 end

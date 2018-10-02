@@ -56,10 +56,9 @@
           </div>
         </div>
 
-<hr>
+<hr>          
+<h4>Add the available color, sizes on hand for that color, and stock quantity for each size of your product. </h4>
         <div>
-          <h4>Add the available color, sizes on hand for that color, and stock quantity for each size of your product. </h4>
-        
           <%= form.fields_for :color_variants do |builder| %>
               <div class="row" align="center">
                  <%= render 'color_variant_fields', form: builder %>             
@@ -68,6 +67,17 @@
           <% end %>
 
           <%= link_to_add_fields "Add Color", form, :color_variants %>
+        </div>
+
+          <div>
+          <%= form.fields_for :size_variants do |builder| %>
+              <div class="row" align="center">
+                 <%= render 'size_variant_fields', form: builder %>             
+              </div>
+
+          <% end %>
+
+          <%= link_to_add_fields "Add size", form, :size_variants %>
         </div>
 
         

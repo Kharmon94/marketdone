@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180902134224) do
+ActiveRecord::Schema.define(version: 20181001225959) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -77,11 +77,12 @@ ActiveRecord::Schema.define(version: 20180902134224) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "color_variants", force: :cascade do |t|
+  create_table "colors", force: :cascade do |t|
+    t.integer "products_id"
     t.string "color"
-    t.integer "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["products_id"], name: "index_colors_on_products_id"
   end
 
   create_table "follows", force: :cascade do |t|
@@ -201,8 +202,6 @@ ActiveRecord::Schema.define(version: 20180902134224) do
     t.integer "image_file_size"
     t.datetime "image_updated_at"
     t.integer "category_id"
-    t.string "color"
-    t.string "size"
     t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["user_id"], name: "index_products_on_user_id"
   end
@@ -253,12 +252,12 @@ ActiveRecord::Schema.define(version: 20180902134224) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "size_variants", force: :cascade do |t|
+  create_table "sizes", force: :cascade do |t|
+    t.integer "products_id"
     t.string "size"
-    t.integer "color_variant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "quantity"
+    t.index ["products_id"], name: "index_sizes_on_products_id"
   end
 
   create_table "states", force: :cascade do |t|
