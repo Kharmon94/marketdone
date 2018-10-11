@@ -6,7 +6,7 @@ class Product < ApplicationRecord
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
   has_many :color_variants
-  accepts_nested_attributes_for :color_variants, :reject_if => lambda { |attributes| attributes[:color].blank? }, allow_destroy: true
+  accepts_nested_attributes_for :color_variants, :reject_if => :all_blank, allow_destroy: true
   attr_accessor :color_variant_attributes
 
   has_attached_file :image, styles: { medium: "300x300", thumb: "100x80", square: "200x200", large: "600x600" }, default_url: "default.png"
