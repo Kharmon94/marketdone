@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180902134224) do
+ActiveRecord::Schema.define(version: 20181013145209) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -201,9 +201,9 @@ ActiveRecord::Schema.define(version: 20180902134224) do
     t.integer "image_file_size"
     t.datetime "image_updated_at"
     t.integer "category_id"
-    t.string "color"
-    t.string "size"
+    t.integer "color_variant_id"
     t.index ["category_id"], name: "index_products_on_category_id"
+    t.index ["color_variant_id"], name: "index_products_on_color_variant_id"
     t.index ["user_id"], name: "index_products_on_user_id"
   end
 
@@ -236,29 +236,15 @@ ActiveRecord::Schema.define(version: 20180902134224) do
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
-  create_table "shopping_cart_items", force: :cascade do |t|
-    t.integer "owner_id"
-    t.string "owner_type"
-    t.integer "quantity"
-    t.integer "item_id"
-    t.string "item_type"
-    t.integer "price_cents", default: 0, null: false
-    t.string "price_currency", default: "USD", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "shopping_carts", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "size_variants", force: :cascade do |t|
     t.string "size"
-    t.integer "color_variant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "product_id"
+    t.integer "color_variant_id"
     t.integer "quantity"
+    t.index ["color_variant_id"], name: "index_size_variants_on_color_variant_id"
+    t.index ["product_id"], name: "index_size_variants_on_product_id"
   end
 
   create_table "states", force: :cascade do |t|
