@@ -2,14 +2,14 @@
 	<fieldset style="margin: 3%;">
 		<div class="row">
 			<div class="col-md-3">
-				<%= form.label :color %>
-		  		<%= form.select :color, ["None", "Red", "Pink", "Yellow", "Orange", "Blue", "Purple", "Brown", "Green", "White", "Grey", "Black", "Gold", "Silver", "Bronze", "Platinum"], class: "form-control" %>
+				<%= f.label :color %>
+		  		<%= f.select :color, ["None", "Red", "Pink", "Yellow", "Orange", "Blue", "Purple", "Brown", "Green", "White", "Grey", "Black", "Gold", "Silver", "Bronze", "Platinum"], class: "form-control" %>
 
 
 			</div>
 			<div class="col-md-3">
-				<%= form.hidden_field :_destroy %>
-  				<%= link_to "remove", '#', class: "remove_fields" %>
+			<!-- 	<#%= form.hidden_field :_destroy %> -->
+  				<%= link_to_remove_association "Remove Color", f, class: "btn btn-danger" %>
 			</div>
 		</div>
 		<br>
@@ -17,16 +17,16 @@
 
 
 
-		<%= form.simple_fields_for :size_variants do |builder| %>
+		<%= f.simple_fields_for :size_variants do |builder| %>
 		  <div class="row">
-		  			  <%= render 'size_variant_fields', form: builder %>
+		  			  <%= render 'size_variant_fields', f: builder %>
 		  </div>
 
 
 		<% end %>
 		<div>
 				<h4>Remove Size</h4>
-				<%= link_to_add_fields "Add Size", form, :size_variants %>
+				<%= link_to_add_association "Add Size", f, :size_variants %>
 		</div>
 
 
