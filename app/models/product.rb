@@ -9,7 +9,7 @@ class Product < ApplicationRecord
   has_many :size_variants
   accepts_nested_attributes_for :color_variants, :reject_if => :all_blank, allow_destroy: true
   accepts_nested_attributes_for :size_variants, :reject_if => :all_blank, allow_destroy: true
-  attr_accessor :color_variant_attributes, :size_variant_attributes
+
 
   has_attached_file :image, styles: { medium: "300x300", thumb: "100x80", square: "200x200", large: "600x600" }, default_url: "default.png"
   validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]

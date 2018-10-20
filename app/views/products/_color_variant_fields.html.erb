@@ -2,14 +2,9 @@
 	<fieldset style="margin: 3%;">
 		<div class="row">
 			<div class="col-md-3">
-				<%= form.label :color %>
-		  		<%= form.text_field :color, class: "form-control" %>
-
-
-			</div>
-			<div class="col-md-3">
-				<%= form.hidden_field :_destroy %>
-  				<%= link_to "remove", '#', class: "remove_fields" %>
+				<%= f.label :color %>
+		  		<%= f.text_field :color, class: "form-control" %>
+				<%= link_to_remove_association "Remove Color", f, class: "btn btn-danger" %>
 			</div>
 		</div>
 		<br>
