@@ -20,9 +20,10 @@ class OrdersController < ApplicationController
     @order.buyer_id = current_user.id
     @order.seller_id = @seller.id
 
+
       if @order.valid?
         begin
-            @amount = ((@product.price + @product.shipping_cost).to_i * 100)
+            @amount = ((@product.price + @product.shipping_cost) * @order.quantity).to_i * 100
             application_fee = (@amount * 0.1).to_i     # 10%
 
               customer = Stripe::Customer.create(
@@ -62,6 +63,19 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if @order.save
+
+
+
+        if @order.color == @product.color_variants
+      
+            @product.color_variant.size_variants.quantity - @order.quantity == color_variant.size_variants.quantity
+
+
+
+        end
+
+
+
         format.html { redirect_to root_path, notice: 'next step' }
         format.json { render :show, status: :created, location: @order }
       else
@@ -96,6 +110,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:address, :city, :state, :zip, :country, :stripeEmail, :stripeToken)
+      params.require(:order).permit(:address, :city, :state, :zip, :country, :quantity, :color, :size, :stripeEmail, :stripeToken)
     end
 end
