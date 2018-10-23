@@ -1,3 +1,5 @@
 class SizeVariant < ApplicationRecord
-	belongs_to :color_variant, optional: true
+
+	belongs_to :product
+
 end

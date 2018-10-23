@@ -1,5 +1,5 @@
 class Order < ApplicationRecord
-	validates :address, :city, :state, :zip, presence: true
+	validates :address, :city, :state, :zip, :color, :size, :quantity, presence: true
 
 	belongs_to :product
 	belongs_to :buyer, class_name: "User"

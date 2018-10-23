@@ -8,7 +8,10 @@
     <th class="center">Item</th>
     <th class="center">Price</th>
     <th class="center">Shipping Cost </th>
+    <th class="center">Color</th>
+    <th class="center">Size</th>
     <th class="center">Customer</th>
+    <th class="center">Quantity</th>
     <th class="center">Customer Shipping Information</th>
     <th class="center">Date Sold</th>
   </tr>
@@ -19,7 +22,10 @@
       <td class="center"><%= order.product.title %></td>
       <td class="center"><%= number_to_currency(order.product.price) %></td>
       <td class="center"><%= number_to_currency(order.product.shipping_cost) %></td>
+      <td class="center"><%= order.try(:color) %></td>
+      <td class="center"><%= order.try(:size) %></td>
       <td class="center"><%= order.buyer.username %> Email: <%= order.buyer.email %></td>
+      <td class="center"><%= order.quantity %></td>
       <td class="center"><strong>Address:</strong> <%= order.address %><br> <strong>City:</strong> <%= order.city %><br> <strong>State:</strong> <%= order.state %><br> <strong>Zip:</strong> <%= order.zip %><br> <strong>Country:</strong> <%= order.country %>  </td>
       <td class="center"><%= order.created_at.strftime("%B %-d, %Y") %></td>
 

@@ -7,6 +7,8 @@ class OrdersController < ApplicationController
   def new
     @order = Order.new
     @product = Product.find_by_id(params[:product_id])
+
+
   end
   
   # POST /orders
@@ -63,20 +65,7 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if @order.save
-
-
-
-        if @order.color == @product.color_variants
-      
-            @product.color_variant.size_variants.quantity - @order.quantity == color_variant.size_variants.quantity
-
-
-
-        end
-
-
-
-        format.html { redirect_to root_path, notice: 'next step' }
+        format.html { redirect_to purchases_path, notice: 'Thank You So Much For Your Order Family! Contact your seller for shipping information'}
         format.json { render :show, status: :created, location: @order }
       else
         format.html { render :new }
@@ -110,6 +99,7 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:address, :city, :state, :zip, :country, :quantity, :color, :size, :stripeEmail, :stripeToken)
+      params.require(:order).permit(:address, :city, :state, :zip, :quantity, :color, :size, :country, :stripeEmail, :stripeToken)
+
     end
 end

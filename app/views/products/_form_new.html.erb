@@ -48,19 +48,17 @@
           </div>
           <div class="col-md-4">
             <%= f.label :price, class: "pt-1 font-weight-bold" %>
-            <%= f.number_field :price, id: :product_price, step: 0.01, class: "form-control" %>
+            <%= f.number_field :price, id: :product_price, min: 1, step: 0.01, class: "form-control" %>
           </div>
           <div class="col-md-4">
             <%= f.label :shipping_cost, class: "pt-1 font-weight-bold" %>
-            <%= f.number_field :shipping_cost, id: :product_shipping_cost, step: 0.01, class: "form-control" %>
+            <%= f.number_field :shipping_cost, id: :product_shipping_cost, min: 1, step: 0.01, class: "form-control" %>
           </div>
         </div>
 
-<hr>
-        <h4>Add the available color, sizes on hand for that color, and stock quantity for each size of your product. </h4>
-        <div>
-
-        
+<hr>          
+<h4>Add the available color, sizes on hand for that color, and stock quantity for each size of your product. </h4>
+        <div align="center">
           <%= f.simple_fields_for :color_variants do |builder| %>
               <div class="row" align="center">
                  <%= render 'color_variant_fields', f: builder %>             
@@ -68,7 +66,20 @@
 
           <% end %>
 
-          <%= link_to_add_association "Add Color", f, :color_variants %>
+          <%= link_to_add_association "Add Color", f, :color_variants, :class => "btn", :style => "background-color: black; color: #D4AF37"  %>
+        </div>
+
+          <div align="center">
+          <%= f.simple_fields_for :size_variants do |builder| %>
+              <div class="row" align="center">
+                 <%= render 'size_variant_fields', f: builder %>             
+              </div>
+
+          <% end %>
+
+
+          <%= link_to_add_association "Add size", f, :size_variants, :class => "btn", :style => "background-color: black; color: #D4AF37" %>
+
         </div>
 
         
@@ -91,8 +102,6 @@
         </div>
       
       </div>
-
-
 
       <% end %>
     </div>
