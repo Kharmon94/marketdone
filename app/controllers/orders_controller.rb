@@ -7,6 +7,8 @@ class OrdersController < ApplicationController
   def new
     @order = Order.new
     @product = Product.find_by_id(params[:product_id])
+
+
   end
   
   # POST /orders
@@ -22,7 +24,7 @@ class OrdersController < ApplicationController
 
       if @order.valid?
         begin
-            @amount = ((@product.price + @product.shipping_cost).to_i * 100)
+            @amount = ((@product.price + @product.shipping_cost) * @order.quantity).to_i * 100
             application_fee = (@amount * 0.1).to_i     # 10%
 
               customer = Stripe::Customer.create(
@@ -62,7 +64,7 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if @order.save
-        format.html { redirect_to root_path, notice: 'next step' }
+        format.html { redirect_to purchases_path, notice: 'Thank You So Much For Your Order Family! Contact your seller for shipping information'}
         format.json { render :show, status: :created, location: @order }
       else
         format.html { render :new }
@@ -96,6 +98,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:address, :city, :state, :zip, :country, :stripeEmail, :stripeToken)
+      params.require(:order).permit(:address, :city, :state, :zip, :quantity, :color, :size, :country, :stripeEmail, :stripeToken)
     end
 end

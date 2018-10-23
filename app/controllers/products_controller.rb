@@ -30,12 +30,13 @@ class ProductsController < ApplicationController
     if current_user.can_receive_payments?
       @product = Product.new
       @categories = Category.all.map{|c| [ c.name, c.id ] }
+      @product.color_variants.build
+      @product.size_variants.build
     else
       redirect_to user_path(current_user)
     end
-    @categories = Category.all.map{|c| [ c.name, c.id ] }
-    @product.color_variants.build
-    @product.size_variants.build
+
+
 
   end
 

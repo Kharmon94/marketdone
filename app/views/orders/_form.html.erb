@@ -1,10 +1,34 @@
-<div class="row">
+<div class="row" align="center">
   <div class="col-md-4" style="color: #D4AF37" align="center">
     <div>
       <%= image_tag @product.image.url, style: "width: 80%; height: 80%;" %>
     </div>
     <h3><%= @product.title %></h3>
-    <h4><%= number_to_currency(@product.price) %></h4>
+    <h4 id="price"><%= number_to_currency(@product.price) %></h4>
+    <h4 id="s_price"><%= number_to_currency(@product.shipping_cost) %></h4>
+    <h4 id="order_total">Total: $<span id="show_total"></span></h4>
+     
+     <script>
+            $(document).ready(function(){
+            document.getElementById('submit').onclick=function(){
+              var quantity = parseInt(document.getElementById('quantity').value)
+              var cost = <%= @product.price %>
+              var s_cost = <%= @product.shipping_cost %>
+              total = (cost + s_cost) * quantity
+              document.getElementById("show_total").innerText = total
+            };
+           });
+
+            $(document).ready(function(){
+              var quantity = parseInt(document.getElementById('quantity').value)
+              var cost = <%= @product.price %>
+              var s_cost = <%= @product.shipping_cost %>
+              total = (cost + s_cost) * quantity 
+              document.getElementById("show_total").innerText = total
+            });
+    </script>
+   
+
   </div>
   <div class="col-md-5 pull-right">
 
@@ -46,32 +70,66 @@
 
           <h3 style="color: #D4AF37;">Please Enter Your Shipping Address:</h3>
 
-          <div class="form-group">
-            <%= f.label :address, :style => "color: #D4AF37;" %>
-            <%= f.text_field :address, class: "form-control" %>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= f.label :address, :style => "color: #D4AF37;" %>
+                <%= f.text_field :address, class: "form-control" %>
+              </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                  <%= f.label :city, :style => "color: #D4AF37;" %>
+                  <%= f.text_field :city, class: "form-control" %>
+                </div>
+            </div>
           </div>
-          <div class="form-group">
-            <%= f.label :city, :style => "color: #D4AF37;" %>
-            <%= f.text_field :city, class: "form-control" %>
-          </div>
-          <div class="form-group">
-            <%= f.label :state, :style => "color: #D4AF37;" %>
-            <%= f.text_field :state, class: "form-control" %>
-          </div>
-          <div class="form-group">
-            <%= f.label :zip, :style => "color: #D4AF37;" %>
-            <%= f.text_field :zip, class: "form-control" %>
-          </div>
-          <div class="form-group">
-            <%= f.label :country, :style => "color: #D4AF37;" %>
-            <%= f.country_select :country, {priority_countries: ["US"], include_blank: "select country"}, class: 'form-control' %>
+
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <%= f.label :state, :style => "color: #D4AF37;" %>
+                <%= f.text_field :state, class: "form-control" %>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <%= f.label :zip, :style => "color: #D4AF37;" %>
+                <%= f.text_field :zip, class: "form-control" %>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <%= f.label :country, :style => "color: #D4AF37;" %>
+                <%= f.country_select :country, {priority_countries: ["US"], include_blank: "select country"}, class: 'form-control' %>
+              </div>
+            </div>
           </div>
 
 
+         
+          
+
+          <div class="row">
+            <div class="col-md-6">
+                 <div class="form-group" style="color: black">
+                  <%= f.label :color, :style => "color: #D4AF37;" %>
+                  <%= f.select :color, options_for_select(@product.color_variants.pluck(:color)), :prompt => "Choose a Color", :class => "form-control", :style => "color: black!;" %>
+
+                </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group" style="color: black">
+                <%= f.label :size, :style => "color: #D4AF37;" %>
+                <%= f.select :size, options_for_select(@product.size_variants.pluck(:size)), :prompt => "Choose a Size", :class => "form-control", :style => "color: black!;" %>
+              </div>
+            </div>
+          </div>
+
+          <div class="row" align="center">
                     <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                             data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
                             data-description="NAME: <%= @product.title %>"
-                            data-amount="<%= (@product.price + @product.shipping_cost) * 100 %>"
                             <% if user_signed_in? %>
                               data-email="<%= current_user.email %>"
                             <% end %>
@@ -79,8 +137,36 @@
                             data-locale="auto">
 
                     </script>
-              
+          </div>
+
+
+
+
+
+          
+<div class="row" style="margin-top: 10px">
+  <div class="col-md-6">
+
+          <div class="form-group">
+            <%= f.label :quantity, :style => "color: #D4AF37;" %>
+            <%= f.number_field :quantity, class: "form-control", id: "quantity", value: 1, min: 1, step: 1 %>
+          </div>
+
+    </div>
+
+</div>                 
  <% end %>
+
+<div class="row">
+  <div class="col-md-6">
+   <button id="submit" class="btn btn-success" style="margin-top: 3%">Update Quantity</button> 
+  </div>
+</div> 
+
+
+
+
+ 
     <script src="https://checkout.stripe.com/checkout.js"></script>
   </div>
 </div>
