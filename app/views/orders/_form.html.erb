@@ -7,8 +7,9 @@
     <h4 id="price"><%= number_to_currency(@product.price) %></h4>
     <h4 id="s_price"><%= number_to_currency(@product.shipping_cost) %></h4>
     <h4 id="order_total">Total: $<span id="show_total"></span></h4>
-     
+    
      <script>
+
             $(document).ready(function(){
             document.getElementById('submit').onclick=function(){
               var quantity = parseInt(document.getElementById('quantity').value)
@@ -28,7 +29,6 @@
             });
     </script>
    
-
   </div>
   <div class="col-md-5 pull-right">
 
@@ -40,6 +40,7 @@
         <%= hidden_field_tag "product_id", @product.id %>
         <%= hidden_field_tag 'stripeToken' %>
         <%= hidden_field_tag 'stripeEmail' %>
+
 
        
 
@@ -105,6 +106,31 @@
               </div>
             </div>
           </div>
+          <div class="form-group">
+            <%= f.label :quantity, :style => "color: #D4AF37;" %>
+            <%= f.number_field :quantity, class: "form-control", id: "quantity" %>
+          
+          </div>
+
+          <div class="form-group">
+            <%= f.label :color %>
+            <%= select_tag(:color, options_for_select(@product.color_variants.pluck(:color)), :prompt => "Choose a Color", :class => "form-control") %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :size %>
+            <%= select_tag(:size, options_for_select(
+
+              @product.color_variants.each do |color_variant|
+                color_variant.size_variants.each do |size_variant|
+                  size_variant.try(:size)
+                end
+              end
+
+
+            ), :prompt => "Choose a Size", :class => "form-control") %>
+          </div>
+
 
 
          
@@ -130,11 +156,17 @@
                     <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                             data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
                             data-description="NAME: <%= @product.title %>"
+
+
                             <% if user_signed_in? %>
                               data-email="<%= current_user.email %>"
                             <% end %>
                             data-allow-remember-me="true"
                             data-locale="auto">
+
+                   
+
+
 
                     </script>
           </div>
@@ -167,6 +199,7 @@
 
 
  
+
     <script src="https://checkout.stripe.com/checkout.js"></script>
   </div>
 </div>

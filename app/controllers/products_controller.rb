@@ -1,10 +1,10 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :set_product, only: [:create, :show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :edit, :create]
 
 
   # GET /products
-  # GET /products.json
+  # GET /products.json 
   # def index
   #   @products = Product.all
   # end
@@ -35,9 +35,6 @@ class ProductsController < ApplicationController
     else
       redirect_to user_path(current_user)
     end
-
-
-
   end
 
   
@@ -56,7 +53,9 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
     @product.user = current_user
     @product.category_id = params[:category_id] 
-    # @product.color_variants_attributes = color_variants_attributes_params[:color_variants_attributes]
+    # @product.color_variants_attributes = params[:color_variants_attributes => [:id, :color, :product_id, :_destroy, :size_variants_attributes => [:id, :size, :quantity, :_destroy, :color_variant_id ]]]
+    
+    @categories = Category.all.map{|c| [ c.name, c.id ] }
 
     respond_to do |format|
       if @product.save
@@ -109,10 +108,13 @@ class ProductsController < ApplicationController
         @product.category_id = params[:category_id]
     end
 
+    def set_color_variants
+      @product.color_variant_id = params[:color_variants_attributes => [:id]]
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
       params.require(:product).permit(:user_id, :title, :description, :price, :shipping_cost, :sold, :condition, :category_id, :all_tags, :image, :color_variants_attributes => [:id, :color, :product_id, :_destroy], :size_variants_attributes => [:id, :size, :product_id, :_destroy])
     end
-
 
 end

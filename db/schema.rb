@@ -204,9 +204,9 @@ ActiveRecord::Schema.define(version: 20181020173318) do
     t.integer "image_file_size"
     t.datetime "image_updated_at"
     t.integer "category_id"
-    t.string "color"
-    t.string "size"
+    t.integer "color_variant_id"
     t.index ["category_id"], name: "index_products_on_category_id"
+    t.index ["color_variant_id"], name: "index_products_on_color_variant_id"
     t.index ["user_id"], name: "index_products_on_user_id"
   end
 

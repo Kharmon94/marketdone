@@ -22,6 +22,7 @@ class OrdersController < ApplicationController
     @order.buyer_id = current_user.id
     @order.seller_id = @seller.id
 
+
       if @order.valid?
         begin
             @amount = ((@product.price + @product.shipping_cost) * @order.quantity).to_i * 100
@@ -99,5 +100,6 @@ class OrdersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
       params.require(:order).permit(:address, :city, :state, :zip, :quantity, :color, :size, :country, :stripeEmail, :stripeToken)
+
     end
 end
