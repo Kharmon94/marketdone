@@ -1,7 +1,8 @@
 <div class="form-group">
 	<%= simple_form_for([@product, @product.reviews.build]) do |f| %>
-		<div style="margin-bottom: 20px; color: #D4AF37; font-size: 20px">
-			How Many Stars: <%= f.select :rating, [1,2,3,4,5], :class => "rev_c", :style => "width: 20px"%>
+		<h4 style="color: #D4AF37">How Many Stars: </h4>
+		<div style="margin-bottom: 20px; color: black; font-size: 20px">
+			<%= f.select :rating, [1,2,3,4,5], :class => "rev_c", :style => "width: 20px"%>
 		</div>
 
 		<div style="margin-bottom: 15px; color: #D4AF37; width: 150px">

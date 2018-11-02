@@ -45,11 +45,15 @@
 					<br>
 					<br>
 					<%= label_tag :business_category %>
+					<div style="color: black">
 				  	<%= select_tag(:business_category, options_from_collection_for_select(BusinessCategory.all, :id, :name, params[:business_category]), { include_blank: true }) %>
+				    </div>
 					<br>
 					<br>
 					<%= label_tag :state %>
+					<div style="color: black">
 				  	<%= select_tag(:state, options_from_collection_for_select(State.all, :id, :name, params[:state]), { include_blank: true }) %>
+				    </div>
 					<br>
 					<br>
 					<%= submit_tag "Search", :name => nil, :class => "btn btn-primary", :style => "background-color: #D4AF37; color: black;" %>  

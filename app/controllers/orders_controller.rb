@@ -47,7 +47,7 @@ class OrdersController < ApplicationController
 
                 Stripe::Charge.create(charge_params) # return a Stripe::Charge object
 
-
+                  
 
                   rescue Stripe::CardError => e
                     flash[:error] = e.message
@@ -65,6 +65,9 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if @order.save
+
+
+
         format.html { redirect_to purchases_path, notice: 'Thank You So Much For Your Order Family! Contact your seller for shipping information'}
         format.json { render :show, status: :created, location: @order }
       else

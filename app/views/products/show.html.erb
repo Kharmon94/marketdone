@@ -14,11 +14,12 @@
 
   <div class="col-md-6" style="background-color: #D4AF37; padding: 20px; border-radius: 10px; color: black;" align="center">
 
-    <p style="font-size: 25px"><em>Condition:</em> <%= @product.condition %></p>
+    
     <div style="background-color: black; padding: 4%; margin: 2%; border-radius: 10px;">
           <p style="font-size: 25px; color: #D4AF37"><em>Description:</em> <%= @product.description %></p>
     </div>
-
+    <p style="font-size: 25px"><em>Condition:</em> <%= @product.condition %></p>
+    <p style="font-size: 25px"> <%= @product.inventory %> <em>Left In Stock</em></p> 
     <div align="left">
       <h4> Colors Avalible </h4> 
       <% @product.color_variants.each do |color_variant| %>
