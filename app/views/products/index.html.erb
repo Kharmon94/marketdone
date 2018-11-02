@@ -43,15 +43,22 @@
               <br>
               <br>
               <%= label_tag :category %>
-              <%= select_tag(:category, options_from_collection_for_select(Category.all, :id, :name, params[:category]), { include_blank: true }) %>
+              <div style="color: black">
+               <%= select_tag(:category, options_from_collection_for_select(Category.all, :id, :name, params[:category]), { include_blank: true }) %> 
+              </div>
+              
               <br>
               <br>
               <%= label_tag :min_price %>
-              <%= text_field_tag :min_price, params[:min_price] %>
+              <div style="color: black">
+              <%= number_field_tag :min_price, params[:min_price] %>
+              </div>
               <br>
               <br>
               <%= label_tag :max_price %>
-              <%= text_field_tag :max_price, params[:max_price] %>
+              <div style="color: black">
+              <%= number_field_tag :max_price, params[:max_price] %>
+              </div>
               <br>
               <br>
               <%= submit_tag "Search", :name => nil, :class => "btn btn-primary", :style => "background-color: #D4AF37; color: black;" %>  

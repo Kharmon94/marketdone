@@ -75,7 +75,9 @@
 <div class="row" style="color: #D4AF37">
     <% if @user.id == current_user.id %>
       <h3 class="font-heading text-center">My Products</h3>
+      <div align="center" style="width: 50%; margin-top: 3%">
       <h4><em><strong>Please Remember to Check/Send for Tracking Numbers Within 48 hours of Every Sale Within your Black Woman Is God Account. <em>Customers contact information will be located within your <%= link_to "Sales", sales_path(@user) %> page!</em></strong></em></h4>
+      </div>
       <% else %>
       <h3 class="font-heading text-center"><%= @user.username %>'s Products</h3>
     <% end %>
