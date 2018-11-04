@@ -21,10 +21,10 @@ class SubscribersController < ApplicationController
     
     subscription = Stripe::Subscription.create({
       customer: customer.id,
-      items: [{plan: 'plan_Ch1gdqOXtOmc7o'}],
+      items: [{plan: 'plan_CfIMakVxUJCgRv'}],
     })
-# live: plan_CfIMakVxUJCgRv
-# test: 
+# live: 
+# test: plan_Ch1gdqOXtOmc7o
     
     current_user.subscribed = true
     current_user.save
@@ -34,16 +34,13 @@ class SubscribersController < ApplicationController
 
 	end
 
-  # def cancel_plan
-  #   @user = current_user
-  #   if @user.cancel_user_plan(params[:customer_id])
-  #     @user.update_attributes(customer_id: nil, plan: 'plan_CfIMakVxUJCgRv')
-  #     @user.update_attributes(business: nil)
-  #     flash[:notice] = "Canceled subscription."
-  #     redirect_to root_path
-  #   else
-  #     flash[:error] = "There was an error canceling your subscription. Please notify us."
-  #     redirect_to edit_user_registration_path
-  #   end
-  # end
+  def unsubscribe
+    @user = current_user
+      subscription = Stripe::Subscription.retrieve(current_user.stripe_id)
+      subscription.update(cancel_at_period_end: true)
+      current_user.subscribed = false
+      @user.update_attributes(stripe_id: nil)
+      flash[:notice] = "Canceled subscription."
+      redirect_to root_path
+  end
 end

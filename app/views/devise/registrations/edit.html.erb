@@ -137,6 +137,8 @@
 
         <h3>If You will like to cancel your business subscription please <strong>EMAIL:</strong> <strong>Theblackwomanisgodstores@gmail.com</strong> or direct message our instagram <a href="https://www.instagram.com/tbwig_stores/?hl=en" target="_blank" class="social-icon"> <i class="fa fa-instagram"></i></a> </h3><br> <h5>Our response will be prompt and your subscription will be terminated after payment cycle.</h5>
 
+        <p><%= button_to "Unsubscribe Your Business", unsubscribe_path(current_user), class: "btn", style: "background-color: black; color: #D4AF37;", data: { confirm: "Are you sure?" }, method: :delete %></p>
+
         <h3><strong>Cancel my account</strong></h3>
 
         <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), class: "btn", style: "background-color: black; color: #D4AF37;", data: { confirm: "Are you sure?" }, method: :delete %></p>

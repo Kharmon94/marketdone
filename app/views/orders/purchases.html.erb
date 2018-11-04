@@ -1,5 +1,5 @@
 <div class="center">
-  <h2>Your Purchase History:</h2>
+  <h2 style="color: #D4AF37">Your Purchase History:</h2>
 </div>
 
 <table class="table">
@@ -7,9 +7,11 @@
     <th class="center">Image</th>
     <th class="center">Item</th>
     <th class="center">Price</th>
+    <th class="center">Shipping Cost </th>
     <th class="center">Seller</th>
     <th class="center">Color</th>
     <th class="center">Size</th>
+    <th class="center">Quantity</th>
     <th class="center">Date Purchased</th>
   </tr>
 
@@ -18,9 +20,11 @@
       <td class="center" align="center" style="background-color: #D4AF37;"><%= image_tag order.product.image.url(:thumb) %></td>
       <td class="center"><%= order.product.title %></td>
       <td class="center"><%= number_to_currency(order.product.price) %></td>
+      <td class="center"><%= number_to_currency(order.product.shipping_cost) %></td>
       <td class="center"><%= order.seller.username %> Email: <%= order.seller.email %></td>
       <td class="center"><%= order.color %></td>
       <td class="center"><%= order.size %></td>
+      <td class="center"><%= order.quantity %></td>
       <td class="center"><%= order.created_at.strftime("%B %-d, %Y") %></td>
     </tr>
   <% end %>
