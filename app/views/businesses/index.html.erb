@@ -104,44 +104,45 @@
 			</tr>
 			
 			<% @businesses.each do |business| %>
-			<div style="overflow: auto;">
-				<tr class="business_table">
-				<th style="background-color: #D4AF37;">
-					<%= link_to business do %>
-	       				<%= image_tag(business.image.url(:thumb), :class => "thumbs") %>
-	    			<% end %>
-				</th>
+			<% unless business.user.subscribed == false %>
+					<div style="overflow: auto;">
+						<tr class="business_table">
+						<th style="background-color: #D4AF37;">
+							<%= link_to business do %>
+			       				<%= image_tag(business.image.url(:thumb), :class => "thumbs") %>
+			    			<% end %>
+						</th>
 
-				<th>
-					<h3><%= link_to business.title, business_path(business), style: "color: #D4AF37;" %></h3>
-				</th>
+						<th>
+							<h3><%= link_to business.title, business_path(business), style: "color: #D4AF37;" %></h3>
+						</th>
 
-				<th>
-					<p><%= business.description %></p>
-				</th>
+						<th>
+							<p><%= business.description %></p>
+						</th>
 
-				<th>
-					<p><%= business.business_category.name %></p>
-				</th>
+						<th>
+							<p><%= business.business_category.name %></p>
+						</th>
 
-				<th>
-					<strong><p><em>Owner:</em> <%= link_to business.user.username, user_path(business.user), style: "color: #D4AF37;" %></p></strong>
-				</th>
+						<th>
+							<strong><p><em>Owner:</em> <%= link_to business.user.username, user_path(business.user), style: "color: #D4AF37;" %></p></strong>
+						</th>
 
-				<th>
-					<p> <%= business.city %></p>
-				</th>
-					
-				<th>
-					<p> <%= business.state.name %></p>
-				</th>
-
-
-						
-			</tr>
-			</div>
+						<th>
+							<p> <%= business.city %></p>
+						</th>
+							
+						<th>
+							<p> <%= business.state.name %></p>
+						</th>
 
 
+								
+					</tr>
+					</div>
+
+				<% end %>
 			<% end %> 
 	  	</table>
 	     <div class="row" style="margin-left: 5%">
