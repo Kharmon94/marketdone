@@ -18,14 +18,15 @@ class SubscribersController < ApplicationController
     )
 
     current_user.stripe_id = customer.id
+
     
     subscription = Stripe::Subscription.create({
       customer: customer.id,
-      items: [{plan: 'plan_CfIMakVxUJCgRv'}],
+      items: [{plan: 'plan_Ch1gdqOXtOmc7o'}],
     })
-# live: 
-# test: plan_Ch1gdqOXtOmc7o
-    
+# live: plan_CfIMakVxUJCgRv
+# test: 
+    current_user.uuid = subscription.id
     current_user.subscribed = true
     current_user.save
   end
@@ -36,9 +37,10 @@ class SubscribersController < ApplicationController
 
   def unsubscribe
     @user = current_user
-      subscription = Stripe::Subscription.retrieve(current_user.stripe_id)
-      subscription.update(cancel_at_period_end: true)
+      subscription = Stripe::Subscription.retrieve(current_user.uuid)
+      subscription.delete
       current_user.subscribed = false
+      @user.update_attributes(uuid: nil)
       @user.update_attributes(stripe_id: nil)
       flash[:notice] = "Canceled subscription."
       redirect_to root_path
