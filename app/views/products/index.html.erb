@@ -43,15 +43,22 @@
               <br>
               <br>
               <%= label_tag :category %>
-              <%= select_tag(:category, options_from_collection_for_select(Category.all, :id, :name, params[:category]), { include_blank: true }) %>
+              <div style="color: black">
+               <%= select_tag(:category, options_from_collection_for_select(Category.all, :id, :name, params[:category]), { include_blank: true }) %> 
+              </div>
+              
               <br>
               <br>
               <%= label_tag :min_price %>
-              <%= text_field_tag :min_price, params[:min_price] %>
+              <div style="color: black">
+              <%= number_field_tag :min_price, params[:min_price] %>
+              </div>
               <br>
               <br>
               <%= label_tag :max_price %>
-              <%= text_field_tag :max_price, params[:max_price] %>
+              <div style="color: black">
+              <%= number_field_tag :max_price, params[:max_price] %>
+              </div>
               <br>
               <br>
               <%= submit_tag "Search", :name => nil, :class => "btn btn-primary", :style => "background-color: #D4AF37; color: black;" %>  
@@ -94,7 +101,7 @@
                           <div class="caption" style=" width: 200px; height: 200px; padding: 3%; word-wrap: break-word; color: #D4AF37 !important; font-size: 17px; opacity: 0.85; text-overflow: ellipsis;" >
                             <h4><%= product.title %></h4>
                             <h3><strong><%= number_to_currency(product.price) %></strong></h3>
-                            <p><%= link_to product.category.name, category_path(product.category), :style => "color: #D4AF37" %></p>
+                            <p><%= product.category.name %></p>
                             <p><em>Seller:</em><br> <%= link_to product.user.username, user_path(product.user), :style => "color: #D4AF37" %></p>
                           </div>
                       </div>

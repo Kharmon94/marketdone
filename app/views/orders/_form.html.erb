@@ -106,34 +106,6 @@
               </div>
             </div>
           </div>
-          <div class="form-group">
-            <%= f.label :quantity, :style => "color: #D4AF37;" %>
-            <%= f.number_field :quantity, class: "form-control", id: "quantity" %>
-          
-          </div>
-
-          <div class="form-group">
-            <%= f.label :color %>
-            <%= select_tag(:color, options_for_select(@product.color_variants.pluck(:color)), :prompt => "Choose a Color", :class => "form-control") %>
-          </div>
-
-          <div class="form-group">
-            <%= f.label :size %>
-            <%= select_tag(:size, options_for_select(
-
-              @product.color_variants.each do |color_variant|
-                color_variant.size_variants.each do |size_variant|
-                  size_variant.try(:size)
-                end
-              end
-
-
-            ), :prompt => "Choose a Size", :class => "form-control") %>
-          </div>
-
-
-
-         
           
 
           <div class="row">

@@ -135,7 +135,11 @@
           </div>
         <% end %>
 
-        <h3>If You will like to cancel your business subscription please <strong>EMAIL:</strong> <strong>Theblackwomanisgodstores@gmail.com</strong> or direct message our instagram <a href="https://www.instagram.com/tbwig_stores/?hl=en" target="_blank" class="social-icon"> <i class="fa fa-instagram"></i></a> </h3><br> <h5>Our response will be prompt and your subscription will be terminated after payment cycle.</h5>
+        <h3>If You will like to cancel your business subscription please <strong>Click the Button Below</strong>! If you unsubscribed, your business will immediately removed from public view and your subscription canceled. If you would like to re-subscribe to the platform delete your previous business <%= link_to "Here", user_path(current_user) %>. <strong>There are NO refunds</strong> </h3>
+
+      <br> <h5> If help is needed please contact us, Our response will be prompt <%= link_to "Contact Us", pages_contact_path %>.</h5>
+
+        <p><%= button_to "Unsubscribe Your Business", unsubscribe_path(current_user), class: "btn", style: "background-color: black; color: #D4AF37;", data: { confirm: "Are you sure? There are no refunds and your business will be removed from The Black Woman Is God Stores!" }, method: :delete %></p>
 
         <h3><strong>Cancel my account</strong></h3>
 

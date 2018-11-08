@@ -42,8 +42,7 @@ class ProductsController < ApplicationController
   # GET /products/1/edit
   def edit
     @categories = Category.all.map{|c| [ c.name, c.id ] }
-    @product.color_variants.build
-    @product.size_variants.build
+   
 
   end
 
@@ -114,7 +113,7 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:user_id, :title, :description, :price, :shipping_cost, :sold, :condition, :category_id, :all_tags, :image, :color_variants_attributes => [:id, :color, :product_id, :_destroy], :size_variants_attributes => [:id, :size, :product_id, :_destroy])
+      params.require(:product).permit(:user_id, :title, :description, :price, :shipping_cost, :sold, :condition, :category_id, :inventory, :all_tags, :image, :color_variants_attributes => [:id, :color, :product_id, :_destroy], :size_variants_attributes => [:id, :size, :product_id, :_destroy])
     end
 
 end
