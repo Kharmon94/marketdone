@@ -2,7 +2,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12" align="center" style="background-color: #D4AF37; color: black; border-radius: 10px; padding: 20px">
-      <%= simple_form_for @product, url: "#{products_path}", html: { multipart: true } do |f| %>
+      <%= simple_form_for @product, html: { multipart: true }, :method => :patch do |f| %>
       
         <% if product.errors.any? %>
           <div id="error_explanation">
