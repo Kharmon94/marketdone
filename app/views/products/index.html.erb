@@ -85,29 +85,30 @@
 
     <div class="col-md-9" style="padding: 20px; border-left: solid; border-width: 1px;" align="center">
             <% @products.each do |product| %>
+              <% unless @product.inventory = nil %>
 
-              <div  id="t_backdrop">
-                  <div class="col-md-3" style=" height: 100% !important">
-                      <div class="thumbnail" style="height: 60% !important;">
-                          <%= link_to product do %>
-                            <div style="height: 200px; width: 200px; opacity: 0.88; padding: 15px; background-color: #D4AF37; border-radius: 5px">
-                                <div style=" height: 110% !important">
-                                  <%= image_tag(product.image.url(:thumb), :class => "thumbs", :id => "thumbs") %>
-                                </div>
+                <div  id="t_backdrop">
+                    <div class="col-md-3" style=" height: 100% !important">
+                        <div class="thumbnail" style="height: 60% !important;">
+                            <%= link_to product do %>
+                              <div style="height: 200px; width: 200px; opacity: 0.88; padding: 15px; background-color: #D4AF37; border-radius: 5px">
+                                  <div style=" height: 110% !important">
+                                    <%= image_tag(product.image.url(:thumb), :class => "thumbs", :id => "thumbs") %>
+                                  </div>
+                              </div>
+
+                             
+                            <% end %>
+                            <div class="caption" style=" width: 200px; height: 200px; padding: 3%; word-wrap: break-word; color: #D4AF37 !important; font-size: 17px; opacity: 0.85; text-overflow: ellipsis;" >
+                              <h4><%= product.title %></h4>
+                              <h3><strong><%= number_to_currency(product.price) %></strong></h3>
+                              <p><%= product.category.name %></p>
+                              <p><em>Seller:</em><br> <%= link_to product.user.username, user_path(product.user), :style => "color: #D4AF37" %></p>
                             </div>
-
-                           
-                          <% end %>
-                          <div class="caption" style=" width: 200px; height: 200px; padding: 3%; word-wrap: break-word; color: #D4AF37 !important; font-size: 17px; opacity: 0.85; text-overflow: ellipsis;" >
-                            <h4><%= product.title %></h4>
-                            <h3><strong><%= number_to_currency(product.price) %></strong></h3>
-                            <p><%= product.category.name %></p>
-                            <p><em>Seller:</em><br> <%= link_to product.user.username, user_path(product.user), :style => "color: #D4AF37" %></p>
-                          </div>
-                      </div>
-                  </div>
-              </div>  
-
+                        </div>
+                    </div>
+                </div>  
+              <% end %>
             <% end %> 
           
           </div> 
