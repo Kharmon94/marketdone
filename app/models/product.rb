@@ -13,7 +13,7 @@ class Product < ApplicationRecord
   validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
   # validates_attachment_presence :image
   validates_numericality_of :price, greater_than_or_equal_to: 0
-  validates :title, :description, :price, :shipping_cost, presence: true
+  validates :title, :description, :price, :shipping_cost, :inventory, :condition, presence: true
   paginates_per 20
   
   def self.search(search)
