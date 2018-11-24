@@ -18,7 +18,7 @@
         <div class="row" style="margin-bottom: 15px">
           <div class="col-md-6">
             <%= form.label :title %>
-            <%= form.text_field :title, id: :business_title, class: "form-control" %>
+            <%= form.text_field :title, id: :business_title, :maxlength => 50, class: "form-control" %>
           </div>
           <div class="col-md-6">
             <%= form.label :category %>
@@ -29,7 +29,7 @@
         <div class="row" style="margin-bottom: 15px">
           <div class="col-md-12">
             <%= form.label :description %>
-            <%= form.text_area :description, id: :business_description, class: "form-control" %>
+            <%= form.text_area :description, id: :business_description, :maxlength => 500, class: "form-control" %>
           </div>
         </div>
 
@@ -51,7 +51,7 @@
         <div class="row" style="margin-bottom: 15px">
           <div class="col-md-4">
             <%= form.label :business_email %>
-            <%= form.text_field :email, id: :business_email, class: "form-control" %>
+            <%= form.email_field :email, id: :business_email, class: "form-control" %>
           </div>
           <div class="col-md-4">
             <%= form.label :business_number %>
@@ -66,7 +66,7 @@
         <div class="row" style="margin-bottom: 15px">
           <div class="col-md-12">
             <%= form.label :business_hours %>
-            <%= form.text_area :hours, id: :business_hours, class: "form-control" %>            
+            <%= form.text_area :hours, id: :business_hours, :maxlength => 250, class: "form-control" %>            
           </div>
         </div>
 

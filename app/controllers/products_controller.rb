@@ -56,9 +56,12 @@ class ProductsController < ApplicationController
     
     @categories = Category.all.map{|c| [ c.name, c.id ] }
 
+    
+
     respond_to do |format|
       if @product.save
-        format.html { redirect_to @product, notice: 'Product was successfully created.' }
+        UserMailer.product_email(@user).deliver
+        format.html { redirect_to @product, notice: 'Thank You For Listing Your Product On The Black Woman Is God Stores' }
         format.json { render :show, status: :created, location: @product }
       else
         format.html { render :new }
@@ -72,9 +75,12 @@ class ProductsController < ApplicationController
   def update
     @product.category_id = params[:category_id]
     @categories = Category.all.map{|c| [ c.name, c.id ] }
+
+     
     
     respond_to do |format|
       if @product.update(product_params)
+        UserMailer.product_email(@user).deliver
         format.html { redirect_to @product, notice: 'Product was successfully updated.' }
         format.json { render :show, status: :ok, location: @product }
       else
@@ -89,7 +95,7 @@ class ProductsController < ApplicationController
   def destroy
     @product.destroy
     respond_to do |format|
-      format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
+      format.html { redirect_to products_url, notice: 'Product was successfully deleted.' }
       format.json { head :no_content }
     end
   end

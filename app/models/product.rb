@@ -11,7 +11,7 @@ class Product < ApplicationRecord
   accepts_nested_attributes_for :size_variants, :reject_if => :all_blank, allow_destroy: true
   has_attached_file :image, styles: { medium: "300x300", thumb: "100x80", square: "200x200", large: "600x600" }, default_url: "default.png"
   validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
-  # validates_attachment_presence :image
+  validates_attachment_presence :image
   validates_numericality_of :price, greater_than_or_equal_to: 0
   validates :title, :description, :price, :shipping_cost, :inventory, :condition, presence: true
   paginates_per 20

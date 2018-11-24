@@ -8,10 +8,8 @@ class Business < ApplicationRecord
     
     validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
     paginates_per 10
-    # validates :business_category, presence: true
-
-
-
+    validates :title, :description, :address, :city, :email, :hours, :number, :business_category, presence: true
+    validates_attachment_presence :image
 
 def self.search(find)
     if find

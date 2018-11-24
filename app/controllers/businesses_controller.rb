@@ -55,7 +55,8 @@ class BusinessesController < ApplicationController
 
     respond_to do |format|
       if @business.save
-        format.html { redirect_to @business, notice: 'Business was successfully created.' }
+        UserMailer.business_email(@user).deliver
+        format.html { redirect_to @business, notice: 'Thank You For Registering Your Business With The Black Woman Is God Stores' }
         format.json { render :show, status: :created, location: @business }
       else
         format.html { render :new }
@@ -72,6 +73,7 @@ class BusinessesController < ApplicationController
 
     respond_to do |format|
       if @business.update(business_params)
+        UserMailer.business_email(@user).deliver
         format.html { redirect_to @business, notice: 'Business was successfully updated.' }
         format.json { render :show, status: :ok, location: @business }
       else
@@ -86,7 +88,7 @@ class BusinessesController < ApplicationController
   def destroy
     @business.destroy
     respond_to do |format|
-      format.html { redirect_to businesses_url, notice: 'Business was successfully destroyed.' }
+      format.html { redirect_to businesses_url, notice: 'Business was successfully deleted.' }
       format.json { head :no_content }
     end
   end

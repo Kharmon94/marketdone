@@ -39,6 +39,10 @@ class UsersController < ApplicationController
 
   def create
     @user = User.create(user_params)
+
+    # send welcome email
+    UserMailer.welcome_email(@user).deliver
+
   end
 
 
