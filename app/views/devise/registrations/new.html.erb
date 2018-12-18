@@ -95,7 +95,7 @@
                 <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
                 <% if @minimum_password_length %>
                   
-                   <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+                   <%= f.label :password %><br />
                   <em><%= @minimum_password_length %> characters minimum</em>
                 <% end %>
               </div>

@@ -91,49 +91,49 @@
 
 		
 		<div class="col-md-12" align="center">
-	  	<table class="table">
+	  	<table class="table table-responsive">
 			
 	  		<tr style="color: #D4AF37; font-size: 20px" align="center">
-			    <th class="center"></th>
-			    <th class="center">Name</th>
-			    <th class="center">Description</th>
-			    <th class="center">Category</th>
-			    <th class="center">Owner</th>
-			    <th class="center">City</th>
-			     <th class="center">State</th>
+			    <th scope="col" class="center"></th>
+			    <th scope="col" class="center">Name</th>
+			    <th scope="col" class="center">Description</th>
+			    <th scope="col" class="center">Category</th>
+			    <th scope="col" class="center">Owner</th>
+			    <th scope="col" class="center">City</th>
+			     <th scope="col" class="center">State</th>
 			</tr>
 			
 			<% @businesses.each do |business| %>
 			<% unless business.user.subscribed == false %>
 					<div style="overflow: auto;">
 						<tr class="business_table">
-						<th style="background-color: #D4AF37;">
+						<th scope="row" style="background-color: #D4AF37;">
 							<%= link_to business do %>
 			       				<%= image_tag(business.image.url(:thumb), :class => "thumbs") %>
 			    			<% end %>
 						</th>
 
-						<th>
+						<th scope="row">
 							<h3><%= link_to business.title, business_path(business), style: "color: #D4AF37;" %></h3>
 						</th>
 
-						<th>
+						<th scope="row">
 							<p><%= business.description %></p>
 						</th>
 
-						<th>
+						<th scope="row">
 							<p><%= business.business_category.name %></p>
 						</th>
 
-						<th>
+						<th scope="row">
 							<strong><p><em>Owner:</em> <%= link_to business.user.username, user_path(business.user), style: "color: #D4AF37;" %></p></strong>
 						</th>
 
-						<th>
+						<th scope="row">
 							<p> <%= business.city %></p>
 						</th>
 							
-						<th>
+						<th scope="row">
 							<p> <%= business.state.name %></p>
 						</th>
 
