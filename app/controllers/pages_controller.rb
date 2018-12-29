@@ -8,6 +8,9 @@ class PagesController < ApplicationController
   def terms
   end
 
+  def countdown
+  end
+
   def home
   	@products = Product.all.order("created_at DESC").page(params[:page]).take(4)
   end

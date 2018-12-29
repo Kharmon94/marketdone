@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks'}
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  root to: "pages#home"
+  # root to: "pages#home"
+   root to: "pages#countdown"
 
   resources :products do
     resources :orders, only: [:new, :create, :checkout]
@@ -48,4 +49,5 @@ Rails.application.routes.draw do
   get 'pages/contact'
   get 'pages/terms'
   get 'pages/home'
+  get 'pages/countdown'
 end
