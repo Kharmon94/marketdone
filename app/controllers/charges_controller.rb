@@ -43,7 +43,6 @@ class ChargesController < ApplicationController
 
   def set_item
     @product = Product.find_by_id(params[:id])
-   
   end
 
 end
