@@ -27,8 +27,8 @@ Rails.application.routes.draw do
       collection { post :search, to: 'businesses#index' }
   end
 
-  resources :conversations, only: [:index, :show, :new, :create] do
-    resources :messages, only: [:create]
+  resources :conversations, only: [:index, :create] do
+    resources :personal_messages, only: [:index, :create]
   end
 
   # resources :business_categories, only: [:index, :show]

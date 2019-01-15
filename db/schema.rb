@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190114224410) do
+ActiveRecord::Schema.define(version: 20190115162658) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -84,6 +84,14 @@ ActiveRecord::Schema.define(version: 20190114224410) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "conversations", force: :cascade do |t|
+    t.integer "author_id"
+    t.integer "receiver_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id", "receiver_id"], name: "index_conversations_on_author_id_and_receiver_id", unique: true
+  end
+
   create_table "follows", force: :cascade do |t|
     t.string "followable_type", null: false
     t.integer "followable_id", null: false
@@ -142,6 +150,17 @@ ActiveRecord::Schema.define(version: 20190114224410) do
     t.decimal "total_price", precision: 12, scale: 3
     t.string "status"
     t.index ["product_id"], name: "index_orders_on_product_id"
+  end
+
+  create_table "personal_messages", force: :cascade do |t|
+    t.text "body"
+    t.integer "conversation_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "read", default: false
+    t.index ["conversation_id"], name: "index_personal_messages_on_conversation_id"
+    t.index ["user_id"], name: "index_personal_messages_on_user_id"
   end
 
   create_table "products", force: :cascade do |t|

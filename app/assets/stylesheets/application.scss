@@ -28,6 +28,12 @@
   border-color: black;
 }
 
+#conversation-body {
+  max-height: 400px;
+  overflow-y: auto;
+  margin-bottom: 2em;
+}
+
 body {
   // font-family: 'Play', sans-serif;
   // font-family: 'Squada One', cursive;
