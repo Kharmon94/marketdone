@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190115162658) do
+ActiveRecord::Schema.define(version: 20190115203443) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -187,25 +187,6 @@ ActiveRecord::Schema.define(version: 20190115162658) do
     t.index ["user_id"], name: "index_products_on_user_id"
   end
 
-  create_table "profiles", force: :cascade do |t|
-    t.integer "user_id"
-    t.string "username"
-    t.string "first_name"
-    t.string "last_name"
-    t.string "street_address"
-    t.string "city"
-    t.string "zipcode"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "bio"
-    t.string "avatar_file_name"
-    t.string "avatar_content_type"
-    t.integer "avatar_file_size"
-    t.datetime "avatar_updated_at"
-    t.string "state"
-    t.index ["user_id"], name: "index_profiles_on_user_id"
-  end
-
   create_table "reviews", force: :cascade do |t|
     t.integer "rating"
     t.text "comment"
@@ -226,21 +207,6 @@ ActiveRecord::Schema.define(version: 20190115162658) do
   end
 
   create_table "states", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "taggings", force: :cascade do |t|
-    t.integer "product_id"
-    t.integer "tag_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["product_id"], name: "index_taggings_on_product_id"
-    t.index ["tag_id"], name: "index_taggings_on_tag_id"
-  end
-
-  create_table "tags", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
