@@ -3,14 +3,17 @@
   <div class="col-md-4" align="center">
     <div>
         <% if @user.id == current_user.id %>
-          <%= image_tag @user.image(:medium), id: "profile_pic" %> 
-          <h2 style="color: #D4AF37">&nbsp Hello <%= @user.username %>!<h2>
-          <!-- <#= link_to " Conversations", conversations_path %> -->
+            <%= image_tag @user.image(:medium), id: "profile_pic" %> 
+            <h2 style="color: #D4AF37">&nbsp Hello <%= @user.username %>!<h2>
+            <%= link_to 'Chat', conversations_path %>
           <% else %>
-          <%= image_tag @user.image(:medium), id: "profile_pic" %> 
-          <strong><h3><%= @user.username %>'s Profile</h3></strong>
-          <!-- <#= link_to "Message", new_conversation_path(@user) %> -->
+            <%= image_tag @user.image(:medium), id: "profile_pic" %> 
+            <strong><h3><%= @user.username %>'s Profile</h3></strong>
+          
+              <%= link_to 'Message', conversations_path(author_id: current_user.id, receiver_id: @user.id), method: :post %></li>
+           
         <% end %>
+        
     </div>
     <div style="background-color: #D4AF37; border-radius: 10px; color: black;">
       <div align="center">

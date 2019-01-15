@@ -21,7 +21,7 @@
       <td class="center"><%= order.product.title %></td>
       <td class="center"><%= number_to_currency(order.product.price) %></td>
       <td class="center"><%= number_to_currency(order.product.shipping_cost) %></td>
-      <td class="center"><%= order.seller.username %> Email: <%= order.seller.email %></td>
+      <td class="center"><%= order.seller.username %> Email: <%= order.seller.email %> || Message: <%= link_to order.seller.username, conversations_path(author_id: current_user.id, receiver_id: order.seller.id), method: :post %></td>
       <td class="center"><%= order.color %></td>
       <td class="center"><%= order.size %></td>
       <td class="center"><%= order.quantity %></td>

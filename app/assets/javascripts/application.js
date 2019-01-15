@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require jquery3
 //= require jquery.raty
+//= require conversations
 //= require cocoon
 //= require rails-ujs
 //= require turbolinks

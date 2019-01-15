@@ -29,6 +29,7 @@ gem "puma_worker_killer"
 gem "socialization"
 gem 'gon'
 gem "figaro"
+gem 'emoji'
 gem "devise"
 gem "stripe", :git => 'https://github.com/stripe/stripe-ruby'
 gem 'paperclip', :git=> 'https://github.com/thoughtbot/paperclip', :ref => '523bd46c768226893f23889079a7aa9c73b57d68'
