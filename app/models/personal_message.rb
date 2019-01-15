@@ -7,8 +7,8 @@ class PersonalMessage < ApplicationRecord
 
     private
 
-	    def message_time
+	    def personal_message_time
 	      created_at.strftime("%d/%m/%y at %l:%M %p")
 	    end
-	    
+
 end

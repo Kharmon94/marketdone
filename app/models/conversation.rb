@@ -19,15 +19,4 @@ class Conversation < ApplicationRecord
       self.personal_messages.where("user_id != ? AND read = ?", current_user.id, false).count
   	end
 
-	# scope :participating, -> (user) do
-	#   where("(conversations.author_id = ? OR conversations.receiver_id = ?)", user.id, user.id)
-	# end
-
-	# def with(current_user)
- # 	 author == current_user ? receiver : author
-	# end
-
-	# def participates?(user)
-	#   author == user || receiver == user
-	# end
 end

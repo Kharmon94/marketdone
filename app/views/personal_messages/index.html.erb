@@ -11,7 +11,7 @@
 
 <%= form_for [@conversation, @personal_message] do |f| %>
   <div class="field">
-    <%= f.text_area :body, placeholder: "Your message" %>
+    <%= emojify f.text_area :body, placeholder: "Your message" %>
   </div>
 
   <%= f.submit "Send" %>
