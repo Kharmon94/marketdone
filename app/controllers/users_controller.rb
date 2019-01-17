@@ -37,6 +37,22 @@ class UsersController < ApplicationController
     redirect_to user_path(user)
   end
 
+  def followers
+
+     @user = User.find_by(params[:user])
+     @followers = @user.followers(User)
+     @users = User.all
+
+  end
+
+  def following
+
+     @user = User.find_by(params[:user])
+     @following = @user.followees(User)
+     @users = User.all
+
+  end
+
   def create
     @user = User.create(user_params)
 

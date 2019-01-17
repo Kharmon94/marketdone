@@ -4,26 +4,45 @@
     <div>
         <% if @user.id == current_user.id %>
             <%= image_tag @user.image(:medium), id: "profile_pic" %> 
-            <h2 style="color: #D4AF37">&nbsp Hello <%= @user.username %>!<h2>
+            <h2 style="color: #D4AF37">&nbsp Hello <%= @user.username %>!</h2>
             <%= link_to 'Chat', conversations_path %>
+
+
+
           <% else %>
             <%= image_tag @user.image(:medium), id: "profile_pic" %> 
             <strong><h3><%= @user.username %>'s Profile</h3></strong>
           
-              <%= link_to 'Message', conversations_path(author_id: current_user.id, receiver_id: @user.id), method: :post %></li>
+              <%= link_to 'Message', conversations_path(author_id: current_user.id, receiver_id: @user.id), method: :post %>
+
+
+
            
         <% end %>
         
-    </div>
+  
+  </div>
     <div style="background-color: #D4AF37; border-radius: 10px; color: black;">
       <div align="center">
-        <h4>&nbsp Followers</h4>
-        <h4><%= @user.followers_count %></h4>
+        <h4>Followers</h4>
+        <h4><%= link_to @user.followers_count, followers_path(@user) %></h4>
+        <h4>Following</h4>
+         <h4><%= link_to @user.followees_count, following_path(@user) %></h4>
       </div>
+
       <div style="font-size: 20px;">
-        &nbsp &nbsp <%= link_to('Follow', follow_user_path(@user), :style => "color: black;", method: :post) %>
-        | <%= link_to('Unfollow', unfollow_user_path(@user), :style => "color: black;", method: :post) %>
-      </div>
+
+        <% if current_user.follows?(@user) %>
+
+          <%= link_to('Unfollow', unfollow_user_path(@user), :style => "color: black;", method: :post) %>
+
+              <% else %>
+
+          <%= link_to('Follow', follow_user_path(@user), :style => "color: black;", method: :post) %>
+
+        <% end %>
+      </div> 
+
     </div>
   </div>
 
@@ -41,7 +60,8 @@
     <% else %>
     <h3 class="font-heading text-center"><%= @user.username %>'s Business</h3>
   <% end %>
-</div>  
+</div> 
+
 <div class="row" align="center">
   <div class="col-md-12">
     <% @businesses.each do |business| %>
