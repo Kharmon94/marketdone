@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  product: one
-  tag: one
+  author_id: 1
+  receiver_id: 1
 
 two:
-  product: two
-  tag: two
+  author_id: 1
+  receiver_id: 1

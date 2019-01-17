@@ -34,6 +34,7 @@ gem "socialization"
 # gem 'httparty'
 gem 'gon'
 gem "figaro"
+gem 'emoji'
 gem "devise"
 # gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
 # gem 'bootstrap', '~> 4.0.0'

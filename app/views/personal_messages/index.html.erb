@@ -1,0 +1,18 @@
+<ul>
+  <% @personal_messages.each do |personal_message| %>
+    <% if personal_message.body %>
+      <li>
+        <h4><%= personal_message.user.username %></h4>
+        <p><%= personal_message.body %></p>
+      </li>
+    <% end %>
+  <% end %>
+</ul>
+
+<%= form_for [@conversation, @personal_message] do |f| %>
+  <div class="field">
+    <%= emojify f.text_area :body, placeholder: "Your message" %>
+  </div>
+
+  <%= f.submit "Send" %>
+<% end %>

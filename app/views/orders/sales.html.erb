@@ -24,7 +24,7 @@
       <td class="center"><%= number_to_currency(order.product.shipping_cost) %></td>
       <td class="center"><%= order.try(:color) %></td>
       <td class="center"><%= order.try(:size) %></td>
-      <td class="center"><%= order.buyer.username %> Email: <%= order.buyer.email %></td>
+      <td class="center"><%= order.buyer.username %> Email: <%= order.buyer.email %> || Message: <%= link_to order.buyer.username, conversations_path(author_id: current_user.id, receiver_id: order.buyer.id), method: :post %></td>
       <td class="center"><%= order.quantity %></td>
       <td class="center"><strong>Address:</strong> <%= order.address %><br> <strong>City:</strong> <%= order.city %><br> <strong>State:</strong> <%= order.state %><br> <strong>Zip:</strong> <%= order.zip %><br> <strong>Country:</strong> <%= order.country %>  </td>
       <td class="center"><%= order.created_at.strftime("%B %-d, %Y") %></td>

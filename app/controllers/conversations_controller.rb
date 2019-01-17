@@ -1,24 +1,29 @@
 class ConversationsController < ApplicationController
+	before_action :authenticate_user!
 
-	before_action :authenticate_user!, only: [ :index, :new, :show, :create ]
 
-	def index
-		@conversations = current_user.mailbox.conversations
-		
-	end
+	  def index
+	    @conversations = Conversation.where("author_id = ? OR receiver_id = ?", current_user.id, current_user.id)
+    	@users = User.where.not(id: current_user.id).search(params[:lookup]).page(params[:page])
+	  end
 
-	def show
-		@conversation = current_user.mailbox.conversations.find_by_id(params[:id])
-	end
-	
-	def new
-		@recipients = User.all - [current_user]
-	end
+	  def create
+	    if Conversation.between(params[:author_id], params[:receiver_id]).present?
+	      @conversation = Conversation.between(params[:author_id], params[:receiver_id]).first
+	    else
+	      @conversation = Conversation.create!(conversation_params)
+	    end
 
-	def create
-		recipient = User.find_by_id(params[:user_id])
-		receipt   = current_user.send_message(recipient, params[:body], params[:subject])
-		redirect_to conversation_path(receipt.conversation)
-	end
-	
+	    redirect_to conversation_personal_messages_path(@conversation)
+	  end
+
+
+	  private
+
+	      def conversation_params
+		    params.permit(:author_id, :receiver_id)
+		  end
+
+
+
 end

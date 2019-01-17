@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181024004807) do
+ActiveRecord::Schema.define(version: 20190115231232) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -84,6 +84,14 @@ ActiveRecord::Schema.define(version: 20181024004807) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "conversations", force: :cascade do |t|
+    t.integer "author_id"
+    t.integer "receiver_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id", "receiver_id"], name: "index_conversations_on_author_id_and_receiver_id", unique: true
+  end
+
   create_table "follows", force: :cascade do |t|
     t.string "followable_type", null: false
     t.integer "followable_id", null: false
@@ -108,60 +116,6 @@ ActiveRecord::Schema.define(version: 20181024004807) do
     t.index ["liker_id", "liker_type"], name: "fk_likes"
   end
 
-  create_table "mailboxer_conversation_opt_outs", force: :cascade do |t|
-    t.string "unsubscriber_type"
-    t.integer "unsubscriber_id"
-    t.integer "conversation_id"
-    t.index ["conversation_id"], name: "index_mailboxer_conversation_opt_outs_on_conversation_id"
-    t.index ["unsubscriber_id", "unsubscriber_type"], name: "index_mailboxer_conversation_opt_outs_on_unsubscriber_id_type"
-  end
-
-  create_table "mailboxer_conversations", force: :cascade do |t|
-    t.string "subject", default: ""
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "mailboxer_notifications", force: :cascade do |t|
-    t.string "type"
-    t.text "body"
-    t.string "subject", default: ""
-    t.string "sender_type"
-    t.integer "sender_id"
-    t.integer "conversation_id"
-    t.boolean "draft", default: false
-    t.string "notification_code"
-    t.string "notified_object_type"
-    t.integer "notified_object_id"
-    t.string "attachment"
-    t.datetime "updated_at", null: false
-    t.datetime "created_at", null: false
-    t.boolean "global", default: false
-    t.datetime "expires"
-    t.index ["conversation_id"], name: "index_mailboxer_notifications_on_conversation_id"
-    t.index ["notified_object_id", "notified_object_type"], name: "index_mailboxer_notifications_on_notified_object_id_and_type"
-    t.index ["notified_object_type", "notified_object_id"], name: "mailboxer_notifications_notified_object"
-    t.index ["sender_id", "sender_type"], name: "index_mailboxer_notifications_on_sender_id_and_sender_type"
-    t.index ["type"], name: "index_mailboxer_notifications_on_type"
-  end
-
-  create_table "mailboxer_receipts", force: :cascade do |t|
-    t.string "receiver_type"
-    t.integer "receiver_id"
-    t.integer "notification_id", null: false
-    t.boolean "is_read", default: false
-    t.boolean "trashed", default: false
-    t.boolean "deleted", default: false
-    t.string "mailbox_type", limit: 25
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean "is_delivered", default: false
-    t.string "delivery_method"
-    t.string "message_id"
-    t.index ["notification_id"], name: "index_mailboxer_receipts_on_notification_id"
-    t.index ["receiver_id", "receiver_type"], name: "index_mailboxer_receipts_on_receiver_id_and_receiver_type"
-  end
-
   create_table "mentions", force: :cascade do |t|
     t.string "mentioner_type"
     t.integer "mentioner_id"
@@ -183,10 +137,23 @@ ActiveRecord::Schema.define(version: 20181024004807) do
     t.integer "seller_id"
     t.integer "product_id"
     t.string "country"
-    t.string "size"
-    t.string "color"
+    t.decimal "total_price", precision: 12, scale: 3
+    t.string "status"
     t.integer "quantity"
+    t.string "color"
+    t.string "size"
     t.index ["product_id"], name: "index_orders_on_product_id"
+  end
+
+  create_table "personal_messages", force: :cascade do |t|
+    t.text "body"
+    t.integer "conversation_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "read", default: false
+    t.index ["conversation_id"], name: "index_personal_messages_on_conversation_id"
+    t.index ["user_id"], name: "index_personal_messages_on_user_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -204,30 +171,13 @@ ActiveRecord::Schema.define(version: 20181024004807) do
     t.integer "image_file_size"
     t.datetime "image_updated_at"
     t.integer "category_id"
+    t.string "color"
+    t.string "size"
     t.integer "color_variant_id"
     t.integer "inventory"
     t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["color_variant_id"], name: "index_products_on_color_variant_id"
     t.index ["user_id"], name: "index_products_on_user_id"
-  end
-
-  create_table "profiles", force: :cascade do |t|
-    t.integer "user_id"
-    t.string "username"
-    t.string "first_name"
-    t.string "last_name"
-    t.string "street_address"
-    t.string "city"
-    t.string "zipcode"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "bio"
-    t.string "avatar_file_name"
-    t.string "avatar_content_type"
-    t.integer "avatar_file_size"
-    t.datetime "avatar_updated_at"
-    t.string "state"
-    t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -242,6 +192,7 @@ ActiveRecord::Schema.define(version: 20181024004807) do
 
   create_table "size_variants", force: :cascade do |t|
     t.string "size"
+    t.integer "color_variant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "product_id"
@@ -249,21 +200,6 @@ ActiveRecord::Schema.define(version: 20181024004807) do
   end
 
   create_table "states", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "taggings", force: :cascade do |t|
-    t.integer "product_id"
-    t.integer "tag_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["product_id"], name: "index_taggings_on_product_id"
-    t.index ["tag_id"], name: "index_taggings_on_tag_id"
-  end
-
-  create_table "tags", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
