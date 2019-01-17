@@ -9,6 +9,7 @@ end
 
 
 gem 'rails', '~> 5.1.5'
+# gem 'sqlite3'
 gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -18,18 +19,24 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'omniauth-stripe-connect'
 gem 'cocoon'
+# gem 'ransack'
 gem 'has_scope'
 gem 'simple_form'
 gem 'country_select', '~> 3.1'
+# gem 'will_paginate'
+# gem 'will_paginate-bootstrap'
 gem 'kaminari'
 gem 'activeadmin'
 gem 'mailboxer'
 gem 'effective_obfuscation'
 gem "puma_worker_killer"
 gem "socialization"
+# gem 'httparty'
 gem 'gon'
 gem "figaro"
 gem "devise"
+# gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
+# gem 'bootstrap', '~> 4.0.0'
 gem "stripe", :git => 'https://github.com/stripe/stripe-ruby'
 gem 'paperclip', :git=> 'https://github.com/thoughtbot/paperclip', :ref => '523bd46c768226893f23889079a7aa9c73b57d68'
 gem 'aws-sdk', '~> 2.3'
