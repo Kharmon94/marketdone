@@ -1,0 +1,6 @@
+<p><u>Followers</u></p>
+
+<% @followers.each do |f| %> 
+  <p> <%= link_to f.username, user_path(f.id) %> </p>
+
+<% end %>

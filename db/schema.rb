@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190115231232) do
+ActiveRecord::Schema.define(version: 20190117185735) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -241,6 +241,7 @@ ActiveRecord::Schema.define(version: 20190115231232) do
     t.integer "followers_count", default: 0
     t.string "uuid"
     t.string "country"
+    t.integer "followees_count", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["provider"], name: "index_users_on_provider"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

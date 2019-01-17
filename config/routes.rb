@@ -41,8 +41,8 @@ Rails.application.routes.draw do
   get 'sales' => "orders#sales"
   get 'purchases' => "orders#purchases"
   get 'checkout' => "orders#checkout"
-  # get 'profile', to: 'profiles#current'
-  # get 'profile/connect_stripe', to: 'profiles#connect_stripe'
+  get 'followers' => "users#followers"
+  get 'following' => "users#following"
   get 'charges/new'
   get 'charges/create'
   get 'pages/about'
