@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190117185735) do
+ActiveRecord::Schema.define(version: 20190117221140) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -175,6 +175,7 @@ ActiveRecord::Schema.define(version: 20190117185735) do
     t.string "size"
     t.integer "color_variant_id"
     t.integer "inventory"
+    t.integer "likees_count", default: 0
     t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["color_variant_id"], name: "index_products_on_color_variant_id"
     t.index ["user_id"], name: "index_products_on_user_id"
@@ -242,6 +243,7 @@ ActiveRecord::Schema.define(version: 20190117185735) do
     t.string "uuid"
     t.string "country"
     t.integer "followees_count", default: 0
+    t.integer "likees_count", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["provider"], name: "index_users_on_provider"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

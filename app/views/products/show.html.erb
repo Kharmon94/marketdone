@@ -8,6 +8,15 @@
       <h2><%= @product.title %></h2>
       <p style="font-size: 25px"><em>Price: </em><%= number_to_currency(@product.price) %></p>
       <p style="font-size: 25px"><em>Shipping Price: </em><%= number_to_currency(@product.shipping_cost) %></p>
+
+      <% if current_user.likes?(@product) %>
+          <%= link_to 'unlike', unlikes_path(@product) %>
+      <% else %>
+          <%= link_to 'like', likes_path(@product) %>
+      <% end %>
+
+      
+      <%= @product.user.likees_count %>
     </div> 
 
   </div>

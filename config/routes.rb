@@ -43,6 +43,8 @@ Rails.application.routes.draw do
   get 'checkout' => "orders#checkout"
   get 'followers' => "users#followers"
   get 'following' => "users#following"
+  get 'product/:id/likes', to: 'products#likes', as: :likes
+  get 'product/:id/unlikes', to: 'products#unlikes', as: :unlikes
   get 'charges/new'
   get 'charges/create'
   get 'pages/about'

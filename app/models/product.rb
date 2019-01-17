@@ -15,6 +15,7 @@ class Product < ApplicationRecord
   validates_numericality_of :price, greater_than_or_equal_to: 0
   validates :title, :description, :price, :shipping_cost, :inventory, :condition, presence: true
   paginates_per 20
+  acts_as_likeable
   
   def self.search(search)
     if search
