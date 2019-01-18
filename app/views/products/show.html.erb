@@ -8,15 +8,22 @@
       <h2><%= @product.title %></h2>
       <p style="font-size: 25px"><em>Price: </em><%= number_to_currency(@product.price) %></p>
       <p style="font-size: 25px"><em>Shipping Price: </em><%= number_to_currency(@product.shipping_cost) %></p>
+<!-- 
+      <#% if current_user.likes?(@product) %>
+          <#%= link_to 'unlike', unlikes_path(@product) %>
+      <#% else %>
+          <#%= button_to 'Like', product_likes_path(@product), method: :product %>
+      <#% end %> -->
 
-      <% if current_user.likes?(@product) %>
-          <%= link_to 'unlike', unlikes_path(@product) %>
+      <% pre_vote = @product.votes.find { |vote| vote.user_id == current_user.id} %>
+      <% if pre_vote %>
+        <%= button_to 'Unlike', product_vote_path(@product, pre_vote), method: :delete %>
       <% else %>
-          <%= link_to 'like', likes_path(@product) %>
+        <%= button_to 'Like', product_votes_path(@product), method: :product %>
       <% end %>
 
       
-      <%= @product.user.likees_count %>
+      <p><%= @product.votes.count %> <%= (@product.votes.count) == 1 ? 'Like' : 'Likes'%></p>
     </div> 
 
   </div>
@@ -30,7 +37,7 @@
     <p style="font-size: 25px"><em>Condition:</em> <%= @product.condition %></p>
     <p style="font-size: 25px"> <%= @product.inventory %> <em>Left In Stock</em></p> 
     <div align="left">
-      <h4> Colors Avalible </h4> 
+      <h4> Colors Available </h4> 
       <% @product.color_variants.each do |color_variant| %>
           <ul>
             <li><%= color_variant.color %></li>
@@ -39,7 +46,7 @@
     </div>
 
     <div align="left">
-       <h4> Sizes Avalible </h4> 
+       <h4> Sizes Available </h4> 
       <% @product.size_variants.each do |size_variant| %>
           <ul>
             <li><%= size_variant.size %></li>
