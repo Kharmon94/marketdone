@@ -3,8 +3,7 @@ class Product < ApplicationRecord
   belongs_to :category 
   has_many :orders 
   has_many :reviews
-  has_many :taggings, dependent: :destroy
-  has_many :tags, through: :taggings
+  has_many :votes, dependent: :destroy
   has_many :color_variants
   has_many :size_variants
   accepts_nested_attributes_for :color_variants, :reject_if => :all_blank, allow_destroy: true
@@ -15,6 +14,7 @@ class Product < ApplicationRecord
   validates_numericality_of :price, greater_than_or_equal_to: 0
   validates :title, :description, :price, :shipping_cost, :inventory, :condition, presence: true
   paginates_per 20
+  
   
   def self.search(search)
     if search

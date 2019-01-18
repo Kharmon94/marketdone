@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :products do
     resources :orders, only: [:new, :create, :checkout]
     resources :reviews
+    resources :votes
   end
   resources :users do
     member do
@@ -43,6 +44,8 @@ Rails.application.routes.draw do
   get 'checkout' => "orders#checkout"
   get 'followers' => "users#followers"
   get 'following' => "users#following"
+  # get 'product/:id/likes', to: 'products#likes', as: :likes
+  # get 'product/:id/unlikes', to: 'products#unlikes', as: :unlikes
   get 'charges/new'
   get 'charges/create'
   get 'pages/about'

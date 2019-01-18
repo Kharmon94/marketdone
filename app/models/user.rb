@@ -8,12 +8,14 @@ class User < ApplicationRecord
   # acts_as_obfuscated :format => '###-####-###'
   acts_as_follower
   acts_as_followable
+  acts_as_liker
 
   # has_one :profile
-  has_many :products
-  has_many :businesses
+  has_many :products, dependent: :destroy
+  has_many :businesses, dependent: :destroy
   has_many :charges
-  has_many :reviews
+  has_many :reviews, dependent: :destroy
+  has_many :likes, dependent: :destroy
   # has_many :sales, class_name: "Order", foreign_key: "seller_id"
   # has_many :purchases, class_name: "Order", foreign_key: "buyer_id"
 
@@ -57,3 +59,11 @@ class User < ApplicationRecord
   end
 
 end
+
+
+    private
+
+    def already_voted?
+      Vote.where(user_id: current_user.id, product_id:
+      params[:product_id]).exists?
+    end

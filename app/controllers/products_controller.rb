@@ -44,7 +44,6 @@ class ProductsController < ApplicationController
   def edit
     @categories = Category.all.map{|c| [ c.name, c.id ] }
    
-
   end
 
   # POST /products
@@ -101,9 +100,23 @@ class ProductsController < ApplicationController
     end
   end
 
-  def vendor
-     @products = Product.where(user: current_user).order("created_at DESC")
-  end
+  # def likes
+  #     @user = current_user # before_action :authenticate_user, only: [:likes]
+  #     @product = Product.find(params[:id])
+  #     @user.like!(@product)
+  #     redirect_to product_path(@product)
+  # end
+
+  # def unlikes
+  #     @user = current_user # before_action :authenticate_user, only: [:likes]
+  #     @product = Product.find(params[:id])
+  #     @user.unlike!(@product)
+  #     redirect_to product_path(@product)
+  # end
+
+  # def vendor
+  #    @products = Product.where(user: current_user).order("created_at DESC")
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.

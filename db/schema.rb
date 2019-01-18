@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190117185735) do
+ActiveRecord::Schema.define(version: 20190118165652) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -106,16 +106,6 @@ ActiveRecord::Schema.define(version: 20190117185735) do
     t.index ["follower_type", "follower_id"], name: "index_follows_on_follower_type_and_follower_id"
   end
 
-  create_table "likes", force: :cascade do |t|
-    t.string "liker_type"
-    t.integer "liker_id"
-    t.string "likeable_type"
-    t.integer "likeable_id"
-    t.datetime "created_at"
-    t.index ["likeable_id", "likeable_type"], name: "fk_likeables"
-    t.index ["liker_id", "liker_type"], name: "fk_likes"
-  end
-
   create_table "mentions", force: :cascade do |t|
     t.string "mentioner_type"
     t.integer "mentioner_id"
@@ -175,6 +165,7 @@ ActiveRecord::Schema.define(version: 20190117185735) do
     t.string "size"
     t.integer "color_variant_id"
     t.integer "inventory"
+    t.integer "likees_count", default: 0
     t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["color_variant_id"], name: "index_products_on_color_variant_id"
     t.index ["user_id"], name: "index_products_on_user_id"
@@ -242,10 +233,20 @@ ActiveRecord::Schema.define(version: 20190117185735) do
     t.string "uuid"
     t.string "country"
     t.integer "followees_count", default: 0
+    t.integer "likees_count", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["provider"], name: "index_users_on_provider"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["uid"], name: "index_users_on_uid"
+  end
+
+  create_table "votes", force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_votes_on_product_id"
+    t.index ["user_id"], name: "index_votes_on_user_id"
   end
 
 end
