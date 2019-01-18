@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:create, :show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:new, :edit, :create, :likes]
+  before_action :authenticate_user!, only: [:new, :edit, :create]
  
 
 
@@ -100,19 +100,19 @@ class ProductsController < ApplicationController
     end
   end
 
-  def likes
-      @user = current_user # before_action :authenticate_user, only: [:likes]
-      @product = Product.find(params[:id])
-      @user.like!(@product)
-      redirect_to product_path(@product)
-  end
+  # def likes
+  #     @user = current_user # before_action :authenticate_user, only: [:likes]
+  #     @product = Product.find(params[:id])
+  #     @user.like!(@product)
+  #     redirect_to product_path(@product)
+  # end
 
-  def unlikes
-      @user = current_user # before_action :authenticate_user, only: [:likes]
-      @product = Product.find(params[:id])
-      @user.unlike!(@product)
-      redirect_to product_path(@product)
-  end
+  # def unlikes
+  #     @user = current_user # before_action :authenticate_user, only: [:likes]
+  #     @product = Product.find(params[:id])
+  #     @user.unlike!(@product)
+  #     redirect_to product_path(@product)
+  # end
 
   # def vendor
   #    @products = Product.where(user: current_user).order("created_at DESC")
