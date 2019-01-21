@@ -2,6 +2,7 @@ class VotesController < ApplicationController
 	before_action :find_product
 	before_action :find_vote, only: [:destroy]
 	before_action :authenticate_user!
+	skip_before_action :verify_authenticity_token, :only => [:create, :destroy]
 
 		def create
 		  if already_voted?
