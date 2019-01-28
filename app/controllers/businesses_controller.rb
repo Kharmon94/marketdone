@@ -1,6 +1,8 @@
 class BusinessesController < ApplicationController
   before_action :set_business, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:new, :edit, :create]
+  before_action :authenticate_user!
+  load_and_authorize_resource
+
   # before_action :authenticate_user!
   has_scope :by_business_category_id, type: :array
 

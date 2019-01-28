@@ -1,6 +1,6 @@
 class ConversationsController < ApplicationController
 	before_action :authenticate_user!
-
+	load_and_authorize_resource
 
 	  def index
 	    @conversations = Conversation.where("author_id = ? OR receiver_id = ?", current_user.id, current_user.id)

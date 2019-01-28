@@ -4,9 +4,10 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
 
-   def assign_env_variable
+  def assign_env_variable
     gon.stripe_key = ENV['PUBLISHABLE_KEY']
   end
+
 
 
 

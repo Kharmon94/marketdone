@@ -1,6 +1,7 @@
 class ReviewsController < ApplicationController
 before_action :authenticate_user!
 before_action :find_product
+load_and_authorize_resource
 
 
 	def new
