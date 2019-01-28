@@ -4,12 +4,20 @@ class PersonalMessagesController < ApplicationController
       @conversation = Conversation.find(params[:conversation_id])
     end
 
+   load_and_authorize_resource
+    
     def index
-      @personal_messages = @conversation.personal_messages
+      if @conversation.author_id == current_user.id
+        @personal_messages = @conversation.personal_messages
 
-      @personal_messages.where("user_id != ? AND read = ?", current_user.id, false).update_all(read: true)
+        @personal_messages.where("user_id != ? AND read = ?", current_user.id, false).update_all(read: true)
 
-      @personal_message = @conversation.personal_messages.new
+        @personal_message = @conversation.personal_messages.new
+        
+      else
+        redirect_to conversations_path
+
+      end
     end
 
     def create
