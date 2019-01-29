@@ -72,7 +72,7 @@ class UsersController < ApplicationController
                                  :uid,
                                  :publishable_key,
                                  :access_code,
-                                 :image,
+                                 :avatar,
                                  :first_name,
                                  :last_name,
                                  :username,

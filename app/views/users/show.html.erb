@@ -10,7 +10,7 @@
 
 
           <% else %>
-            <%= image_tag @user.image(:medium), id: "profile_pic" %> 
+            <%= image_tag (@user.avatar), id: "profile_pic" %> 
             <strong><h3><%= @user.username %>'s Profile</h3></strong>
           
               <%= link_to 'Message', conversations_path(author_id: current_user.id, receiver_id: @user.id), method: :post %>
