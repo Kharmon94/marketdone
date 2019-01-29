@@ -7,7 +7,7 @@ git_source(:github) do |repo_name|
 end
 
 
-gem 'rails', '~> 5.1.5'
+gem 'rails', '~> 5.2.2'
 gem 'cancancan', '~> 2.0'
 gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
@@ -30,11 +30,13 @@ gem 'gon'
 gem "figaro"
 gem 'emoji'
 gem "devise"
+gem "mini_magick"
 # gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
 # gem 'bootstrap', '~> 4.0.0'
 gem "stripe", :git => 'https://github.com/stripe/stripe-ruby'
-gem 'paperclip', :git=> 'https://github.com/thoughtbot/paperclip', :ref => '523bd46c768226893f23889079a7aa9c73b57d68'
-gem 'aws-sdk', '~> 2.3'
+# gem 'paperclip', :git=> 'https://github.com/thoughtbot/paperclip', :ref => '523bd46c768226893f23889079a7aa9c73b57d68'
+# gem 'aws-sdk'
+gem 'aws-sdk-s3', require: false
 
 group :production do 
 

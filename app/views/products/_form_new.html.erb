@@ -20,17 +20,22 @@
         </div>
 
         <div class="row form-group">
-          <div class="col-md-4">
+          <div class="col-md-3">
             <%= f.label :title, class: "pt-1 font-weight-bold" %>
             <%= f.text_field :title, id: :product_title, :maxlength => 50, class: "form-control" %>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <%= f.label :category %>
             <%= select_tag(:category_id, options_for_select(@categories), :prompt => "Choose a Category", :class => "form-control") %>
           </div>
-          <div class="col-md-4">
-            <%= f.label :image %>
-            <%= f.file_field :image, class: "form-control" %>
+          <div class="col-md-3">
+            <%= f.label :picture %>
+            <%= f.file_field :picture, class: "form-control" %>
+          </div>
+
+          <div class="col-md-3">
+            <%= f.label :images %>
+            <%= f.file_field :images, multiple: true, class: "form-control" %>
           </div>
         </div>
 

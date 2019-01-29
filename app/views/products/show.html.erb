@@ -3,7 +3,7 @@
 </div>
 <div class="row">
   <div class="col-md-6" align="center">
-    <%= image_tag @product.image(:medium), style: "width: 45%; height: 45%;" %>
+    <%= image_tag @product.picture, style: "width: 45%; height: 45%;" %>
     <div style="color: #D4AF37;">
       <h2><%= @product.title %></h2>
       <p style="font-size: 25px"><em>Price: </em><%= number_to_currency(@product.price) %></p>
@@ -64,6 +64,15 @@
 
   
 </div>
+
+<div class="row">
+
+  <% (0...@product.images.count).each do |image| %>
+    <%= image_tag(@product.images[image]) %>
+  <% end %>
+  
+</div>
+
 
   <div class="row" >
 

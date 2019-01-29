@@ -36,7 +36,7 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address: "smtp.gmail.com",
     port: 587,
-    domain: "TBWIG.com",
+    domain: "http://localhost:9000",
     authentication: "plain",
     enable_starttls_auto: true,
     user_name: ENV["GMAIL_USERNAME"],
@@ -59,15 +59,17 @@ Rails.application.configure do
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
-  config.paperclip_defaults = {
-    storage: :s3,
-    s3_credentials: {
-      bucket: ENV.fetch('S3_BUCKET_NAME'),
-      access_key_id: ENV.fetch('AWS_ACCESS_KEY'),
-      secret_access_key: ENV.fetch('AWS_SECRET_ACCESS_KEY'),
-      s3_region: ENV.fetch('AWS_REGION'),
-    }
-  }
+  # config.paperclip_defaults = {
+  #   storage: :s3,
+  #   s3_credentials: {
+  #     bucket: ENV.fetch('S3_BUCKET_NAME'),
+  #     access_key_id: ENV.fetch('AWS_ACCESS_KEY'),
+  #     secret_access_key: ENV.fetch('AWS_SECRET_ACCESS_KEY'),
+  #     s3_region: ENV.fetch('AWS_REGION'),
+  #   }S
+  # }
+
+  config.active_storage.service = :amazon
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
