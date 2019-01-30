@@ -24,7 +24,9 @@ gem 'country_select', '~> 3.1'
 gem 'kaminari'
 gem 'activeadmin'
 gem 'sendgrid-ruby'
-# gem "letter_opener", :group => :development
+gem 'materialize-sass', '~> 1.0.0'
+gem 'mini_racer'
+
 # gem 'effective_obfuscation'
 gem 'activestorage-validator'
 gem "puma_worker_killer"
