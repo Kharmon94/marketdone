@@ -1,0 +1,31 @@
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#!" class="brand-logo"><%= link_to image_tag("https://s3.amazonaws.com/tbwigspic/assets/BLACKWOMANISGOD+GOLD.png"), pages_home_path %></a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><%= link_to image_tag(""), pages_home_path %></li>
+        <li><%= link_to image_tag(""), products_path %></li>
+        <li><%= link_to image_tag(""), businesses_path %></li>
+        <li><%= link_to image_tag(""), pages_about_path %></li>
+        <li><%= link_to image_tag(""), pages_contact_path %></li>
+        <% if user_signed_in? %>
+          <li><a class="dropdown-trigger" href="#!" data-target="dropdown1"><%= current_user.username %><i class="material-icons right">arrow_drop_down</i></a></li>
+        <% else %>
+          <li><%= link_to image_tag(""), new_user_registration_path %></li>
+          <li><%= link_to image_tag(""), new_user_session_path %></li>
+        <% end %>
+
+      </ul>
+    </div>
+  </nav>
+
+  <ul class="sidenav" id="mobile-demo">
+      
+  </ul>
+
+  <ul id="dropdown1" class="dropdown-content">
+    <li><%= link_to "View Profile", user_path(current_user) %></li>
+    <li class="divider"></li>
+    <li><%= link_to "Manage Sales", sales_path(current_user) %></li>
+    <li><%= link_to "View Purchases", purchases_path(current_user) %>
+  </ul>

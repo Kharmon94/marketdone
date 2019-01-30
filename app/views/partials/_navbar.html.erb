@@ -1,47 +1,40 @@
   
-  <nav class="navbar navbar-default" role="navigation">
-  <!-- Brand and toggle get grouped for better mobile display -->
-  <div class="navbar-header">
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-      <span class="sr-only">Toggle navigation</span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#!" class="brand-logo"><%= link_to image_tag("https://s3.amazonaws.com/tbwigspic/assets/BLACKWOMANISGOD+GOLD.png"), pages_home_path %></a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><%= link_to image_tag("https://s3.amazonaws.com/tbwigspic/assets/STORE+GOLD.png"), products_path %></li>
+        <li><%= link_to image_tag("https://s3.amazonaws.com/tbwigspic/assets/blkbuzservcblkgold.png"), businesses_path %></li>
+        <li><%= link_to image_tag("https://s3.amazonaws.com/tbwigspic/assets/aboutusgold.png"), pages_about_path %></li>
+        <li><%= link_to image_tag("https://s3.amazonaws.com/tbwigspic/assets/contactgold.png"), pages_contact_path %></li>
+        <% if user_signed_in? %>
+          <li><a class="dropdown-trigger" href="#!" data-target="dropdown1"><%= current_user.username %><i class="material-icons right">arrow_drop_down</i></a></li>
+        <% else %>
+          <li><%= link_to image_tag("https://s3.amazonaws.com/tbwigspic/assets/signupgold.png"), new_user_registration_path %></li>
+          <li><%= link_to image_tag("https://s3.amazonaws.com/tbwigspic/assets/signingold.png"), new_user_session_path %></li>
+        <% end %>
 
-  </div>
+      </ul>
+    </div>
+  </nav>
 
-  <!-- Collect the nav links, forms, and other content for toggling -->
-  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-    <ul class="nav navbar-nav">
-      <li><%= link_to image_tag("https://s3.us-east-2.amazonaws.com/ypmarketnew/assets/BLACKWOMANISGOD+GOLD.png", :class => "navhomepic"), pages_home_path %></li>
-      <li><%= link_to image_tag("https://s3.us-east-2.amazonaws.com/ypmarketnew/assets/STORE+GOLD.png", :class => "navstorepic"), products_path %></li>
-      <li><%= link_to image_tag("https://s3.us-east-2.amazonaws.com/ypmarketnew/assets/blkbuzservcblkgold.png", :class => "navbizpic"), businesses_path %></li>
-      <li><%= link_to image_tag("https://s3.us-east-2.amazonaws.com/ypmarketnew/assets/aboutusgold.png", :class => "navaboutpic"), pages_about_path %></li>
-      <li><%= link_to image_tag("https://s3.us-east-2.amazonaws.com/ypmarketnew/assets/contactgold.png", :class => "navcontactpic"), pages_contact_path %></li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <% if user_signed_in? %>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: #D4AF37; opacity: 0.85; " ><%= current_user.username %>'s Account <b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><%= link_to "View Profile", user_path(current_user) %></li>
-            <li><%= link_to "Manage Sales", sales_path(current_user) %></li>
-            <li><%= link_to "View Purchases", purchases_path(current_user) %></li>
-          </ul>
-        </li>
+  <ul class="sidenav" id="mobile-demo">
+        <li><%= link_to image_tag("https://s3.amazonaws.com/tbwigspic/assets/STORE+GOLD.png"), products_path %></li>
+        <li><%= link_to image_tag("https://s3.amazonaws.com/tbwigspic/assets/blkbuzservcblkgold.png"), businesses_path %></li>
+        <li><%= link_to image_tag("https://s3.amazonaws.com/tbwigspic/assets/aboutusgold.png"), pages_about_path %></li>
+        <li><%= link_to image_tag("https://s3.amazonaws.com/tbwigspic/assets/contactgold.png"), pages_contact_path %></li>
+        <% if user_signed_in? %>
+          <li><a class="dropdown-trigger" href="#!" data-target="dropdown1"><%= current_user.username %><i class="material-icons right">arrow_drop_down</i></a></li>
+        <% else %>
+          <li><%= link_to image_tag("https://s3.amazonaws.com/tbwigspic/assets/signupgold.png"), new_user_registration_path %></li>
+          <li><%= link_to image_tag("https://s3.amazonaws.com/tbwigspic/assets/signingold.png"), new_user_session_path %></li>
+        <% end %>
+  </ul>
 
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: #D4AF37; opacity: 0.85; " ><%= current_user.username %> <b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><%= link_to "Edit Account", edit_user_registration_path %></li>
-            <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
-          </ul>
-        </li>
-      <% else %>
-        <li><%= link_to image_tag("https://s3.us-east-2.amazonaws.com/ypmarketnew/assets/signupgold.png", :class => "navsignuppic"), new_user_registration_path %></li>
-        <li><%= link_to image_tag("https://s3.us-east-2.amazonaws.com/ypmarketnew/assets/signingold.png", :class => "navsigninpic"), new_user_session_path %></li>
-      <% end %>
-    </ul>
-  </div><!-- /.navbar-collapse -->
-</nav>
+  <ul id="dropdown1" class="dropdown-content">
+    <li><%= link_to "View Profile", user_path(current_user) %></li>
+    <li class="divider"></li>
+    <li><%= link_to "Manage Sales", sales_path(current_user) %></li>
+    <li><%= link_to "View Purchases", purchases_path(current_user) %>
+  </ul>
