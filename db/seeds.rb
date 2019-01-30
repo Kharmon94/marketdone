@@ -9,6 +9,8 @@
 	# Category.destroy_all
 	# State.destroy_all
 	 Product.destroy_all
+	 User.destroy_all
+	 Business.destroy_all
 	
 	# BusinessCategory.destroy_all
 

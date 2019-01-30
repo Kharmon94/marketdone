@@ -68,8 +68,8 @@ class OrdersController < ApplicationController
     respond_to do |format|
       if @order.save
 
-
-
+        UserMailer.seller_email(@seller).deliver
+        UserMailer.buyer_email(@order.buyer).deliver
         format.html { redirect_to purchases_path, notice: 'Thank You So Much For Your Order Family! Contact your seller for shipping information'}
         format.json { render :show, status: :created, location: @order }
       else

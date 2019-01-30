@@ -20,5 +20,23 @@ class UserMailer < ApplicationMailer
   	mail(to: @user.email, subject: 'Thank Your For Registering Your Business With Us!')
   end
 
+  def seller_email(user)
+    @user = user
+    @url = 'https://Theblackwomanisgodstores.com/sales'
+    mail(to: @user.email, subject: 'YOU HAVE A SALE!')
+  end
+
+  def buyer_email(user)
+    @user = user
+    @url = 'https://Theblackwomanisgodstores.com/purchases'
+    mail(to: @user.email, subject: 'Your Order Details')
+  end
+
+
+  def convo_email(user)
+    @user = user
+    @url = 'https://Theblackwomanisgodstores.com/conversations'
+    mail(to: @user.email, subject: 'You got Mail!')
+  end
 
 end

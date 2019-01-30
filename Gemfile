@@ -23,7 +23,10 @@ gem 'simple_form'
 gem 'country_select', '~> 3.1'
 gem 'kaminari'
 gem 'activeadmin'
+gem 'sendgrid-ruby'
+# gem "letter_opener", :group => :development
 # gem 'effective_obfuscation'
+gem 'activestorage-validator'
 gem "puma_worker_killer"
 gem "socialization"
 gem 'gon'

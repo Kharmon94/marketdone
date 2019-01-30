@@ -60,7 +60,7 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       if @product.save
-        # UserMailer.product_email(@user).deliver
+        UserMailer.product_email(@product.user).deliver
         format.html { redirect_to @product, notice: 'Thank You For Listing Your Product On The Black Woman Is God Stores' }
         format.json { render :show, status: :created, location: @product }
       else
@@ -80,7 +80,7 @@ class ProductsController < ApplicationController
     
     respond_to do |format|
       if @product.update(product_params)
-        UserMailer.product_email(@user).deliver
+        UserMailer.product_email(@product.user).deliver
         format.html { redirect_to @product, notice: 'Product was successfully updated.' }
         format.json { render :show, status: :ok, location: @product }
       else

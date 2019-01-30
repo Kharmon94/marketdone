@@ -25,6 +25,7 @@ class PersonalMessagesController < ApplicationController
       @personal_message.user = current_user
 
       if @personal_message.save
+        UserMailer.convo_email(@conversation.receiver).deliver
         redirect_to conversation_personal_messages_path(@conversation)
       end
     end
