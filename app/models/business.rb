@@ -10,7 +10,10 @@ class Business < ApplicationRecord
    #  validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
     paginates_per 10
     validates :title, :description, :address, :city, :email, :hours, :number, :business_category, presence: true
-    has_one_attached :artwork
+    has_one_attached :artwork, dependent: :destroy
+    has_many_attached :selections, dependent: :destroy
+    validates :picture, presence: true, blob: { content_type: :image }
+    validates :selections, presence: true, blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg'], size_range: 1..5.megabytes }
     # validates_attachment_presence :image
 
 def self.search(find)

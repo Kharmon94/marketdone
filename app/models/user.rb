@@ -5,24 +5,21 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
 
-  # acts_as_obfuscated :format => '###-####-###'
   acts_as_follower
   acts_as_followable
-  acts_as_liker
 
-  # has_one :profile
+
+
   has_many :products, dependent: :destroy
   has_many :businesses, dependent: :destroy
   has_many :charges
   has_many :reviews, dependent: :destroy
-  has_many :likes, dependent: :destroy
-  # has_many :sales, class_name: "Order", foreign_key: "seller_id"
-  # has_many :purchases, class_name: "Order", foreign_key: "buyer_id"
 
   validates :businesses, length: {maximum: 1}
+  # validate :correct_image_type
 
-  has_one_attached :avatar
-
+  has_one_attached :avatar, dependent: :destroy
+  validates :avatar, presence: true, blob: { content_type: :image }
   # has_attached_file :image, styles: { medium: "200x200>", thumb: "100x100>" }
   # validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/, default_url: "default.png"
   # validates_attachment_presence :image
@@ -33,13 +30,6 @@ class User < ApplicationRecord
   has_many :received_conversations, class_name: 'Conversation', foreign_key: 'received_id'
   paginates_per 40
  
-
-  #  def self.from_omniauth(auth)
-  #    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-  #    user.email = auth.info.email
-  #    user.password = Devise.friendly_token[0,20]
-  #  end
-  # end
 
   def self.search(lookup)
     if lookup
@@ -69,3 +59,9 @@ end
       Vote.where(user_id: current_user.id, product_id:
       params[:product_id]).exists?
     end
+
+    # def correct_image_type
+    #   if avatar.attached? && !avatar.content_type.in?(%w(image/jpeg image/jpg image/png))
+    #     errors.add(:avatar, 'must be a JPEG, PNG, JPG')
+    #   end
+    # end

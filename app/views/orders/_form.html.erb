@@ -1,7 +1,7 @@
 <div class="row" align="center">
   <div class="col-md-4" style="color: #D4AF37" align="center">
     <div>
-      <%= image_tag @product.image.url, style: "width: 80%; height: 80%;" %>
+      <%= image_tag @product.picture, style: "width: 80%; height: 80%;" %>
     </div>
     <h3><%= @product.title %></h3>
     <h4 id="price"><%= number_to_currency(@product.price) %></h4>

@@ -58,7 +58,7 @@ class BusinessesController < ApplicationController
 
     respond_to do |format|
       if @business.save
-        UserMailer.business_email(@user).deliver
+        UserMailer.business_email(@business.user).deliver
         format.html { redirect_to @business, notice: 'Thank You For Registering Your Business With The Black Woman Is God Stores' }
         format.json { render :show, status: :created, location: @business }
       else
@@ -76,7 +76,7 @@ class BusinessesController < ApplicationController
 
     respond_to do |format|
       if @business.update(business_params)
-        UserMailer.business_email(@user).deliver
+        UserMailer.business_email(@business.user).deliver
         format.html { redirect_to @business, notice: 'Business was successfully updated.' }
         format.json { render :show, status: :ok, location: @business }
       else
@@ -112,6 +112,6 @@ class BusinessesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def business_params
-      params.require(:business).permit( :title, :description, :address, :city, :email, :hours, :number, :state_id, :business_category_id, :artwork )
+      params.require(:business).permit( :title, :description, :address, :city, :email, :hours, :number, :state_id, :business_category_id, :artwork, selections: [] )
     end
 end

@@ -3,14 +3,18 @@
   <div class="col-md-4" align="center">
     <div>
         <% if @user.id == current_user.id %>
-            <%= image_tag @user.image(:medium), id: "profile_pic" %> 
+        <% if @user.avatar.attached? %>
+            <%= image_tag (@user.avatar), id: "profile_pic" %> 
+        <% end %>
             <h2 style="color: #D4AF37">&nbsp Hello <%= @user.username %>!</h2>
             <%= link_to 'Chat', conversations_path %>
 
 
 
           <% else %>
+          <% if @user.avatar.attached? %>
             <%= image_tag (@user.avatar), id: "profile_pic" %> 
+          <% end %>
             <strong><h3><%= @user.username %>'s Profile</h3></strong>
           
               <%= link_to 'Message', conversations_path(author_id: current_user.id, receiver_id: @user.id), method: :post %>
@@ -68,7 +72,7 @@
       <% if business.user.id == @user.id %>
 
           <div class="col-md-12" align="center">
-            <%= image_tag business.image.url(:medium), class: "product-overview-image", style: "width: 400px; height: 400px;" %>
+            <%= image_tag (business.artwork), class: "product-overview-image", style: "width: 400px; height: 400px;" %>
                 <h2 style="color: #D4AF37;">
                   <%= business.title %>
                 </h2>
@@ -137,7 +141,7 @@
                        
                             <div style="height: 200px; width: 200px; opacity: 0.88; padding: 15px; background-color: #D4AF37; border-radius: 5px">
                                 <div style=" height: 110% !important">
-                                  <%= image_tag(product.image.url(:thumb), :class => "thumbs", :id => "thumbs") %>
+                                  <%= image_tag(product.picture, :class => "thumbs", :id => "thumbs") %>
                                 </div>
                             </div>
 
