@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_28_223714) do
+ActiveRecord::Schema.define(version: 2019_01_30_190320) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -127,6 +127,14 @@ ActiveRecord::Schema.define(version: 2019_01_28_223714) do
   create_table "color_variants", force: :cascade do |t|
     t.string "color"
     t.integer "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "contacts", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.text "message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

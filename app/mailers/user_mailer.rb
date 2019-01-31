@@ -39,4 +39,6 @@ class UserMailer < ApplicationMailer
     mail(to: @user.email, subject: 'You got Mail!')
   end
 
+
+
 end
