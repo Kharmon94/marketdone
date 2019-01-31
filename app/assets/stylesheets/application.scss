@@ -33,6 +33,10 @@
   margin-bottom: 2em;
 }
 
+#condition{
+  color: black
+}
+
 body {
   // font-family: 'Play', sans-serif;
   // font-family: 'Squada One', cursive;
@@ -78,6 +82,7 @@ body {
   background-color: rgba(80, 14, 107, 0.9);
 }
 
+
 .business_table{
   font-size: 15px;
   color: #D4AF37; 
@@ -94,11 +99,10 @@ body {
   // background-color: #D4AF37;
   // background-image: url("https://s3.us-east-2.amazonaws.com/ypmarketnew/assets/bacground1440.png");
   border-color: rgba(212,175,55, 0.3);
-  border-width: 0.5px;
+  border-width: 0.1px;
   border-style: solid;
   
   padding-top: 6%;
-  
   border-radius: 10px;
 
 }
@@ -111,17 +115,17 @@ body {
 }
 
 #thumbs{
-  height: 170px !important;
-  width: 90% !important;
-  
+  height: 90%;
+  width: 100% !important;
+  border-radius: 5px;
   
 }
 
 #prod_row{
   // background-image: url("https://s3.us-east-2.amazonaws.com/ypmarketnew/assets/bacground1440.png");
-  background-color: black; 
+ 
   margin-top: 5%;
-  border-radius: 10px;
+
 
 }
 

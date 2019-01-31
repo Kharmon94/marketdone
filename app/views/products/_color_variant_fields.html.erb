@@ -1,17 +1,21 @@
-
-	<fieldset style="margin: 3%;">
-		<div class="row" style="background-color: black; border-style: solid; border-radius: 10px; border-width: 5px; padding: 15px">
-			<h4 class="col-md-3" style="color: #D4AF37">
-				<%= f.label :color %>
-			</h4>
-			<div class="col-md-5">
-			
-		  		<%= f.text_field :color, class: "form-control" %>
-			</div>
-			<div class="col-md-4">
-				<%= link_to_remove_association "Remove Color", f, class: "btn btn-danger" %>
-			</div>
+<fieldset style="color: black; margin: 5%" data-aos="fade-up" data-aos-duration="1500">
+	<div class="row" style="border-width: 4px; border-color: #D4AF37; border-style: solid; border-radius: 5px; padding: 5px">
+		<div class="col-sm-3">
+			<%= f.label :color, style: "color:  #D4AF37" %>
 		</div>
-		<br>
-	</fieldset>
 
+		<div class="col-sm-6" style="margin: 1%">
+			<div class="row" style="margin: 1%">
+				<%= f.text_field :color, class: "form-control", style: "width: 150px" %>
+			</div>
+			<div class="row" align="center" style="margin: 1%; margin-top: 15px;">
+			<%= link_to_remove_association "Remove Color", f, class: "btn btn-danger" %>	
+			</div>
+			
+		</div>
+
+	</div>
+
+
+
+</fieldset>

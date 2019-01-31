@@ -1,7 +1,6 @@
-  <div class="row" id="prod_row">
-      <div class="col-xs-3 form-group left" id="catrow" class="dropdown-menu" data-aos="fade-right" data-aos-duration="1000">
 
-          <br>
+  <div class="row" id="prod_row">
+      <div class="col-md-3 form-group" id="catrow" class="dropdown-menu" data-aos="fade-right" data-aos-duration="1000">
           <br>
           <br>
 
@@ -14,22 +13,30 @@
               <br>
               <br>
               <%= label_tag :category %>
-              <div style="color: black; width: 20px;">
-               <%= select_tag(:category, options_from_collection_for_select(Category.all, :id, :name, params[:category]), { include_blank: true, class: "catcat", style: "width: 283px" }) %> 
+              <div style="color: black">
+               <%= select_tag(:category, options_from_collection_for_select(Category.all, :id, :name, params[:category]), { include_blank: true, style: "width: 300px;" }) %> 
               </div>
               
               <br>
               <br>
-              <%= label_tag :min_price %>
-              <div style="color: black">
-              <%= number_field_tag :min_price, params[:min_price] %>
+              
+              <div class="row">
+                <div class="col-xs-6">
+                  <%= label_tag :min_price %>
+                  <div style="color: black">
+                  <%= number_field_tag :min_price, params[:min_price], style: "width: 140px;" %>
+                  </div>
+                </div>
+                <div class="col-xs-6">
+                  <%= label_tag :max_price %>
+                  <div style="color: black">
+                  <%= number_field_tag :max_price, params[:max_price], style: "width: 140px;" %>
+                  </div>
+                </div>
+
               </div>
-              <br>
-              <br>
-              <%= label_tag :max_price %>
-              <div style="color: black">
-              <%= number_field_tag :max_price, params[:max_price] %>
-              </div>
+
+
               <br>
               <br>
               <%= submit_tag "Search", :name => nil, :class => "btn btn-primary", :style => "background-color: #D4AF37; color: black;" %>  
@@ -45,36 +52,45 @@
 
                 <%= link_to 'Sell Yor Product', new_product_path, class: "btn", style: "background-color: #D4AF37; color: black; margin-bottom: 15px;" %>
 
+        
+
+        
           </div>
       </div>
 
 
   
 
-    <div class="col-md-9" align="center" >
-            <% @products.each do |product| %>
-            <div class="col-md-3" style="margin: 0.5%;">
-                <div style="border-color: #D4AF37; border-width: 1px; border-style: solid; border-radius: 5px; padding:2%; width: 200px; height: auto;"> 
-                    <div style="border-color: #D4AF37; border-width: 1px; border-style: solid; border-radius: 5px; padding:2%;">
-                      
-                        <%= link_to product do %>
-                            <%= image_tag(product.picture, :class => "thumbs", :id => "thumbs") %>
-                        <% end %>
-                      
-                    </div>
-                       <h4><%= product.title %></h4>
-                        <h3><strong><%= number_to_currency(product.price) %></strong></h3>
-                        <p><%= product.category.name %></p>
-                        <p><em>Seller:</em><br> <%= link_to product.user.username, user_path(product.user), :style => "color: #D4AF37" %></p>
-                    <div>
-                      
-                    </div>
-                </div>
-              </div>
-            <% end %> 
-          
-      </div> 
-  </div>
+        <div class="col-md-9" style="padding: 20px;" align="center">
+                <% @products.each do |product| %>
+                  <% unless product.inventory == nil %>
+
+                    <div  id="t_backdrop">
+                        <div class="col-md-3" style=" height: 100% !important" data-aos="zoom-in" data-aos-duration="1500">
+                            <div class="thumbnail" style="height: 60% !important;">
+                                <%= link_to product do %>
+                                  <div style="height: 200px; width: 190px; opacity: 0.88; padding: 3px; background-color: #D4AF37; border-radius: 5px">
+                                      <div style=" height: 110% !important">
+                                        <%= image_tag(product.picture, :class => "thumbs", :id => "thumbs") %>
+                                      </div>
+                                  </div>
+
+                                 
+                                <% end %>
+                                <div class="caption" style=" width: 200px; height: 200px; padding: 3%; word-wrap: break-word; color: #D4AF37 !important; font-size: 17px; opacity: 0.85; text-overflow: ellipsis;" >
+                                  <h4><%= product.title %></h4>
+                                  <h3><strong><%= number_to_currency(product.price) %></strong></h3>
+                                  <p><%= product.category.name %></p>
+                                  <p><em>Seller:</em><br> <%= link_to product.user.username, user_path(product.user), :style => "color: #D4AF37" %></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
+                  <% end %>
+                <% end %> 
+              
+              </div> 
+    </div>
 
     <div class="row" style="margin-left: 5%">
       <%= paginate @products %>

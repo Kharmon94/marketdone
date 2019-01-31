@@ -1,11 +1,14 @@
-<div class="row" align="center">
-	<div class="col-md-12">
-		<h1 style="color: #D4AF37">Sell Your Product</h1>
+<div data-aos="fade-up" data-aos-duration="1000">
+	<div class="row" align="center">
+		<div class="col-md-12">
+			<h1 style="color: #D4AF37">Sell Your Product</h1>
+		</div>
 	</div>
+
+
+	<%= render 'form', product: @product %>
+
+	<%= link_to 'Back To Products', products_path, :class => "btn", :style => "color: black; background-color: #D4AF37; margin: 3%;" %>
+
 </div>
 
-
-<%= render 'form_new', product: @product %>
-
-<%= link_to 'Back To Products', products_path, :class => "btn", :style => "color: black; background-color: #D4AF37; margin: 3%;" %>
-</div>
