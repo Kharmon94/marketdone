@@ -1,5 +1,5 @@
  <%= simple_form_for @product, html: { multipart: true }, :method => :patch do |f| %>
-  <div class="row">
+    <div class="row">
 
         <div id="stripe_error" class="alert alert-danger" style="display:none">
             <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
@@ -17,7 +17,7 @@
           </div>
         <% end %>
 
-    <div class="col-md-4" align="center" style="color: black; margin-right: 1%;">
+    <div class="col-md-4 center" align="center" style="color: black; margin-right: 1%;">
 
         <div class="row" style="margin-bottom: 3%">
           <div style="color: #D4AF37">
@@ -68,7 +68,7 @@
               <%= f.label :images %>
             </div>
             <%= f.file_field :images, multiple: true, class: "form-control" %>  
-            <p>Upload Slideshow of <br>Images(Hint: Hold Shift to select multiple images)</p> 
+            <p>Upload Slideshow of <br>Images(Hint: Hold CTRL to select multiple images)</p> 
           </div>
 
           <div class="co-md-4">
@@ -92,34 +92,37 @@
 
     </div>
 
-    <div class="col-md-7" style="margin-left: 1%">
 
-      <div class="col-md-4">
-        <div class="row">
-          <h4>Add all available Colors</h4>
-        </div>
-    
-        <div class="row">
-         
-              <div class="row" align="center">
-                <div >
-                  <%= f.simple_fields_for :color_variants do |builder| %>
-                   <%= render 'color_variant_fields', f: builder %>   
-                  <% end %>      
+    <div class="col-md-3 center" align="center" style="margin: 1%">
+        <div>
+          <div class="row">
+            <h4 style="color: #D4AF37">Add all available Colors</h4>
+          </div>
+      
+          <div class="row">
+           
+                <div class="row" align="center">
+                  <div >
+                    <%= f.simple_fields_for :color_variants do |builder| %>
+                     <%= render 'color_variant_fields', f: builder %>   
+                    <% end %>      
+                  </div>
+      
                 </div>
-    
-              </div>
 
-              <div class="row">
-                <%= link_to_add_association "Add Color", f, :color_variants, :class => "btn", :style => "background-color: #D4AF37; color: black"  %>
-              </div>
+                <div class="row">
+                  <%= link_to_add_association "Add Color", f, :color_variants, :class => "btn", :style => "background-color: #D4AF37; color: black"  %>
+                </div>
 
+          </div>
         </div>
-      </div>
+    </div>
 
-      <div class="col-md-4" style="margin-left: 20%">
+    <div class="col-md-3 center" align="center" style="margin: 1%">
+
+      <div align="center">
         <div class="row">
-          <h4>Add all available Sizes</h4>
+          <h4 style="color: #D4AF37">Add all available Sizes</h4>
         </div>
 
         <div class="row">
@@ -134,7 +137,7 @@
           </div>
 
           <div class="row">
-                      <%= link_to_add_association "Add size", f, :size_variants, :class => "btn", :style => "background-color: #D4AF37; color: black" %>
+              <%= link_to_add_association "Add size", f, :size_variants, :class => "btn", :style => "background-color: #D4AF37; color: black" %>
           </div>
 
         </div>
@@ -147,4 +150,5 @@
         <div class="row" align="center" style="margin: 3%">
           <%= f.submit "Sell Your Product!!!", :class => "btn", :style => "background-color: #D4AF37; color: black " %>
         </div>
+
   <% end %>

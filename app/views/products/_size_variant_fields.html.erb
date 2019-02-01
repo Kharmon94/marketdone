@@ -6,7 +6,7 @@
 
 		<div class="col-sm-6" style="margin: 1%">
 			<div class="row" style="margin: 1%">
-				<%= f.select :size, ["Infant/New Born", "0-6 Months","Toddler", "X-SMALL", "SMALL", "MEDIUM", "LARGE", "X-LARGE", "XX-LARGE", "XXX-LARGE"], class: "form-control" %>
+				<%= f.text_field :size, class: "form-control", style: "width: 150px" %>
 			</div>
 			<div class="row" align="center" style="margin: 1%; margin-top: 15px;">
 			<%= link_to_remove_association "Remove Size", f, class: "btn btn-danger" %>	

@@ -134,4 +134,4 @@
 
 
 	# ])
-	AdminUser.create!(email: 'pharaohnge@gmail.com', password: '@Pharaoh101', password_confirmation: '@Pharaoh101')
+	# AdminUser.create!(email: 'pharaohnge@gmail.com', password: '@Pharaoh101', password_confirmation: '@Pharaoh101')
