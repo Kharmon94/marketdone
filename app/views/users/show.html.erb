@@ -155,7 +155,7 @@
                        
                             <div style="height: 200px; width: 200px; opacity: 0.88; padding: 15px; background-color: #D4AF37; border-radius: 5px">
                                 <div style=" height: 110% !important">
-                                  <%= image_tag(product.picture, :class => "thumbs", :id => "thumbs") %>
+                                  <%= link_to image_tag(product.picture, :class => "thumbs", :id => "thumbs"), product_path(product) %>
                                 </div>
                             </div>
 
@@ -163,7 +163,7 @@
                           <div class="caption" style=" width: 200px; height: 200px; padding: 3%; word-wrap: break-word; color: #D4AF37 !important; font-size: 17px; opacity: 0.85; text-overflow: ellipsis;" >
                             <h4><%= product.title %></h4>
                             <h3><strong><%= number_to_currency(product.price) %></strong></h3>
-                            <p><%= link_to product.category.name, category_path(product.category), :style => "color: #D4AF37" %></p>
+                            <p><%= product.category.name %></p>
                               <div class="btn-group">
                                     <% if @user.id == current_user.id %>
                                     <button type="button" class="btn dropdown-toggle" style="background-color: #D4AF37; color: black;" data-toggle="dropdown">
