@@ -29,6 +29,9 @@
 
 <ul>
   <% @users.each do |user| %>
-    <li><%= link_to user.username, conversations_path(author_id: current_user.id, receiver_id: user.id), method: :post %></li>
+	  <% if current_user.follows?(user) %>
+	    <li><%= link_to user.username, conversations_path(author_id: current_user.id, receiver_id: user.id), method: :post %></li>
+
+	  <% end %>
   <% end %>
 </ul>

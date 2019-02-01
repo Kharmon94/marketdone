@@ -7,7 +7,7 @@ class PersonalMessagesController < ApplicationController
    load_and_authorize_resource
     
     def index
-      if @conversation.author_id == current_user.id
+      if @conversation.author_id || @conversation.receiver_id == current_user.id
         @personal_messages = @conversation.personal_messages
 
         @personal_messages.where("user_id != ? AND read = ?", current_user.id, false).update_all(read: true)

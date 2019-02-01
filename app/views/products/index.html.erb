@@ -1,6 +1,6 @@
 
   <div class="row" id="prod_row">
-      <div class="col-md-3 form-group" id="catrow" class="dropdown-menu" data-aos="fade-right" data-aos-duration="1000">
+      <div class="col-md-3 form-group" id="catrow" data-aos="fade-right" data-aos-duration="1000">
           <br>
           <br>
 
@@ -63,7 +63,7 @@
 
         <div class="col-md-9" style="padding: 20px;" align="center">
                 <% @products.each do |product| %>
-                  <% unless product.inventory == nil %>
+                  
 
                     <div  id="t_backdrop">
                         <div class="col-md-3" style=" height: 100% !important" data-aos="zoom-in" data-aos-duration="1500">
@@ -86,7 +86,7 @@
                             </div>
                         </div>
                     </div>  
-                  <% end %>
+              
                 <% end %> 
               
               </div> 

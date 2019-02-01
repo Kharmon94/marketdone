@@ -2,9 +2,212 @@
 	<h2><strong>Place Your Order For:</strong><br> <%= @product.title %></h2>
 </div>
 
+  <% if @order.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <h4><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h4>
+
+      <ul>  
+      <% @order.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <article>
+      <% if flash[:error].present? %>
+        <div id="error_explanation">
+          <p><%= flash[:error] %></p>
+        </div>
+      <% end %>
+    </article>
+
+      <div id="stripe_error" class="alert alert-danger" style="display:none">
+        <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
+      </div>
+
+
+<div class="row" style="margin: 1%; margin-bottom: 5%;">
+
+	<div class="col-md-4"  style="color: #D4AF37; width: 480px; height:auto;" data-aos="fade-right" data-aos-duration="1000">
+	    <div align="center" style="border-color: #D4AF37; border-width: 1px; border-style: solid; border-radius: 5px; padding:2%; width: 60%; height: auto; margin: 5%; margin-left: 12%">
+	        <div  style="border-color: #D4AF37; border-width: 1px; border-style: solid; border-radius: 5px; padding:1%;">
+	          <div>
+	            <%= image_tag @product.picture, style: "width: 60%; height: 40%; border-radius: 5px;" %>
+	          </div>
+	        </div>
+
+	        <div class="row" style="word-wrap: break-word; margin-bottom: 7%;">
+	          <h3><%= @product.title %></h3>
+	          <ul style="list-style-type: none; margin-left: -14%;">
+
+	            <li><h4>Seller: <%= link_to @product.user.username, user_path(@product), :style => "color: #D4AF37;" %></h4></li> 
+	              <li><em>Condition:</em> <%= @product.condition %></li>         
+	          </ul>
+	        </div>
+		</div>
+	</div>
+
+	<div class="col-md-4" style="background-color: #D4AF37; padding-top: 5%; padding-bottom: 5%; width: 100%; color: black;" data-aos="zoom-out" data-aos-duration="1300">	
+        <ul style="list-style-type: none; ">
+            <li><h3><strong><em>Price: </em><%= number_to_currency(@product.price) %></strong></h3></li> 
+            <li><h3><em>Shipping Price: </em><%= number_to_currency(@product.shipping_cost) %></h3></li> 
+            
+            <hr style="color: black">
+            <li><strong><h2 id="order_total">Total: $<span id="show_total"></span></h2></strong></li>
+        </ul>
+	</div>	
+
+	<div class="col-md-4"  style="" data-aos="fade-left" data-aos-duration="1500">
+		<h3 style="color: #D4AF37;">Don't forget to Update your Quantity!!!</h3>
+
+	
+			<div class="col-md-6">
+				<p style="color: #D4AF37;">Quantity</p>	
+				<div class="row">
+			       <button id="submit" class="btn btn-success" style="margin-top: 3%">Update Quantity</button> 
+			    </div> 
+			</div>
+		
+				
+
+       <%= form_for([@product, @order], :html => {id: "order_form"})  do |f| %>
+          
+
+       
+            <%= hidden_field_tag "product_id", @product.id %>
+            <%= hidden_field_tag 'stripeToken' %>
+            <%= hidden_field_tag 'stripeEmail' %>
+
+
+            
+			<div class="col-md-6">
+              <div class="form-group" style="margin-top: 11%">
+                
+                <%= f.number_field :quantity, class: "form-control", id: "quantity", value: 1, min: 1, step: 1 %>
+              </div>
+			</div>
+	
+		
+		
+
+              <h3 style="color: #D4AF37;">Please Enter Your Shipping Address:</h3>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <%= f.label :address, :style => "color: #D4AF37;" %>
+                    <%= f.text_field :address, class: "form-control" %>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                      <%= f.label :city, :style => "color: #D4AF37;" %>
+                      <%= f.text_field :city, class: "form-control" %>
+                    </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <%= f.label :state, :style => "color: #D4AF37;" %>
+                    <%= f.text_field :state, class: "form-control" %>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <%= f.label :zip, :style => "color: #D4AF37;" %>
+                    <%= f.text_field :zip, class: "form-control" %>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <%= f.label :country, :style => "color: #D4AF37;" %>
+                    <%= f.country_select :country, {priority_countries: ["US"], include_blank: "select country"}, class: 'form-control' %>
+                  </div>
+                </div>
+              </div>
+              
+
+              <div class="row">
+                <div class="col-md-6">
+                     <div class="form-group" style="color: black">
+                      <%= f.label :color, :style => "color: #D4AF37;" %>
+                      <%= f.select :color, options_for_select(@product.color_variants.pluck(:color)), :prompt => "Choose a Color", :class => "form-control", :style => "color: black!;" %>
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group" style="color: black">
+                    <%= f.label :size, :style => "color: #D4AF37;" %>
+                    <%= f.select :size, options_for_select(@product.size_variants.pluck(:size)), :prompt => "Choose a Size", :class => "form-control", :style => "color: black!;" %>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row" align="center">
+                        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                                data-description="NAME: <%= @product.title %>"
+
+
+                                <% if user_signed_in? %>
+                                  data-email="<%= current_user.email %>"
+                                <% end %>
+                                data-allow-remember-me="true"
+                                data-locale="auto"
+                                data-billing-address="true"
+                                data-zip-code="true"
+                                data-locale="true"
+                                data-name="The Black Women is God Stores"
+                                >
+
+
+                        </script>
+              </div>
+
+
+        <% end %>
+
+		
+	</div>
 
 
 
-<%= render 'form' %>
 
-<%= link_to 'Back', product_orders_path(@product) %>
+</div>
+
+
+        <script>
+
+                $(document).ready(function(){
+                document.getElementById('submit').onclick=function(){
+                  var quantity = parseInt(document.getElementById('quantity').value)
+                  var cost = <%= @product.price %>
+                  var s_cost = <%= @product.shipping_cost %>
+                  total = (cost + s_cost) * quantity
+                  document.getElementById("show_total").innerText = total
+                };
+               });
+
+                $(document).ready(function(){
+                  var quantity = parseInt(document.getElementById('quantity').value)
+                  var cost = <%= @product.price %>
+                  var s_cost = <%= @product.shipping_cost %>
+                  total = (cost + s_cost) * quantity 
+                  document.getElementById("show_total").innerText = total
+                });
+        </script>
+
+
+
+     
+
+    <script src="https://checkout.stripe.com/checkout.js"></script>
+
+
+
+
+<h4 style="color:#D4AF37"><</h4><%= link_to 'Back', product_orders_path(@product), :style => "color: #D4AF37;" %>
