@@ -35,14 +35,14 @@
 					<br>
 					<br>
 					<%= label_tag :business_category %>
-					<div style="color: black">
-				  	<%= select_tag(:business_category, options_from_collection_for_select(BusinessCategory.all, :id, :name, params[:business_category]), { include_blank: true }) %>
+					<div style="color: black;">
+				  	<%= select_tag(:business_category, options_from_collection_for_select(BusinessCategory.all, :id, :name, params[:business_category]), { include_blank: true, style: "width: 100%" }) %>
 				    </div>
 					<br>
 					<br>
 					<%= label_tag :state %>
 					<div style="color: black">
-				  	<%= select_tag(:state, options_from_collection_for_select(State.all, :id, :name, params[:state]), { include_blank: true }) %>
+				  	<%= select_tag(:state, options_from_collection_for_select(State.all, :id, :name, params[:state]), { include_blank: true, style: "width: 80%" }) %>
 				    </div>
 					<br>
 					<br>
