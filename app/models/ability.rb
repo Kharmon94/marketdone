@@ -36,6 +36,9 @@ class Ability
         # # Orders
 
         can :create, Order
+        can :shipped, Order do |order|
+            order.seller == user 
+        end
         can :new, Order
         can :sales, Order do |order|
             order.seller == user

@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row form-group" align="center">
-    <div class="col-md-12" style="background-color: #D4AF37; color: black; border-radius: 10px; padding: 20px">
+    <div class="col-md-12" style="background-color: black; color: #D4AF37; border-radius: 10px; padding: 20px">
       <%= form_with(model: business, local: true) do |form| %>
         
         <% if business.errors.any? %>
@@ -15,67 +15,89 @@
           </div>
         <% end %>
 
-        <div class="row" style="margin-bottom: 15px">
-          <div class="col-md-6">
-            <%= form.label :title %>
-            <%= form.text_field :title, id: :business_title, :maxlength => 50, class: "form-control" %>
-          </div>
-          <div class="col-md-6">
-            <%= form.label :category %>
-            <%= select_tag(:business_category_id, options_for_select(@business_categories), :prompt => "Choose a Category", :class => "form-control") %>
-          </div>
+        <div class="col-md-5" style=" border: 1px; border-style: solid; border-color: #D4AF37; padding: 2%; margin: 2%; width: 500px">
+            <div class="row" style="margin-bottom: 6%">
+              <div class="col-md-6">
+                
+                <%= form.text_field :title, id: :business_title, :maxlength => 50, class: "form-control" %>
+                <%= form.label :title %>
+              </div>
+              <div class="col-md-6">
+                
+                <%= select_tag(:business_category_id, options_for_select(@business_categories), :prompt => "Choose a Category", :class => "form-control") %>
+                <%= form.label :category %>
+              </div>
+            </div>
+
+            <div class="row" style="margin-bottom: 6%">
+                <div class="col-md-6">
+                  
+                  <%= form.file_field :artwork, class: "form-control" %>
+                  <%= form.label :artwork %>
+                </div>
+                <div class="col-md-6">
+                  
+                  <%= form.file_field :selections, multiple: true, class: "form-control" %>
+                  <%= form.label :selections %><p>Hold CTRL*</p>
+                </div>
+            </div>
+
+            <div class="row" style="margin-bottom: 6%">
+              <div class="col-md-12">
+                
+                <%= form.text_area :description, id: :business_description, :maxlength => 500, class: "form-control" %>
+                <%= form.label :description %>
+              </div>
+            </div>
         </div>
 
-        <div class="row" style="margin-bottom: 15px">
-          <div class="col-md-12">
-            <%= form.label :description %>
-            <%= form.text_area :description, id: :business_description, :maxlength => 500, class: "form-control" %>
-          </div>
-        </div>
+        <div class="col-md-5" style=" border: 1px; border-style: solid; border-color: #D4AF37; padding: 2%; margin: 2%; width: 500px">
+            <div class="row" style="margin-bottom: 6%">
+              <div class="col-md-4">
+               
+                <%= form.text_field :address, id: :business_address, class: "form-control" %>
+                 <%= form.label :business_address %>
+              </div>
+              <div class="col-md-4">
+                
+                <%= form.text_field :city, id: :business_city, class: "form-control" %>
+                <%= form.label :city %>
+              </div>
+              <div class="col-md-4">
+                
+                <%= select_tag(:state_id, options_for_select(@states), :prompt => "Choose a State", :class => "form-control") %>
+                <%= form.label :state %>
+              </div>
+            </div>
 
-        <div class="row" style="margin-bottom: 15px">
-          <div class="col-md-4">
-            <%= form.label :business_address %>
-            <%= form.text_field :address, id: :business_address, class: "form-control" %>
-          </div>
-          <div class="col-md-4">
-            <%= form.label :city %>
-            <%= form.text_field :city, id: :business_city, class: "form-control" %>
-          </div>
-          <div class="col-md-4">
-            <%= form.label :state %>
-            <%= select_tag(:state_id, options_for_select(@states), :prompt => "Choose a State", :class => "form-control") %>
-          </div>
-        </div>
 
-        <div class="row" style="margin-bottom: 15px">
-          <div class="col-md-3">
-            <%= form.label :business_email %>
-            <%= form.email_field :email, id: :business_email, class: "form-control" %>
-          </div>
-          <div class="col-md-3">
-            <%= form.label :business_number %>
-            <%= form.text_field :number, id: :business_number, class: "form-control" %>
-          </div>
-          <div class="col-md-3">
-            <%= form.label :artwork %>
-            <%= form.file_field :artwork, class: "form-control" %>
-          </div>
-          <div class="col-md-3">
-            <%= f.label :selections %>
-            <%= f.file_field :selections, multiple: true, class: "form-control" %>
-          </div>
-        </div>
+            <div class="row" style="margin-bottom: 6%">
+              <div class="col-md-6">
+                
+                <%= form.email_field :email, id: :business_email, class: "form-control" %>
+                <%= form.label :business_email %>
+              </div>
+              <div class="col-md-6">
+                
+                <%= form.text_field :number, id: :business_number, class: "form-control" %>
+                <%= form.label :business_number %>
+              </div>
+            </div>
 
-        <div class="row" style="margin-bottom: 15px">
-          <div class="col-md-12">
-            <%= form.label :business_hours %>
-            <%= form.text_area :hours, id: :business_hours, :maxlength => 250, class: "form-control" %>            
-          </div>
+
+            <div class="row" style="margin-bottom: 2.5%">
+              <div class="col-md-12">
+                
+                <%= form.text_area :hours, id: :business_hours, :maxlength => 250, class: "form-control" %>  
+                <%= form.label :business_hours %>          
+              </div>
+            </div>
+
+          
         </div>
 
         <div class="row">
-          <%= form.submit class: "btn", :style => "background-color: black; color: #D4AF37; margin-top: 10px;" %>
+          <%= form.submit "Post Your Business!!", class: "btn", :style => "background-color: #D4AF37; color: black ; margin-top: 10px;" %>
         </div>
 
       <% end %>

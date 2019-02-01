@@ -10,10 +10,14 @@ Rails.application.routes.draw do
    root to: "pages#home"
 
   resources :products do
-    resources :orders, only: [:new, :create, :checkout]
+    resources :orders, only: [:new, :create] 
     resources :reviews
     resources :votes
   end
+
+  put 'shipped_order', to: 'orders#shipped', as: :shipped_orders  
+
+
   resources :users do
     member do
       post :follow

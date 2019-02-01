@@ -1,7 +1,7 @@
 
 
 <div class="row">
-	<div class="col-md-8 center" align="center">
+	<div class="col-md-8 center" align="center" data-aos="fade-right" data-aos-duration="1500">
 		
 		<script type="text/javascript" src="http://yoursite.com/mapdata.js"></script>   
 		<script  type="text/javascript" src="http://yoursite.com/worldmap.js"></script>
@@ -22,19 +22,9 @@
 
 	</div>
 
-	<div class="col-md-4">
-<!-- 		<div class="row" style="margin-top: 3%;">
-			<div class="form-group">
-				<h4 style="color: #D4AF37">Search A Business:</h4>	
-				<#%= render 'search_form' %>
-			</div>
-		</div> -->
+	<div class="col-md-4" data-aos="fade-left" data-aos-duration="1500">
 
-		<hr style="color: #D4AF37">
-
-
-
-		<div>
+		<div class="business_cat">
 			<%= form_tag businesses_path, method: 'get' do %>
 				<div class="form-group" style="color: #D4AF37">
 					<h4>Search A Business:</h4>
@@ -86,12 +76,12 @@
 
 
 
-<div class="row" style="margin-top: 3%">
+<div class="row" style="margin-top: 3%" data-aos="fade-up" data-aos-duration="1500">
 
 
 		
-		<div class="col-md-12" align="center">
-	  	<table class="table table-responsive">
+		<div id="no-more-tables" align="center">
+	  	<table class="col-md-12 table table-condensed">
 			
 	  		<tr style="color: #D4AF37; font-size: 20px" align="center">
 			    <th scope="col" class="center"></th>
@@ -109,7 +99,7 @@
 						<tr class="business_table">
 						<th scope="row" style="background-color: #D4AF37;">
 							<%= link_to business do %>
-			       				<%= image_tag(business.image.url(:thumb), :class => "thumbs") %>
+			       				<%= image_tag(business.artwork, :class => "thumbs") %>
 			    			<% end %>
 						</th>
 
@@ -145,11 +135,11 @@
 				<% end %>
 			<% end %> 
 	  	</table>
-	     <div class="row" style="margin-left: 5%">
+	 
+	  </div>
+    <div class="row" style="margin-left: 5%">
       		<%= paginate @businesses %>
    		 </div>
-	  </div>
-
 </div>
 
 </div>

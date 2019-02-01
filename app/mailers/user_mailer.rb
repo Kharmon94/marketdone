@@ -39,4 +39,19 @@ class UserMailer < ApplicationMailer
     mail(to: @user.email, subject: 'You got Mail!')
   end
 
+  def shipped_email(user)
+    @user = user
+    @url = 'https://Theblackwomanisgodstores.com/purchases'
+    mail(to: @user.email, subject: 'Your Order Has Been Shipped')
+  end
+
+  def subscriber_email(user)
+    @user = user
+    @url = 'https://Theblackwomanisgodstores.com/businesses/new'
+    mail(to: @user.email, subject: 'Thank you for subscribing, Post your business now!')
+  end
+
+
+
+
 end

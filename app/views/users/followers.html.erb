@@ -1,6 +1,46 @@
-<p><u>Followers</u></p>
 
+<div class="row" data-aos="fade-up" data-aos-duration="1500">
+    <div class="center">
+      <h2 style="color: #D4AF37">Followers</h2>
+    </div>
+
+    <div id="no-more-tables">
+
+    <table class="col-md-12 table table-condensed" align="center">
+      <tr style="color: #D4AF37; font-size: 20px" align="center">
+        <th class="center" style="margin: 10%">User</th>
+        <th class="center" style="margin: 10%">Username</th>
+        <th class="center" style="margin: 10%">Bio</th>
+        <th class="center" style="margin: 10%">Follow/Unfollow</th>
+
+
+      </tr>
 <% @followers.each do |f| %> 
-  <p> <%= link_to f.username, user_path(f.id) %> </p>
+        <tr >
+          <td class="center" align="center" style="background-color: #D4AF37;"><%= image_tag f.avatar, style: "width: 100px; height:100px" %></td>
+          <td class="center" align="center"><%= link_to f.username, user_path(f.id), :style => "color: #D4AF37;" %></td>
+          <td class="center" align="center" style="word-wrap: break-word; color: #D4AF37"><%= f.bio %></td>
+          <td>
+          	
+            <% if current_user.follows?(f) %>
 
+              <%= link_to('Unfollow', unfollow_user_path(f.id), :style => "color: black; background-color: #D4AF37", class: "btn", method: :post) %>
+
+                  <% else %>
+
+              <%= link_to('Follow', follow_user_path(f.id), :style => "color: black; background-color: #D4AF37", class: "btn", method: :post) %>
+
+            <% end %>
+          </td>
+
+        </tr>
+
+    </table>
 <% end %>
+    </div>
+
+</div>
+
+<br>
+
+

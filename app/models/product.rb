@@ -17,7 +17,7 @@ class Product < ApplicationRecord
   validates :images, presence: true, blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg'], size_range: 1..5.megabytes }
 
   validates_numericality_of :price, greater_than_or_equal_to: 0
-  validates :title, :description, :price, :shipping_cost, :inventory, :condition, presence: true
+  validates :title, :description, :price, :shipping_cost, :condition, presence: true
   
   paginates_per 20
   

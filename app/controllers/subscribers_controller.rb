@@ -28,6 +28,7 @@ class SubscribersController < ApplicationController
 # test: plan_Ch1gdqOXtOmc7o
     current_user.uuid = subscription.id
     current_user.subscribed = true
+    UserMailer.subscriber_email(current_user).deliver
     current_user.save
   end
 

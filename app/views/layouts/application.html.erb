@@ -12,10 +12,11 @@
     
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   
-    
+    <link href="https://fonts.googleapis.com/css?family=Major+Mono+Display|Text+Me+One" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Audiowide|Gugi|Iceland|Monoton|Squada+One" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
     <script src="https://checkout.stripe.com/checkout.js"></script>
-    
     <script type="text/javascript" src="http://yoursite.com/mapdata.js"></script>   
     <script  type="text/javascript" src="http://yoursite.com/worldmap.js"></script>
     <style>
@@ -72,7 +73,9 @@
   </head>
 
   <body>
-   <div class="row justify-content-center" align="center" style=" margin-left: -7.2%; margin-top: 0%; margin-bottom: 0%;">
+
+  <div class="container-fluid">
+    <div class="row justify-content-center" align="center" style=" margin-left: -7.2%; margin-top: 0%; margin-bottom: 0%;">
    
           <div class="footer-social-icons">
 
@@ -91,9 +94,13 @@
           </div>
 
     </div>
+
     <%= render 'partials/navbar' %>
 
-
+      <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+      <script>
+        AOS.init();
+      </script>
       
 
 
@@ -109,5 +116,8 @@
     <%= yield %>
 
     <%= render 'partials/footer' %>
+  </div>
+
+   
   </body>
 </html>

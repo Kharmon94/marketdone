@@ -1,10 +1,10 @@
 
-<div class="row" id="pic_row">
+<div class="row" id="pic_row" data-aos="fade-up" data-aos-duration="1500">
 
   <div id="myCarousel" class="carousel slide" data-ride="carousel" style="height: 370px">
 
       <!-- Indicators -->
-      <ol class="carousel-indicators">
+      <ol class="carousel-indicators" >
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#myCarousel" data-slide-to="1"></li>
         <li data-target="#myCarousel" data-slide-to="2"></li>
@@ -12,31 +12,31 @@
       </ol>
 
 
-      <div class="carousel-inner">
+      <div class="carousel-inner" style="margin-bottom: 2%;">
 
           <div class="item active" align="center">
             <a href="home">
-              <img src="https://s3.us-east-2.amazonaws.com/ypmarketnew/assets/BLACKWOMANISGOD+GOLD.png" style="height: 370px; width: 370px;" align="center">
+              <img src="https://s3.amazonaws.com/tbwigsassets/assets/BLACKWOMANISGOD+GOLD.png" style="height: 370px; width: 370px;" align="center">
             </a>
             
           </div>
 
           <div class="item" align="center">
             <a href="https://www.youtube.com/channel/UCtKtmiQ2GlWlqPDzXwrR4NA" target="_blank">
-              <img src="https://s3.us-east-2.amazonaws.com/ypmarketnew/assets/20170331_211825.png" style="height: 330px; width: 330px;" align="center">
+              <img src="https://s3.amazonaws.com/tbwigsassets/assets/20170331_211825.png" style="height: 330px; width: 330px;" align="center">
             </a>
           </div>
 
           <div class="item" align="center">
             <a href="/businesses">
-              <img src="https://s3.us-east-2.amazonaws.com/ypmarketnew/assets/blkbuzservcblkgold.png" style="height: 370px; width: 370px;" align="center">
+              <img src="https://s3.amazonaws.com/tbwigsassets/assets/blkbuzservcblkgold.png" style="height: 370px; width: 370px;" align="center">
             </a>
             
           </div>
 
           <div class="item" align="center">
             <a href="/products">
-              <img src="https://s3.us-east-2.amazonaws.com/ypmarketnew/assets/STORE+GOLD.png" style="height: 350px; width: 350px;" align="center">
+              <img src="https://s3.amazonaws.com/tbwigsassets/assets/STORE+GOLD.png" style="height: 350px; width: 350px;" align="center">
             </a>
             
           </div>
@@ -45,13 +45,13 @@
 
       <!-- Left and right controls -->
       <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left"></span>
-        <span class="sr-only"></span>
+        <!-- <span class="glyphicon glyphicon-chevron-left"></span> -->
+        <!-- <span class="sr-only"></span> -->
       </a>
 
       <a class="right carousel-control" href="#myCarousel" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right"></span>
-        <span class="sr-only"></span>
+       <!--  <span class="glyphicon glyphicon-chevron-right"></span> -->
+      <!--   <span class="sr-only"></span> -->
       </a>
 
   </div>
@@ -88,22 +88,24 @@
 
 </div>
 
-<div class="row" align="center" style="margin-bottom: 10%">
-    <a href="#homeproducts">
-      <img src="https://s3.us-east-2.amazonaws.com/ypmarketnew/assets/icon_017280_256.png" style="width: 40px; height: 40px; a:hover: none;" align="center">
-    </a>
-</div>
 
 
-
-      <div class="row" id="homeproducts" align="center">
-        <div class="col-md-12" align="center">
-          <img src="https://s3.us-east-2.amazonaws.com/ypmarketnew/assets/STORE+GOLD.png" style="width: 250px; height: 225px" >
+      <div class="row" id="homeproducts" style="margin-top: 15%; margin-bottom: 4%" align="center" >
+        <div class="col-xs-6" align="center" data-aos="fade-up-right" data-aos-duration="2000">
+          <img src="https://s3.amazonaws.com/tbwigsassets/assets/STORE+GOLD.png" style="width: 250px; height: 225px;" >
+        </div>
+        <div class="col-xs-6" align="center" style="padding-top: 5%; color: #D4AF37; width: 500px;" data-aos="fade-up-left" data-aos-duration="2000">
+          <h3><strong> &nbsp Welcome to the Black Social Marketplace</strong></h3>
+          <ul style="list-style-type: none">
+            <li>Upload and sell your Products.</li>
+            <li>Follow/Unfollow your Clients and other Business Owners. </li>
+            <li>Grow your Business & Develop your Network!</li>
+          </ul>
         </div>
       </div>
 
-      <div class="row"  style="/*background-image: url(https://s3.us-east-2.amazonaws.com/ypmarketnew/assets/bacground1440.png);*/ border-radius: 20px">
-        <div class="col-md-12" align="center">
+      <div class="row"  style="border-radius: 20px; margin-bottom: 10%" data-aos="zoom-in" data-aos-duration="2000">
+        <div class="col-xs-12" align="center">
             <% @products.each do |product| %>
 
               <div  id="t_backdrop">
@@ -140,11 +142,21 @@
 
 
 
-
-      <div class="row" align="center">
-        <div class="col-md-12" align="center">
-          <img src="https://s3.us-east-2.amazonaws.com/ypmarketnew/assets/blkbuzservcblkgold.png" style="width: 250px; height: 250px" >
+      <div class="row" id="homeproducts" style="margin-top: 15%; margin-bottom: 3%" align="center" >
+        <div class="col-xs-6" align="center" data-aos="fade-up-right" data-aos-duration="2000">
+            <img src="https://s3.amazonaws.com/tbwigsassets/assets/blkbuzservcblkgold2.png" style="width: 250px; height: 250px" >
         </div>
+        <div class="col-xs-6" align="center" style="padding-top: 3%; color: #D4AF37; width: 500px;" data-aos="fade-up-left" data-aos-duration="2000">
+          <h3><strong> &nbsp Advertise your business with us!</strong></h3>
+          <ul style="list-style-type: none">
+            <li>Subscribe and Promote your Business with us!</li>
+            <li>We make finding Black Businesses in our Network Across the United States and soon the World easy.</li>
+            <li>Join our Expanding Community!</li>
+          </ul>
+        </div>
+      </div>
+  
+      <div class="row" align="center" data-aos="zoom-in" data-aos-duration="2000">
         <script type="text/javascript" src="http://yoursite.com/mapdata.js"></script>   
         <script  type="text/javascript" src="http://yoursite.com/worldmap.js"></script>
         

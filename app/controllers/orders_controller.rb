@@ -79,17 +79,41 @@ class OrdersController < ApplicationController
     end
   end
 
+  # def update
+
+  #   @order = Order.find_by(params[:id])
+
+  #     respond_to do |format|
+  #     if @order.update_attributes(params[:order][:shipped])
+  #       UserMailer.shipped_email(@order.buyer).deliver
+  #       format.html { redirect_to sales_path, notice: 'Order was shipped the buyer will be notified. Thank you!' }
+        
+  #     else
+  #      format.html { redirect_to sales_path, notice: 'Order was not shipped successfully the buyer will not be notified.' }
+  #     end
+  #   end
+  # end
+
   # def checkout
   #   @product = Product.find_by_id(params[:product_id])
   # end
 
+  def shipped
+    Order.where(id: params[:order_id]).update_all(shipped: true)
+    @order = Order.find_by_id(params[:order_id])
+    UserMailer.shipped_email(@order.buyer).deliver
+    redirect_to sales_path 
+  end
+
 
   def sales
-    @orders = Order.all.where(seller: current_user).order("created_at DESC")
+    @orders = Order.all.where(seller: current_user).order("created_at DESC").page(params[:page])
+    @nonshipped_orders = Order.nonshipped
+    @complete_tasks = Order.shipped
   end
 
   def purchases
-    @orders = Order.all.where(buyer: current_user).order("created_at DESC")
+    @orders = Order.all.where(buyer: current_user).order("created_at DESC").page(params[:page])
   end
 
   private
@@ -104,7 +128,7 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:address, :city, :state, :zip, :quantity, :color, :size, :country, :stripeEmail, :stripeToken)
+      params.require(:order).permit(:address, :city, :state, :zip, :quantity, :color, :size, :shipped, :country, :stripeEmail, :stripeToken)
 
     end
 end
