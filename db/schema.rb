@@ -64,32 +64,6 @@ ActiveRecord::Schema.define(version: 2019_01_31_214149) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
-  create_table "admins", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string "current_sign_in_ip"
-    t.string "last_sign_in_ip"
-    t.string "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
-    t.string "unconfirmed_email"
-    t.integer "failed_attempts", default: 0, null: false
-    t.string "unlock_token"
-    t.datetime "locked_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["confirmation_token"], name: "index_admins_on_confirmation_token", unique: true
-    t.index ["email"], name: "index_admins_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
-    t.index ["unlock_token"], name: "index_admins_on_unlock_token", unique: true
-  end
-
   create_table "business_categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -107,10 +81,6 @@ ActiveRecord::Schema.define(version: 2019_01_31_214149) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "state_id"
-    t.string "image_file_name"
-    t.string "image_content_type"
-    t.integer "image_file_size"
-    t.datetime "image_updated_at"
     t.integer "user_id"
     t.integer "business_category_id"
     t.index ["business_category_id"], name: "index_businesses_on_business_category_id"
@@ -161,6 +131,16 @@ ActiveRecord::Schema.define(version: 2019_01_31_214149) do
     t.index ["follower_type", "follower_id"], name: "index_follows_on_follower_type_and_follower_id"
   end
 
+  create_table "likes", force: :cascade do |t|
+    t.string "liker_type"
+    t.integer "liker_id"
+    t.string "likeable_type"
+    t.integer "likeable_id"
+    t.datetime "created_at"
+    t.index ["likeable_id", "likeable_type"], name: "fk_likeables"
+    t.index ["liker_id", "liker_type"], name: "fk_likes"
+  end
+
   create_table "mentions", force: :cascade do |t|
     t.string "mentioner_type"
     t.integer "mentioner_id"
@@ -182,8 +162,6 @@ ActiveRecord::Schema.define(version: 2019_01_31_214149) do
     t.integer "seller_id"
     t.integer "product_id"
     t.string "country"
-    t.decimal "total_price", precision: 12, scale: 3
-    t.string "status"
     t.integer "quantity"
     t.string "color"
     t.string "size"
@@ -212,17 +190,12 @@ ActiveRecord::Schema.define(version: 2019_01_31_214149) do
     t.string "condition"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "image_file_name"
-    t.string "image_content_type"
-    t.integer "image_file_size"
-    t.datetime "image_updated_at"
     t.integer "category_id"
     t.string "color"
     t.string "size"
     t.integer "color_variant_id"
     t.integer "inventory"
     t.integer "likees_count", default: 0
-    t.integer "followers_count", default: 0
     t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["color_variant_id"], name: "index_products_on_color_variant_id"
     t.index ["user_id"], name: "index_products_on_user_id"
@@ -281,10 +254,6 @@ ActiveRecord::Schema.define(version: 2019_01_31_214149) do
     t.string "city"
     t.string "zipcode"
     t.date "birthday"
-    t.string "image_file_name"
-    t.string "image_content_type"
-    t.integer "image_file_size"
-    t.datetime "image_updated_at"
     t.text "bio"
     t.integer "followers_count", default: 0
     t.string "uuid"
