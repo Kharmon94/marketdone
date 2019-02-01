@@ -61,7 +61,7 @@
           <div class="col-md-3">
             <div class="form-group">
               <%= f.label :country %>
-              <%= f.country_select(:country, {selected: @user.country}, {class: "form-control"}) %>
+              <%= f.country_select(:country, {selected: @user.country}, {class: "form-control",priority_countries: ["US"], include_blank: "select country"}) %>
             </div>
           </div>
         </div>
@@ -128,7 +128,7 @@
 
 
 
-    <%= render "devise/shared/links" %>
+
     </div>
   </div>
 </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_28_223714) do
+ActiveRecord::Schema.define(version: 2019_01_31_214149) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -131,6 +131,14 @@ ActiveRecord::Schema.define(version: 2019_01_28_223714) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "contacts", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.text "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "conversations", force: :cascade do |t|
     t.integer "author_id"
     t.integer "receiver_id"
@@ -179,6 +187,7 @@ ActiveRecord::Schema.define(version: 2019_01_28_223714) do
     t.integer "quantity"
     t.string "color"
     t.string "size"
+    t.boolean "shipped"
     t.index ["product_id"], name: "index_orders_on_product_id"
   end
 

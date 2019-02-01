@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-6 col-md-offset-3 panel panel-default form-style center" align="center" style="  background-color: #D4AF37; color: black; padding: 10px; border-radius: 10px">
+        <div class="col-md-6 col-md-offset-3 panel panel-default form-style center" align="center" style="  background-color: black; color:#D4AF37 ; padding: 10px; border-radius: 10px; border-color: #D4AF37;">
             <div class="panel-body">
                 <h2 style="margin-top: 1%"><strong>Please Subscribe</strong> To post your business</h2>
                 <h3 style="margin-top: 1%">This is the final step to give you full access to posting your business </h3> 
@@ -12,26 +12,19 @@
 
                     Any reports or complaints concerning fraudulent or illegal behavior will result in termination of your account and subscription will not be refunded, <strong>LEGAL ACTION WILL BE TAKEN IF REQUIRED.</strong>
                 </h5>
-               <form action="/yourscript.cgi-or-your-page.html" method="POST" onsubmit="return checkCheckBox(this)" style="margin-top: 1%">
-
+            
           <!--Enter your form contents here-->
 
           <b style="margin-top: 1%">By signing up, You accept all terms and conditions. </b><br />
-          I accept all terms and conditions: <input type="checkbox" value="0" name="agree">
+          I accept all terms and conditions: <input type="checkbox" value="0" name="agree" onclick="myFunction()">
 
           </form>
 
-        <script>
-            function checkCheckBox(f){
-            if (f.agree.checked == false )
-            {
-            alert('Please check the box to continue.');
-            return false;
-            }else
-            return true;
+            <script>
+            function myFunction() {
+              alert("Are You Sure?");
             }
-        //-->
-        </script>
+            </script>
 
                 <%= render 'form' %>
             </div>

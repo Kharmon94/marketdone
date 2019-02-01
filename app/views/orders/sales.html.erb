@@ -1,39 +1,103 @@
-<div class="center">
-  <h2 style="color: #D4AF37">Your Sales History:</h2>
+<div class="row" data-aos="fade-up" data-aos-duration="1500">
+
+    <div class="center">
+      <h2 style="color: #D4AF37">Your Sales History:</h2>
+    </div>
+
+    <div id="no-more-tables">
+      <table class="col-md-12 table table-condensed" align="center">
+        <tr style="color: #D4AF37; font-size: 20px" align="center">
+          <th class="center">Image</th>
+          <th class="center">Item</th>
+          <th class="center">Price</th>
+          <th class="center">Shipping Cost </th>
+          <th class="center">Color</th>
+          <th class="center">Size</th>
+          <th class="center">Customer</th>
+          <th class="center">Quantity</th>
+          <th class="center">Customer Shipping Information</th>
+          <th class="center">Date Sold</th>
+          <th class="center">Shipped</th>
+        </tr>
+
+        <% @orders.each do |order| %>
+        <% unless order.shipped == true  %>
+          <tr class="business_table">
+            <td class="center" align="center" style="background-color: #D4AF37;"><%= image_tag order.product.picture %></td>
+            <td class="center"><%= order.product.title %></td>
+            <td class="center"><%= number_to_currency(order.product.price) %></td>
+            <td class="center"><%= number_to_currency(order.product.shipping_cost) %></td>
+            <td class="center"><%= order.try(:color) %></td>
+            <td class="center"><%= order.try(:size) %></td>
+            <td class="center"><%= order.buyer.username %> <br>Email: <%= order.buyer.email %> <br> Message: <%= link_to order.buyer.username, conversations_path(author_id: current_user.id, receiver_id: order.buyer.id), method: :post, style: "color: #D4AF37" %></td>
+            <td class="center"><%= order.quantity %></td>
+            <td class="center"><strong>Address:</strong> <%= order.address %><br> <strong>City:</strong> <%= order.city %><br> <strong>State:</strong> <%= order.state %><br> <strong>Zip:</strong> <%= order.zip %><br> <strong>Country:</strong> <%= order.country %>  </td>
+            <td class="center"><%= order.created_at.strftime("%B %-d, %Y") %></td>
+
+            <td>
+             <%= form_tag(shipped_orders_path, method: :put) do |f| %>
+             <%= hidden_field_tag "order_id", order.id %>
+                <%= check_box_tag "order.id[]", order.id %>
+                <p>Shipped?</p>
+                <%= submit_tag "Shipped", class: "btn", style: "background-color: #D4AF37; color: black; " , data: { confirm: "Are you sure? If you confirm the buyer will be notified that their product was shipped. (If this is done unintentionally it can damage the integrity of your account and could result in account termination.)
+                  " } %>
+              <% end %>
+
+              <% end %> 
+
+            </td>
+
+          </tr>
+        <% end %>
+      </table>
+    </div>
+       <div class="row" style="margin-left: 5%">
+          <%= paginate @orders %>
+       </div>
 </div>
 
-<table class="table" align="center">
-  <tr style="color: #D4AF37; font-size: 20px" align="center">
-    <th class="center">Image</th>
-    <th class="center">Item</th>
-    <th class="center">Price</th>
-    <th class="center">Shipping Cost </th>
-    <th class="center">Color</th>
-    <th class="center">Size</th>
-    <th class="center">Customer</th>
-    <th class="center">Quantity</th>
-    <th class="center">Customer Shipping Information</th>
-    <th class="center">Date Sold</th>
-  </tr>
+<div class="row" style="margin-top: 10%" data-aos="fade-up" data-aos-duration="1500">
 
-  <% @orders.each do |order| %>
-    <tr class="business_table">
-      <td class="center" align="center" style="background-color: #D4AF37;"><%= image_tag order.product.picture %></td>
-      <td class="center"><%= order.product.title %></td>
-      <td class="center"><%= number_to_currency(order.product.price) %></td>
-      <td class="center"><%= number_to_currency(order.product.shipping_cost) %></td>
-      <td class="center"><%= order.try(:color) %></td>
-      <td class="center"><%= order.try(:size) %></td>
-      <td class="center"><%= order.buyer.username %> Email: <%= order.buyer.email %> || Message: <%= link_to order.buyer.username, conversations_path(author_id: current_user.id, receiver_id: order.buyer.id), method: :post %></td>
-      <td class="center"><%= order.quantity %></td>
-      <td class="center"><strong>Address:</strong> <%= order.address %><br> <strong>City:</strong> <%= order.city %><br> <strong>State:</strong> <%= order.state %><br> <strong>Zip:</strong> <%= order.zip %><br> <strong>Country:</strong> <%= order.country %>  </td>
-      <td class="center"><%= order.created_at.strftime("%B %-d, %Y") %></td>
+    <div class="center">
+      <h2 style="color: #D4AF37">Your Shipped Item History:</h2>
+    </div>
 
-    </tr>
-  <% end %>
-</table>
+    <div id="no-more-tables">
 
-<br>
+    <table class="col-md-12 table table-condensed" align="center">
+      <tr style="color: #D4AF37; font-size: 20px" align="center">
+        <th class="center" style="margin: 10%">Image</th>
+        <th class="center" style="margin: 10%">Item</th>
+        <th class="center" style="margin: 10%">Price</th>
+        <th class="center" style="margin: 10%">Shipping Cost </th>
+        <th class="center" style="margin: 10%">Seller</th>
+        <th class="center" style="margin: 10%">Color</th>
+        <th class="center" style="margin: 10%">Size</th>
+        <th class="center" style="margin: 10%">Quantity</th>
+        <th class="center" style="margin: 10%">Date Sold</th>
+      </tr>
+
+      <% @orders.each do |order| %>
+        <% if order.shipped == true  %>
+        <tr class="business_table">
+          <td class="center" align="center" style="background-color: #D4AF37;"><%= image_tag order.product.picture %></td>
+          <td class="center"><%= order.product.title %></td>
+          <td class="center"><%= number_to_currency(order.product.price) %></td>
+          <td class="center"><%= number_to_currency(order.product.shipping_cost) %></td>
+          <td class="center"><%= order.seller.username %> <br>Email: <%= order.buyer.email %> <br> Message: <%= link_to order.seller.username, conversations_path(author_id: current_user.id, receiver_id: order.buyer.id), method: :post, style: "color: #D4AF37" %></td>
+          <td class="center"><%= order.color %></td>
+          <td class="center"><%= order.size %></td>
+          <td class="center"><%= order.quantity %></td>
+          <td class="center"><%= order.created_at.strftime("%B %-d, %Y") %></td>
+        </tr>
+        <% end %>
+      <% end %>
+    </table>
+
+    </div>
+</div>
+
+
 
 <% if user_signed_in? %>
   <%= link_to 'Sell Your Product', new_product_path, class: "btn", style: "background-color: #D4AF37; color: black; margin-bottom: 15px;", data: { no_turbolink: true }  %>

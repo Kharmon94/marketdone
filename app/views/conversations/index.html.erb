@@ -1,20 +1,28 @@
-<h1>Inbox</h1>
-<ul>
-  <% @conversations.each do |conversation| %>
-	<li>
-		<%= link_to conversation.recipient(current_user).username, conversation_personal_messages_path(conversation) %>
-		<% if !conversation.unread_personal_message_count(current_user).zero? %>
-	       (<%= conversation.unread_personal_message_count(current_user) %>)
-	    <% end %>
-	</li>
-  <% end %>
-</ul>
+<div class="container" data-aos="fade-up" data-aos-duration="1500">
+	
+<div class="col-md-12" align="center" style="color:#D4AF37">
+	<h1>Your Conversations</h1>
+</div>
+<div style="width: 500px; height: auto; padding: 2%; color: #D4AF37; margin: 5%">
+	<h1>Inbox</h1>
+	<ul>
+	  <% @conversations.each do |conversation| %>
+		<li>
+			<%= link_to conversation.recipient(current_user).username, conversation_personal_messages_path(conversation), style: "color: #D4AF37; font-size: 20px" %>
+			<% if !conversation.unread_personal_message_count(current_user).zero? %>
+		       (<%= conversation.unread_personal_message_count(current_user) %>)
+		    <% end %>
+		</li>
+	  <% end %>
+	</ul>	
+</div>
 
 
-<h2>Users</h2>
-<div class="row">
+
+<h2 style="color:#D4AF37">Users You Follow</h2>
+<div class="row" style="width: 50%; margin: 5%">
 	<%= form_tag conversations_path, method: 'get' do %>
-	<h4>Find A User:</h4>
+	<h4 style="color:#D4AF37">Find A User:</h4>
 	<div class="col-md-9">
 		<%= text_field_tag :lookup, params[:lookup], class: "form-control" %>
 	</div>
@@ -29,6 +37,10 @@
 
 <ul>
   <% @users.each do |user| %>
-    <li><%= link_to user.username, conversations_path(author_id: current_user.id, receiver_id: user.id), method: :post %></li>
+	  <% if current_user.follows?(user) %>
+	    <li><%= link_to user.username, conversations_path(author_id: current_user.id, receiver_id: user.id), method: :post, :style => "color: #D4AF37; font-size: 20px"  %></li>
+
+	  <% end %>
   <% end %>
 </ul>
+</div>

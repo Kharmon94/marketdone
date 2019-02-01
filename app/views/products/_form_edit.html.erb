@@ -1,9 +1,10 @@
-
-<div class="container">
+ <%= simple_form_for @product, html: { multipart: true }, :method => :patch do |f| %>
   <div class="row">
-    <div class="col-md-12" align="center" style="background-color: #D4AF37; color: black; border-radius: 10px; padding: 20px">
-      <%= simple_form_for @product, html: { multipart: true }, :method => :patch do |f| %>
-      
+
+        <div id="stripe_error" class="alert alert-danger" style="display:none">
+            <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
+        </div>
+
         <% if product.errors.any? %>
           <div id="error_explanation">
             <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
@@ -16,86 +17,134 @@
           </div>
         <% end %>
 
-        <div id="stripe_error" class="alert alert-danger" style="display:none">
-            <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
-        </div>
+    <div class="col-md-4" align="center" style="color: black; margin-right: 1%;">
 
-        <div class="row form-group">
-          <div class="col-md-4">
+        <div class="row" style="margin-bottom: 3%">
+          <div style="color: #D4AF37">
             <%= f.label :title, class: "pt-1 font-weight-bold" %>
-            <%= f.text_field :title, id: :product_title, :maxlength => 50, class: "form-control" %>
           </div>
-          <div class="col-md-4">
+            <%= f.text_field :title, id: :product_title, :maxlength => 50, class: "form-control" %>   
+        </div>
+
+        <div class="row" style="margin-bottom: 3%">
+          <div style="color: #D4AF37">
             <%= f.label :category %>
-            <%= select_tag(:category_id, options_for_select(@categories), :prompt => "Choose a Category", :class => "form-control") %>
           </div>
-          <div class="col-md-4">
-            <%= f.label :picture %>
-            <%= f.file_field :picture, class: "form-control" %>
-          </div>
+            
+            <%= select_tag(:category_id, options_for_select(@categories), :prompt => "Choose a Category", :class => "form-control") %>          
         </div>
 
+        <div class="row" style="margin-bottom: 3%">
+          <div class="col-md-6">
+            <div style="color: #D4AF37">
+              <%= f.label :price %>
+            </div>
+              <%= f.number_field :price, id: :product_price, min: 1, step: 0.01, class: "form-control" %>            
+          </div>
+          <div class="col-md-6">
+            <div style="color: #D4AF37">
+              <%= f.label :shipping_cost, class: "pt-1 font-weight-bold" %>
+            </div>
+              
+              <%= f.number_field :shipping_cost, id: :product_shipping_cost, min: 1, step: 0.01, class: "form-control" %>
+          </div>
+
+        </div>
+
+
+        <div class="row" style="margin-bottom: 3%">
+
+
+          <div class="col-md-4" style="color: #D4AF37">
+              <div style="color: #D4AF37">
+                <%= f.label :picture %>
+              </div>
+                <%= f.file_field :picture, class: "form-control" %>
+                <p>Upload picture of product </p>
+          </div>
+
+          <div class="col-md-4" style="color: #D4AF37">
+            <div style="color: #D4AF37">
+              <%= f.label :images %>
+            </div>
+            <%= f.file_field :images, multiple: true, class: "form-control" %>  
+            <p>Upload Slideshow of <br>Images(Hint: Hold Shift to select multiple images)</p> 
+          </div>
+
+          <div class="co-md-4">
+              <div style="color: #D4AF37">
+                <%= f.label :condition %>
+              </div>
+                <%= f.select(:condition, options_for_select(["new", "fair", "old", "antique"]), {class: "form-control"}) %>
+              <p  style="color:#D4AF37;" > What is the condition of this product?</p>          
+          </div>
+
+        </div>
+
+
+        <div class="row" style="margin-bottom: 3%">
+          <div style="color: #D4AF37">
+               <%= f.label :description, class: "pt-1 font-weight-bold" %>
+          </div>
+         
+            <%= f.text_area :description, id: :product_description, :maxlength => 500, class: "form-control" %>          
+        </div>
+
+    </div>
+
+    <div class="col-md-7" style="margin-left: 1%">
+
+      <div class="col-md-4">
         <div class="row">
-          <div class="col-md-12">
-            <%= f.label :description, class: "pt-1 font-weight-bold" %>
-            <%= f.text_area :description, id: :product_description, :maxlength => 500, class: "form-control" %>
-          </div>
+          <h4>Add all available Colors</h4>
         </div>
-
+    
         <div class="row">
-          <div class="col-md-3">
-            <%= f.label :condition, class: "pt-1 font-weight-bold" %><br><br>
-            <%= f.select :condition, ["New", "Fair", "Old", "Antique"], class: "form-control" %>
-          </div>
-          <div class="col-md-3">
-            <%= f.label :price, class: "pt-1 font-weight-bold" %>
-            <%= f.number_field :price, id: :product_price, min: 1, step: 0.01, class: "form-control" %>
-          </div>
-          <div class="col-md-3">
-            <%= f.label :shipping_cost, class: "pt-1 font-weight-bold" %>
-            <%= f.number_field :shipping_cost, id: :product_shipping_cost, min: 1, step: 0.01, class: "form-control" %>
-          </div>
-          <div class="col-md-3">
-            <%= f.label :inventory, class: "pt-1 font-weight-bold" %>
-            <%= f.number_field :inventory, min: 1, step: 0.01, class: "form-control" %>
-          </div>
-        </div>
-
-<hr>          
-<h4>Add the available color, sizes on hand for that color, and stock quantity for each size of your product. </h4>
-        <div align="center">
-          <%= f.simple_fields_for :color_variants do |builder| %>
+         
               <div class="row" align="center">
-                 <%= render 'color_variant_fields', f: builder %>             
+                <div >
+                  <%= f.simple_fields_for :color_variants do |builder| %>
+                   <%= render 'color_variant_fields', f: builder %>   
+                  <% end %>      
+                </div>
+    
               </div>
 
-          <% end %>
-
-          <%= link_to_add_association "Add Color", f, :color_variants, :class => "btn", :style => "background-color: black; color: #D4AF37"  %>
-        </div>
-
-          <div align="center">
-          <%= f.simple_fields_for :size_variants do |builder| %>
-              <div class="row" align="center">
-                 <%= render 'size_variant_fields', f: builder %>             
+              <div class="row">
+                <%= link_to_add_association "Add Color", f, :color_variants, :class => "btn", :style => "background-color: #D4AF37; color: black"  %>
               </div>
 
-          <% end %>
-
-
-          <%= link_to_add_association "Add size", f, :size_variants, :class => "btn", :style => "background-color: black; color: #D4AF37" %>
-
         </div>
-
-        <div class="row" align="center" style="margin-top: 3%">
-          <%= f.submit :class => "btn", :style => "background-color: black; color: #D4AF37" %>
-        </div>
-      
       </div>
 
-      <% end %>
+      <div class="col-md-4" style="margin-left: 20%">
+        <div class="row">
+          <h4>Add all available Sizes</h4>
+        </div>
+
+        <div class="row">
+
+          <div class="row">
+            <div >
+              <%= f.simple_fields_for :size_variants do |builder| %>
+              <%= render 'size_variant_fields', f: builder %>  
+              <% end %>              
+            </div>
+
+          </div>
+
+          <div class="row">
+                      <%= link_to_add_association "Add size", f, :size_variants, :class => "btn", :style => "background-color: #D4AF37; color: black" %>
+          </div>
+
+        </div>
+        
+      </div>
+      
     </div>
-  </div>
+   
 </div>
-
-
+        <div class="row" align="center" style="margin: 3%">
+          <%= f.submit "Sell Your Product!!!", :class => "btn", :style => "background-color: #D4AF37; color: black " %>
+        </div>
+  <% end %>

@@ -1,19 +1,21 @@
-<fieldset style="margin: 3%; padding: 3px">
-	<div class="row" style="background-color: black; border-style: solid; border-radius: 10px; border-width: 5px; padding: 15px";>
+<fieldset style="color: black; margin: 5%" data-aos="fade-up" data-aos-duration="1500">
+	<div class="row" style="border-width: 4px; border-color: #D4AF37; border-style: solid; border-radius: 5px; padding: 5px">
+		<div class="col-sm-3">
+			<%= f.label :size, style: "color:  #D4AF37" %>
+		</div>
 
-		<h4 class="col-md-3" style="color: #D4AF37">
-			<%= f.label :size %><br><br>	
-		</h4>
-
-		<div class="col-md-5" style="margin-top: 10px">
+		<div class="col-sm-6" style="margin: 1%">
+			<div class="row" style="margin: 1%">
 				<%= f.select :size, ["Infant/New Born", "0-6 Months","Toddler", "X-SMALL", "SMALL", "MEDIUM", "LARGE", "X-LARGE", "XX-LARGE", "XXX-LARGE"], class: "form-control" %>
+			</div>
+			<div class="row" align="center" style="margin: 1%; margin-top: 15px;">
+			<%= link_to_remove_association "Remove Size", f, class: "btn btn-danger" %>	
+			</div>
+			
 		</div>
 
-		<div class="col-md-4">
-			<%= link_to_remove_association "Remove Size", f, class: "btn btn-danger" %>
-		</div>
-		
 	</div>
+
 
 
 </fieldset>

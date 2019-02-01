@@ -1,80 +1,106 @@
 <div class="row">
    <%= link_to '< Back', products_path, :style => "color: #D4AF37; font-size: 20px;" %> <span style="color: #D4AF37">|</span>
 </div>
+
 <div class="row">
-  <div class="col-md-6" align="center">
-    <%= image_tag @product.picture, style: "width: 45%; height: 45%;" %>
-    <div style="color: #D4AF37;">
-      <h2><%= @product.title %></h2>
-      <p style="font-size: 25px"><em>Price: </em><%= number_to_currency(@product.price) %></p>
-      <p style="font-size: 25px"><em>Shipping Price: </em><%= number_to_currency(@product.shipping_cost) %></p>
-<!-- 
-      <#% if current_user.likes?(@product) %>
-          <#%= link_to 'unlike', unlikes_path(@product) %>
-      <#% else %>
-          <#%= button_to 'Like', product_likes_path(@product), method: :product %>
-      <#% end %> -->
 
-      <% pre_vote = @product.votes.find { |vote| vote.user_id == current_user.id} %>
-      <% if pre_vote %>
-        <%= button_to 'Unlike', product_vote_path(@product, pre_vote), method: :delete %>
-      <% else %>
-        <%= button_to 'Like', product_votes_path(@product), method: :product %>
-      <% end %>
+  <div class="col-md-6"  style="color: #D4AF37" data-aos="fade-right" data-aos-duration="1000">
+    <div align="center" style="border-color: #D4AF37; border-width: 1px; border-style: solid; border-radius: 5px; padding:2%; width: 350px; height: auto; margin: 5%; margin-left: 12%">
+        <div  style="border-color: #D4AF37; border-width: 1px; border-style: solid; border-radius: 5px; padding:1%;">
+          <div>
+            <%= image_tag @product.picture, style: "width: 310px; height: 249px; border-radius: 5px;" %>
+          </div>
+        </div>
 
-      
-      <p><%= @product.votes.count %> <%= (@product.votes.count) == 1 ? 'Like' : 'Likes'%></p>
-    </div> 
+        <div class="row" style="word-wrap: break-word; margin-bottom: 7%;">
+          <h3><%= @product.title %></h3>
+          <ul style="list-style-type: none; margin-left: -14%;">
+            <li><h3><strong><em>Price: </em><%= number_to_currency(@product.price) %></strong></h3></li> 
+            <li><em>Shipping Price: </em><%= number_to_currency(@product.shipping_cost) %></li> 
+            <li><em>Condition:</em> <%= @product.condition %></li>
+            <li><h4>Seller: <%= link_to @product.user.username, user_path(@product), :style => "color: #D4AF37;" %></h4></li>            
+          </ul>
+          <%= link_to "Buy It Now!", new_product_order_path(@product), class: "btn", style: "margin-top: 3%; background-color: #D4AF37; color:black ", data: { no_turbolink: true } %>
+        </div>
 
+        <div class="row" style="background-color: #D4AF37; padding-top: 5%; padding-bottom: 5%; width: 350px">
+          <div class="col-md-6 left" style="margin-top: 12px;">
+              <% pre_vote = @product.votes.find { |vote| vote.user_id == current_user.id} %>
+              <% if pre_vote %>
+                <%= link_to 'Unlike', product_vote_path(@product, pre_vote), class: "btn", style: " background-color: black; color:#D4AF37; width: 150px; height: auto; margin: 4%; ", method: :delete %>
+              <% else %>
+                <%= button_to 'Like', product_votes_path(@product), class: "btn", style: " background-color: black; color:#D4AF37; width: 150px; height: auto; margin: 4%;", method: :product %>
+              <% end %>
+          </div>
+          <div class="col-md-6 right" style="color: black;">
+            <h3><strong><%= @product.votes.count %> <%= (@product.votes.count) == 1 ? 'Like' : 'Likes'%></strong></h3>
+          </div>
+        </div>  
+    </div>
   </div>
 
-  <div class="col-md-6" style="background-color: #D4AF37; padding: 20px; border-radius: 10px; color: black;" align="center">
+  <div class="col-md-6" data-aos="fade-left" data-aos-duration="1000">
 
     
-    <div style="background-color: black; padding: 4%; margin: 2%; border-radius: 10px;">
-          <p style="font-size: 25px; color: #D4AF37"><em>Description:</em> <%= @product.description %></p>
-    </div>
-    <p style="font-size: 25px"><em>Condition:</em> <%= @product.condition %></p>
-    <p style="font-size: 25px"> <%= @product.inventory %> <em>Left In Stock</em></p> 
-    <div align="left">
-      <h4> Colors Available </h4> 
-      <% @product.color_variants.each do |color_variant| %>
-          <ul>
-            <li><%= color_variant.color %></li>
-          </ul>
-      <% end %>
+    <div class="row" style="margin-bottom: 3%; margin-top: 5%">
+        <p style="font-size: 18px; color: #D4AF37"><em>Description:</em> <%= @product.description %></p>
     </div>
 
-    <div align="left">
-       <h4> Sizes Available </h4> 
-      <% @product.size_variants.each do |size_variant| %>
-          <ul>
-            <li><%= size_variant.size %></li>
-          </ul>
-      <% end %>
-    </div>
+    <div class="row" style="margin-bottom: 100px">
+      <div style="width: 700px">
+        <div class="row">
+            <div class="col-md-6" style="font-size: 25px; color: #D4AF37; margin-top: 3%" >
+              <h4> Colors Available </h4> 
+              <% @product.color_variants.each do |color_variant| %>
+                  <ul>
+                    <li><%= color_variant.color %></li>
+                  </ul>
+              <% end %>
+            </div>
 
-    <p style="font-size: 25px"> <strong>Seller: <%= link_to @product.user.username, user_path(@product), :style => "color: black;" %></strong></p><br>
-    
-      <%= link_to "Buy It Now", new_product_order_path(@product), class: "btn", style: "margin-top: 3%; background-color: black; color: #D4AF37", data: { no_turbolink: true } %>
-    
-    
+            <div class="col-md-6" style="font-size: 25px; color: #D4AF37;  margin-top: 3%">
+               <h4> Sizes Available </h4> 
+              <% @product.size_variants.each do |size_variant| %>
+                  <ul>
+                    <li><%= size_variant.size %></li>
+                  </ul>
+              <% end %>
+            </div>
+        </div>
+
+
+        
+
+
+          <div class="row"  style="font-size: 30px">
+               <%= link_to "Buy It Now!", new_product_order_path(@product), class: "btn", style: "margin-top: 3%; background-color: #D4AF37; color:black ; width:250px; height: auto;" , data: { no_turbolink: true } %>
+          </div>
+        </div>  
+      </div>
+
+
   </div> 
-
+   
+    
 
   
 </div>
 
-<div class="row">
+<div class="row" align="center" style="margin-top: 12%" data-aos="fade-up" data-aos-duration="1000">
 
-  <% (0...@product.images.count).each do |image| %>
-    <%= image_tag(@product.images[image]) %>
-  <% end %>
-  
+    <div align= "center" >
+      <%= carousel_for(@product.images) %>
+    </div>
+
+     <div class="row" align="center" style="font-size: 30px" >
+           <%= link_to "Buy It Now!", new_product_order_path(@product), class: "btn", style: "margin-top: 3%; background-color: #D4AF37; color:black ; width:250px; height: auto;" , data: { no_turbolink: true } %>
+      </div>
+
+      
 </div>
 
 
-  <div class="row" >
+  <div class="row" style="margin-top: 5%" data-aos="fade-up" data-aos-duration="1000">
 
     <div class="col-md-12" style="margin-top: 5%" id="review_row" >
       <div align="center">
@@ -90,19 +116,6 @@
     </div>
   </div>
 
-      <% if user_signed_in? %>
-        <% if @product.user.id == current_user.id %>
-          <div class="row m-4">
-            <div class="col text-center">
-              <%= link_to 'Edit', edit_product_path(@product), :style => "color: #D4AF37;" %> |
-              <%= link_to 'Delete', @product, method: :delete, data: { confirm: 'Are you sure?' }, :style => "color: #D4AF37;" %>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
-  </div>
-</div>
 
 <script>
   $('.review-rating').raty({

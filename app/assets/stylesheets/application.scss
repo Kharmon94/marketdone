@@ -16,16 +16,26 @@
  */
 
 
-
 #map{
   width: 60%;
   height: 60%;
 }
 
+#flash_notice{
+  background-color: black !important;
+  padding: 10px;
+  font-size: 15px;
+  border-color: rgba(212,175,55, 0.3);
+  border-style: solid;;
+  border-width: 0.9px;
+}
+
 #profile_pic{
-  border-radius: 50%;
+  border-radius: 5px;
   border-style: solid;
   border-color: black;
+  width: 400px;
+  height: 400px;
 }
 
 #conversation-body {
@@ -34,14 +44,29 @@
   margin-bottom: 2em;
 }
 
+#condition{
+  color: black
+}
+
 body {
   // font-family: 'Play', sans-serif;
   // font-family: 'Squada One', cursive;
   // font-family: 'Monoton', cursive;
   // font-family: 'Gugi', cursive;
-  font-family: 'Iceland', cursive;
+  // font-family: 'Iceland', cursive;
+  font-family: 'Major Mono Display', monospace;
+  // font-family: 'Text Me One', sans-serif;
   background-color: black;
   color: white;
+}
+
+.dropdown-menu{
+  background-color: black;
+
+}
+
+.nav{
+  font-size: 11px;
 }
 
 .toplogo{
@@ -52,20 +77,28 @@ body {
 #catrow{
   color: #D4AF37;
   font-size: 17px;
+  border-radius: 10px;
+  border-style: solid;
+  border-color: #D4AF37;
+  border-width: 3px;
+  width: 340px;
+
 }
 
 a:hover { 
-  background-color: lavender;
+  background-color: rgba(212,175,55, 0.3);;
+
 }
 
 #pro_business{
-  background-color: rgba(80, 14, 107, 0.9);
+  background-color: rgba(212,175,55, 0.9);;
 }
+
 
 .business_table{
   font-size: 15px;
   color: #D4AF37; 
-  opacity: 0.4
+  opacity: 0.7
 }
 
 .business_table:hover{
@@ -77,15 +110,16 @@ a:hover {
   background-color: black;
   // background-color: #D4AF37;
   // background-image: url("https://s3.us-east-2.amazonaws.com/ypmarketnew/assets/bacground1440.png");
-  border-color: black;
-  border-width: 7px;
+  border-color: rgba(212,175,55, 0.3);
+  border-width: 0.1px;
+  border-style: solid;
+  
   padding-top: 6%;
-  opacity: 0.3;
   border-radius: 10px;
 
 }
 .thumbnail:hover{
-  opacity: 0.8;
+  border-color: rgba(212,175,55, 0.9)
 }
 
 #t_backdrop{
@@ -93,20 +127,23 @@ a:hover {
 }
 
 #thumbs{
-  height: 150px !important
+  height: 90%;
+  width: 100% !important;
+  border-radius: 5px;
   
 }
 
 #prod_row{
   // background-image: url("https://s3.us-east-2.amazonaws.com/ypmarketnew/assets/bacground1440.png");
-  background-color: black; 
+ 
   margin-top: 5%;
-  border-radius: 10px;
+
 
 }
 
 #pic_row{
   margin-top: 0%;
+  margin-bottom: 10%;
 }
 
 .rev{
@@ -345,4 +382,55 @@ ul.social-icons {
 }
 .fa-google-plus:hover {
     background-color: #e25714;
+}
+
+// TABLES
+
+@media only screen and (max-width: 800px) {
+    
+    /* Force table to not be like tables anymore */
+  #no-more-tables table, 
+  #no-more-tables thead, 
+  #no-more-tables tbody, 
+  #no-more-tables th, 
+  #no-more-tables td, 
+  #no-more-tables tr { 
+    display: block; 
+  }
+ 
+  /* Hide table headers (but not display: none;, for accessibility) */
+  #no-more-tables thead tr { 
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+ 
+  #no-more-tables tr { border: 1px solid #ccc; }
+ 
+  #no-more-tables td { 
+    /* Behave  like a "row" */
+    border: none;
+    margin: 10px;
+    position: relative;
+    white-space: normal;
+    text-align:left;
+  }
+ 
+  #no-more-tables td:before { 
+    /* Now like a table header */
+    position: absolute;
+    /* Top/left values mimic padding */
+    top: 6px;
+    left: 6px;
+    width: 45%; 
+    padding-right: 10px; 
+    white-space: nowrap;
+    text-align:left;
+    font-weight: bold;
+  }
+ 
+  /*
+  Label the data
+  */
+  #no-more-tables td:before { content: attr(data-title); }
 }
