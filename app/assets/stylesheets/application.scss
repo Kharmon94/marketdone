@@ -21,6 +21,15 @@
   height: 60%;
 }
 
+#flash_notice{
+  background-color: black !important;
+  padding: 10px;
+  font-size: 15px;
+  border-color: rgba(212,175,55, 0.3);
+  border-style: solid;;
+  border-width: 0.9px;
+}
+
 #profile_pic{
   border-radius: 5px;
   border-style: solid;
@@ -89,7 +98,7 @@ a:hover {
 .business_table{
   font-size: 15px;
   color: #D4AF37; 
-  opacity: 0.4
+  opacity: 0.7
 }
 
 .business_table:hover{
