@@ -15,7 +15,7 @@
 
 
       </tr>
-<% @following.each do |f| %> 
+        <% @following.each do |f| %> 
         <tr >
           <td class="center" align="center" style="background-color: #D4AF37;"><%= image_tag f.avatar, style: "width: 100px; height:100px" %></td>
           <td class="center" align="center"><%= link_to f.username, user_path(f.id), :style => "color: #D4AF37;" %></td>
@@ -36,10 +36,10 @@
         </tr>
 
     </table>
-<% end %>
+      <% end %>
     </div>
 
 </div>
 
-<br>
+
 
