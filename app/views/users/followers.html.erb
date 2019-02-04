@@ -7,14 +7,7 @@
     <div id="no-more-tables">
 
     <table class="col-md-12 table table-condensed" align="center">
-      <tr style="color: #D4AF37; font-size: 20px" align="center">
-        <th class="center" style="margin: 10%">User</th>
-        <th class="center" style="margin: 10%">Username</th>
-        <th class="center" style="margin: 10%">Bio</th>
-        <th class="center" style="margin: 10%">Follow/Unfollow</th>
 
-
-      </tr>
 <% @followers.each do |f| %> 
         <tr >
           <td class="center" align="center" style="background-color: #D4AF37;"><%= image_tag f.avatar, style: "width: 100px; height:100px" %></td>
@@ -34,7 +27,6 @@
           </td>
 
         </tr>
-
     </table>
 <% end %>
     </div>
@@ -42,5 +34,4 @@
 </div>
 
 <br>
-
 
