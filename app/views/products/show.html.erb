@@ -5,7 +5,7 @@
 <div class="row">
 
   <div class="col-md-6"  style="color: #D4AF37" data-aos="fade-right" data-aos-duration="1000">
-    <div align="center" style="border-color: #D4AF37; border-width: 1px; border-style: solid; border-radius: 5px; padding:2%; width: 80%; height: auto; margin: 5%;">
+    <div align="center" style="border-color: #D4AF37; border-width: 1px; border-style: solid; border-radius: 5px; padding:2%; width: 83%; height: auto; margin: 5%;">
         <div style="border-color: #D4AF37; border-width: 1px; border-style: solid; border-radius: 5px; padding:1%;">
           <div>
             <%= image_tag @product.picture, style: "width: 70%; height: 70%; border-radius: 5px;" %>
@@ -14,7 +14,7 @@
 
         <div class="row" style="word-wrap: break-word; margin-bottom: 7%;">
           <h3><%= @product.title %></h3>
-          <ul style="list-style-type: none; margin-left: -9%;">
+          <ul style="list-style-type: none;">
             <li><h3><strong><em>Price: </em><%= number_to_currency(@product.price) %></strong></h3></li> 
             <li><em>Shipping Price: </em><%= number_to_currency(@product.shipping_cost) %></li> 
             <li><em>Condition:</em> <%= @product.condition %></li>
