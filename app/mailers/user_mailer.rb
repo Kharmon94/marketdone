@@ -22,13 +22,13 @@ class UserMailer < ApplicationMailer
 
   def seller_email(user)
     @user = user
-    @url = 'https://Theblackwomanisgodstores.com/sales'
+    @url = 'https://Theblackwomanisgodstores.com/login'
     mail(to: @user.email, subject: 'YOU HAVE A SALE!')
   end
 
   def buyer_email(user)
     @user = user
-    @url = 'https://Theblackwomanisgodstores.com/purchases'
+    @url = 'https://Theblackwomanisgodstores.com/login'
     mail(to: @user.email, subject: 'Your Order Details')
   end
 
@@ -41,7 +41,7 @@ class UserMailer < ApplicationMailer
 
   def shipped_email(user)
     @user = user
-    @url = 'https://Theblackwomanisgodstores.com/purchases'
+    @url = 'https://Theblackwomanisgodstores.com/login'
     mail(to: @user.email, subject: 'Your Order Has Been Shipped')
   end
 
