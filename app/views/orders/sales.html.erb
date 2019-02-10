@@ -7,7 +7,7 @@
     <div id="no-more-tables">
       <table class="col-md-12 table table-condensed" align="center">
         <tr style="color: #D4AF37; font-size: 20px" align="center">
-          <th class="center">Image</th>
+          <th class="center"></th>
           <th class="center">Item</th>
           <th class="center">Price</th>
           <th class="center">Shipping Cost </th>
@@ -66,11 +66,11 @@
 
     <table class="col-md-12 table table-condensed" align="center">
       <tr style="color: #D4AF37; font-size: 20px" align="center">
-        <th class="center" style="margin: 10%">Image</th>
+        <th></th>
         <th class="center" style="margin: 10%">Item</th>
         <th class="center" style="margin: 10%">Price</th>
         <th class="center" style="margin: 10%">Shipping Cost </th>
-        <th class="center" style="margin: 10%">Seller</th>
+        <th class="center" style="margin: 10%">Customer</th>
         <th class="center" style="margin: 10%">Color</th>
         <th class="center" style="margin: 10%">Size</th>
         <th class="center" style="margin: 10%">Quantity</th>
@@ -84,7 +84,7 @@
           <td class="center"><%= order.product.title %></td>
           <td class="center"><%= number_to_currency(order.product.price) %></td>
           <td class="center"><%= number_to_currency(order.product.shipping_cost) %></td>
-          <td class="center"><%= order.seller.username %> <br>Email: <%= order.buyer.email %> <br> Message: <%= link_to order.seller.username, conversations_path(author_id: current_user.id, receiver_id: order.buyer.id), method: :post, style: "color: #D4AF37" %></td>
+          <td class="center"><%= order.buyer.username %> <br>Email: <%= order.buyer.email %> <br> Message: <%= link_to order.seller.username, conversations_path(author_id: current_user.id, receiver_id: order.buyer.id), method: :post, style: "color: #D4AF37" %></td>
           <td class="center"><%= order.color %></td>
           <td class="center"><%= order.size %></td>
           <td class="center"><%= order.quantity %></td>
