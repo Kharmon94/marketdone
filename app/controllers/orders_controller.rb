@@ -102,7 +102,7 @@ class OrdersController < ApplicationController
     Order.where(id: params[:order_id]).update_all(shipped: true)
     @order = Order.find_by_id(params[:order_id])
     UserMailer.shipped_email(@order.buyer).deliver
-    redirect_to sales_path 
+    # redirect_to conversations_path(author_id: current_user.id, receiver_id: @order.buyer.id, POST)
   end
 
 

@@ -39,7 +39,9 @@
              <%= hidden_field_tag "order_id", order.id %>
                 <%= check_box_tag "order.id[]", order.id %>
                 <p>Shipped?</p>
-                <%= submit_tag "Shipped", class: "btn", style: "background-color: #D4AF37; color: black; " , data: { confirm: "Are you sure? If you confirm the buyer will be notified that their product was shipped. (If this is done unintentionally it can damage the integrity of your account and could result in account termination.)
+                <%= submit_tag "Shipped", class: "btn", style: "background-color: #D4AF37; color: black; " , data: { confirm: "Are you sure? If you confirm the buyer will be notified that their product was shipped. (If this is done unintentionally it can damage the integrity of your account and could result in account termination.
+
+THE TRACKING NUMBER SHOULD NOW BE SENT TO THE CUSTOMERS INBOX, PLEASE SEND TRACKING NUMBER AND ALL OTHER SHIPPING INFORMATION. FAILURE TO DO SO CAN LEAD TO ACCOUNT TERMINATION. THANK YOU SO MUCH FOR YOUR BUSINESS!!! )
                   " } %>
               <% end %>
 
