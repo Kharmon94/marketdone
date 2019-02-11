@@ -83,16 +83,7 @@
 		<div id="no-more-tables" align="center">
 	  	<table class="col-md-12 table table-condensed">
 			
-	  		<tr style="color: #D4AF37; font-size: 20px" align="center">
-			    <th scope="col" class="center"></th>
-			    <th scope="col" class="center">Name</th>
-			    <th scope="col" class="center">Description</th>
-			    <th scope="col" class="center">Category</th>
-			    <th scope="col" class="center">Owner</th>
-			    <th scope="col" class="center">City</th>
-			    <th scope="col" class="center">State</th>
-			</tr>
-			
+
 			<% @businesses.each do |business| %>
 			<% unless business.user.subscribed == false %>
 					<div style="overflow: auto;">
