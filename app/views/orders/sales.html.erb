@@ -22,8 +22,9 @@
 
         <% @orders.each do |order| %>
         <% unless order.shipped == true  %>
+        
           <tr class="business_table">
-            <td class="center" align="center" style="background-color: #D4AF37;"><%= image_tag order.product.picture, style: "width: 50%; height: 50%" %></td>
+            <td class="center" align="center" style="background-color: #D4AF37;"><%= image_tag order.product.picture, style: "width: 55%; height: 55%" %></td>
             <td class="center"><%= order.product.title %></td>
             <td class="center"><%= number_to_currency(order.product.price) %></td>
             <td class="center"><%= number_to_currency(order.product.shipping_cost) %></td>
@@ -42,7 +43,8 @@
                 <%= submit_tag "Shipped", class: "btn", style: "background-color: #D4AF37; color: black; " , data: { confirm: "Are you sure? If you confirm the buyer will be notified that their product was shipped. (If this is done unintentionally it can damage the integrity of your account and could result in account termination.)
                   " } %>
               <% end %>
-
+      
+    
               <% end %> 
 
             </td>
@@ -79,6 +81,7 @@
 
       <% @orders.each do |order| %>
         <% if order.shipped == true  %>
+        <% if order.product != nil %>
         <tr class="business_table">
           <td class="center" align="center" style="background-color: #D4AF37;"><%= image_tag order.product.picture, style: "width: 50%; height: 50%" %></td>
           <td class="center"><%= order.product.title %></td>
@@ -90,6 +93,7 @@
           <td class="center"><%= order.quantity %></td>
           <td class="center"><%= order.created_at.strftime("%B %-d, %Y") %></td>
         </tr>
+        <% end %>
         <% end %>
       <% end %>
     </table>

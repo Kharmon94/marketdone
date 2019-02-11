@@ -1,8 +1,8 @@
 class Product < ApplicationRecord
   belongs_to :user 
   belongs_to :category 
-  has_many :orders 
-  has_many :reviews
+  has_many :orders, dependent: :destroy
+  has_many :reviews, dependent: :destroy
   has_many :votes, dependent: :destroy
   has_many :color_variants, dependent: :destroy
   has_many :size_variants, dependent: :destroy
