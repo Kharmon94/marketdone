@@ -90,7 +90,7 @@
 			    <th scope="col" class="center">Category</th>
 			    <th scope="col" class="center">Owner</th>
 			    <th scope="col" class="center">City</th>
-			     <th scope="col" class="center">State</th>
+			    <th scope="col" class="center">State</th>
 			</tr>
 			
 			<% @businesses.each do |business| %>
@@ -99,7 +99,7 @@
 						<tr class="business_table">
 						<th scope="row" style="background-color: #D4AF37;">
 							<%= link_to business do %>
-			       				<%= image_tag(business.artwork, :class => "thumbz") %>
+			       				<%= image_tag(business.artwork, :style => "width: 40%; height 40%;") %>
 			    			<% end %>
 						</th>
 
