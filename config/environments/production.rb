@@ -56,7 +56,7 @@ Rails.application.configure do
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
-  config.active_storage.service = :amazon
+   config.active_storage.service = :amazon
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
   # config.active_job.queue_adapter     = :resque
@@ -69,17 +69,7 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { host: 'https://www.theblackwomanisgodstores.com/'}
   
-  # config.action_mailer.delivery_method = :smtp
-
-  # config.action_mailer.smtp_settings = {
-  #   address: "smtp.gmail.com",
-  #   port: 587,
-  #   domain: "https://theblackwomanisgodstores.com",
-  #   authentication: "plain",
-  #   enable_starttls_auto: true,
-  #   user_name: ENV["GMAIL_USERNAME"],
-  #   password: ENV["GMAIL_PASSWORD"]
-  #   }
+ 
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
@@ -91,15 +81,6 @@ Rails.application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
-  # config.paperclip_defaults = {
-  #   storage: :s3,
-  #   s3_credentials: {
-  #     bucket: ENV.fetch('S3_BUCKET_NAME'),
-  #     access_key_id: ENV.fetch('AWS_ACCESS_KEY'),
-  #     secret_access_key: ENV.fetch('AWS_SECRET_ACCESS_KEY'),
-  #     s3_region: ENV.fetch('AWS_REGION'),
-  #   }
-  # }
 
   # Use a different logger for distributed setups.
   # require 'syslog/logger'
