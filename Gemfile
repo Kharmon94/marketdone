@@ -38,7 +38,7 @@ gem "devise"
 gem "mini_magick"
 # gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
 # gem 'bootstrap', '~> 4.0.0'
-gem "stripe", :git => 'https://github.com/stripe/stripe-ruby'
+gem "stripe", '~> 4.7.0'
 # gem 'paperclip', :git=> 'https://github.com/thoughtbot/paperclip', :ref => '523bd46c768226893f23889079a7aa9c73b57d68'
 # gem 'aws-sdk'
 gem 'aws-sdk-s3', require: false
