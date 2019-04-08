@@ -20,7 +20,7 @@
 
       <% @orders.each do |order| %>
         <tr class="business_table">
-          <td class="center" align="center" style="background-color: #D4AF37;"><%= image_tag order.product.picture %></td>
+          <td class="center" align="center" style="background-color: #D4AF37;"><%= image_tag order.product.picture, style: "width: 55%; height: 55%" %></td>
           <td class="center"><%= order.product.title %></td>
           <td class="center"><%= number_to_currency(order.product.price) %></td>
           <td class="center"><%= number_to_currency(order.product.shipping_cost) %></td>
