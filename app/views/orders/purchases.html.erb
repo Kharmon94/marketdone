@@ -7,7 +7,7 @@
 
     <table class="col-md-12 table table-condensed" align="center">
       <tr style="color: #D4AF37; font-size: 20px" align="center">
-       <!--  <th class="center" style="margin: 10%">Image</th> -->
+        <th class="center" style="margin: 10%">Image</th>
         <th class="center" style="margin: 10%">Item</th>
         <th class="center" style="margin: 10%">Price</th>
         <th class="center" style="margin: 10%">Shipping Cost </th>
@@ -19,10 +19,9 @@
       </tr>
 
       <% @orders.each do |order| %>
-       <% unless order.product == !present? %>
         <tr class="business_table">
-    <!--       <td class="center" align="center" style="background-color: #D4AF37;"><%#= image_tag order.product.picture, style: "width: 55%; height: 55%" %></td> -->
-          <td class="center"><%= link_to order.product.title, product_path(order.product), style: "color: #D4AF37" %></td>
+          <td class="center" align="center" style="background-color: #D4AF37;"><%= image_tag order.product.picture, style: "width: 55%; height: 55%" %></td>
+          <td class="center"><%= order.product.title %></td>
           <td class="center"><%= number_to_currency(order.product.price) %></td>
           <td class="center"><%= number_to_currency(order.product.shipping_cost) %></td>
           <td class="center"><%= order.seller.username %> <br>Email: <%= order.seller.email %> <br> Message: <%= link_to order.seller.username, conversations_path(author_id: current_user.id, receiver_id: order.seller.id), method: :post, style: "color: #D4AF37" %></td>
@@ -31,7 +30,6 @@
           <td class="center"><%= order.quantity %></td>
           <td class="center"><%= order.created_at.strftime("%B %-d, %Y") %></td>
         </tr>
-        <% end %>
       <% end %>
     </table>
 
