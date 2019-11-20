@@ -24,9 +24,9 @@ class Product < ApplicationRecord
   
   def self.search(search)
     if search
-      where('title LIKE ? OR description LIKE ?', "%#{search}%", "%#{search}%" ).order('id DESC')
+      where('title LIKE ? OR description LIKE ?', "%#{search}%", "%#{search}%" ).order('RANDOM()')
     else
-      order('id DESC') 
+      order('RANDOM()') 
     end
   end
 

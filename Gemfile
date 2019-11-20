@@ -34,7 +34,7 @@ gem "socialization"
 gem 'gon'
 gem "figaro"
 gem 'emoji'
-gem "devise"
+gem "devise", ">= 4.7.1"
 gem "mini_magick"
 # gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
 # gem 'bootstrap', '~> 4.0.0'
