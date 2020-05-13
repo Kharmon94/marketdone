@@ -1,3 +1,16 @@
+<script type="text/javascript">
+  $(document).ready(function(){    
+      //Check if the current URL contains '#'
+      if(document.URL.indexOf("#")==-1){
+          // Set the URL to whatever it was plus "#".
+          url = document.URL+"#";
+          location = "#";
+
+          //Reload the page
+          location.reload(true);
+      }
+  });
+</script>
 
 <div class="row" id="pic_row" data-aos="fade-up" data-aos-duration="1500">
 
@@ -170,14 +183,6 @@
             <div class="usa" id="map"></div>
 
         </div> 
-        <div>
-          <button class="btn" style="background-color: #D4AF37; color: black;" onclick="myFunction()">ACTIVATE MAP</button>
-          <script>
-            function myFunction(){
-              location.reload();
-            }
-          </script>
-        </div>
       </div>
 
 

@@ -1,38 +1,41 @@
 
-<div class="row" data-aos="fade-up" data-aos-duration="1500">
-    <div class="center">
-      <h2 style="color: #D4AF37">Following</h2>
-    </div>
+      <div class="center">
+        <h2 style="color: #D4AF37">Following</h2>
+      </div>
+<% if @user_following.any? %>
+  <% @user_following.each do |f| %> 
+  <div class="row" data-aos="fade-up" data-aos-duration="1500">
 
-    <div id="no-more-tables">
 
-    <table class="col-md-12 table table-condensed" align="center">
+      <div id="no-more-tables">
 
-<% @following.each do |f| %> 
-        <tr >
-          <td class="center" align="center" style="background-color: #D4AF37;"><%= image_tag f.avatar, style: "width: 100px; height:100px" %></td>
-          <td class="center" align="center"><%= link_to f.username, user_path(f.id), :style => "color: #D4AF37;" %></td>
-          <td class="center" align="center" style="word-wrap: break-word; color: #D4AF37"><%= f.bio %></td>
-          <td>
-          	
-            <% if current_user.follows?(f) %>
+      <table class="col-md-12 table table-condensed" align="center">
 
-              <%= link_to('Unfollow', unfollow_user_path(f.id), :style => "color: black; background-color: #D4AF37", class: "btn", method: :post) %>
+          <tr >
+            <td class="center" align="center" style="background-color: #D4AF37;"><%= image_tag f.avatar, style: "width: 100px; height:100px" %></td>
+            <td class="center" align="center"><%= link_to f.username, user_path(f.id), :style => "color: #D4AF37;" %></td>
+            <td class="center" align="center" style="word-wrap: break-word; color: #D4AF37"><%= f.bio %></td>
+            <td>
+            	
+              <% if current_user.following?(f) %>
 
-                  <% else %>
+                <%= link_to('Unfollow', unfollow_user_path(f.id), :style => "color: black; background-color: #D4AF37", class: "btn", method: :post) %>
 
-              <%= link_to('Follow', follow_user_path(f.id), :style => "color: black; background-color: #D4AF37", class: "btn", method: :post) %>
+                    <% else %>
 
-            <% end %>
-          </td>
+                <%= link_to('Follow', follow_user_path(f.id), :style => "color: black; background-color: #D4AF37", class: "btn", method: :post) %>
 
-        </tr>
+              <% end %>
+            </td>
 
-    </table>
+          </tr>
+
+      </table>
+
+      </div>
+
+  </div>
+
+  <br>
+  <% end %>
 <% end %>
-    </div>
-
-</div>
-
-<br>
-

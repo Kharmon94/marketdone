@@ -1,4 +1,16 @@
+<script type="text/javascript">
+	$(document).ready(function(){    
+	    //Check if the current URL contains '#'
+	    if(document.URL.indexOf("#")==-1){
+	        // Set the URL to whatever it was plus "#".
+	        url = document.URL+"#";
+	        location = "#";
 
+	        //Reload the page
+	        location.reload(true);
+	    }
+	});
+</script>
 
 <div class="row">
 	<div class="col-md-8 center" align="center" data-aos="fade-right" data-aos-duration="1500">
@@ -7,18 +19,6 @@
 		<script  type="text/javascript" src="http://yoursite.com/worldmap.js"></script>
 
 		<div class="usa" id="map"></div><br>
-
-		<strong><h5>If map is not showing please press this button. Thank You!</h5></strong>
-			        <div>
-			          <button class="btn" style="background-color: #D4AF37; color: black;" onclick="myFunction()">Activate Map</button>
-
-			          <script>
-			            function myFunction(){
-			              location.reload();
-			            }
-			          </script>
-			        </div>
-		<strong><h4>Double Click your state to find business near you!</h4></strong>
 
 	</div>
 
@@ -70,7 +70,6 @@
 
 	</div>
 </div>
-
 
 
 

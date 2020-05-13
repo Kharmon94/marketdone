@@ -22,8 +22,17 @@ Rails.application.routes.draw do
     member do
       post :follow
       post :unfollow
+      get :followers
+      get :following
     end
+
+    # get 'followers' => "users#followers"
+    # get 'following' => "users#following"
+    get "/:id", :to => "users#show", :as => :friendly_user
   end
+
+
+
   resources :categories, only: [:index, :show]
   resources :charges, only: [:new, :create]
   # resources :profiles, only: [:new, :edit, :create]
@@ -42,12 +51,12 @@ Rails.application.routes.draw do
   resources :tags, only: [:index, :show]
 
   # get 'vendor' => "products#vendor"\
+  # get '/:username' => 'users#show', :constrain => { :username => /[a-zA-Z-]+/ }
   delete 'unsubscribe' => 'subscribers#unsubscribe'
   get 'sales' => "orders#sales"
   get 'purchases' => "orders#purchases"
   get 'checkout' => "orders#checkout"
-  get 'followers' => "users#followers"
-  get 'following' => "users#following"
+ 
   # get 'product/:id/likes', to: 'products#likes', as: :likes
   # get 'product/:id/unlikes', to: 'products#unlikes', as: :unlikes
   get 'charges/new'
