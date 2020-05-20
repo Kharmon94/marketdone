@@ -142,7 +142,7 @@
         <br>
         <div >
           <%= image_tag (@product.user.avatar), style: "width: 75px; height: 75px; border-radius: 100px" %>
-          <h4><%= link_to @product.user.username, user_path(@product), :style => "color: #D4AF37;" %></h4>
+          <h4><%= link_to @product.user.username, user_path(@product.user), :style => "color: #D4AF37;" %></h4>
         </div>
       </div>
     </div>
