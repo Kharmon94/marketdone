@@ -28,7 +28,7 @@
             <div class="col-md-6" style="font-size: 25px; color: #D4AF37; margin-top: 3%" >
               <h4> Colors Available: </h4> 
               <% @product.color_variants.each do |color_variant| %>
-                  <ul>
+                  <ul style="list-style-type: none; padding-inline-start: 0px !important;">
                     <li><%= color_variant.color %></li>
                   </ul>
               <% end %>
@@ -37,7 +37,7 @@
             <div class="col-md-6" style="font-size: 25px; color: #D4AF37;  margin-top: 3%">
                <h4> Sizes Available: </h4> 
               <% @product.size_variants.each do |size_variant| %>
-                  <ul>
+                  <ul style="list-style-type: none; padding-inline-start: 0px !important;">
                     <li><%= size_variant.size %></li>
                   </ul>
               <% end %>
