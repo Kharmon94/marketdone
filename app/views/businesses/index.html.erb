@@ -79,8 +79,7 @@
 								<%= link_to business do %>
 				       				<%= image_tag(business.artwork, :style => "width: 75px; height: 75px; margin-top: 20%;") %>
 				    			<% end %>
-							</div>
-							
+							</div>	
 						</div>
 						<div class="col-md-6">
 							<div>
@@ -92,7 +91,7 @@
 						</div>
 					</div>
 					<div class="row" style="margin-top: 1%; margin-bottom: 1%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; word-wrap: break-word;">
-						<h3 style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; word-wrap: break-word;"><%= link_to business.title, business_path(business), style: "color: #D4AF37;" %></h3>
+						<h3 style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; word-wrap: break-word;"><%= link_to business.title, business_path(business), style: "color: #D4AF37; width: 80%;" %></h3>
 					</div>
 					<div class="row" style="margin: 3%;">
 						<h4 style="color: #D4AF37">Description:</h4>
