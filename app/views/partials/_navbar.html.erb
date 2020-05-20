@@ -1,5 +1,5 @@
   
-  <nav class="navbar navbar-default" role="navigation">
+  <nav class="navbar navbar-default" role="navigation" data-aos="fade" data-aos-duration="2000">
   <!-- Brand and toggle get grouped for better mobile display -->
   <div class="navbar-header">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -8,7 +8,6 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-
   </div>
 
   <!-- Collect the nav links, forms, and other content for toggling -->
@@ -28,6 +27,7 @@
             <li><%= link_to "View Profile", user_path(current_user), style: "color: #D4AF37; size: 10px;" %></li>
             <li><%= link_to "Manage Sales", sales_path(current_user), style: "color: #D4AF37; size: 10px;" %></li>
             <li><%= link_to "View Purchases", purchases_path(current_user), style: "color: #D4AF37; size: 10px;" %></li>
+            <li><%= link_to 'Sell Your Product', new_product_path, class: "btn", style: "background-color: #D4AF37; color: black; margin-bottom: 15px;", data: { no_turbolink: true }  %></li>
           </ul>
         </li>
 

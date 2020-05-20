@@ -14,7 +14,7 @@ class Product < ApplicationRecord
   has_one_attached :picture, dependent: :destroy
   has_many_attached :images, dependent: :destroy
   validates :picture, presence: true, blob: { content_type: :image }
-  validates :images, presence: true, blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg'], size_range: 1..5.megabytes }
+  validates :images, presence: true, blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg', 'image/gif'], size_range: 1..5.megabytes }
 
   validates_numericality_of :price, greater_than_or_equal_to: 0
   validates :title, :description, :price, :shipping_cost, :condition, presence: true

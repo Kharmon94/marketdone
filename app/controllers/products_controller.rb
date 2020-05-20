@@ -1,14 +1,11 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:create, :show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only:[:create, :edit, :update, :destroy]
+  before_action :authenticate_user!, only:[:create, :edit, :update, :destroy, :new]
   load_and_authorize_resource
 
 
   # GET /products
   # GET /products.json 
-  # def index
-  #   @products = Product.all
-  # end
 
   def index
       @products = Product.search(params[:search]).page(params[:page])
@@ -100,23 +97,6 @@ class ProductsController < ApplicationController
     end
   end
 
-  # def likes
-  #     @user = current_user # before_action :authenticate_user, only: [:likes]
-  #     @product = Product.find(params[:id])
-  #     @user.like!(@product)
-  #     redirect_to product_path(@product)
-  # end
-
-  # def unlikes
-  #     @user = current_user # before_action :authenticate_user, only: [:likes]
-  #     @product = Product.find(params[:id])
-  #     @user.unlike!(@product)
-  #     redirect_to product_path(@product)
-  # end
-
-  # def vendor
-  #    @products = Product.where(user: current_user).order("created_at DESC")
-  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.

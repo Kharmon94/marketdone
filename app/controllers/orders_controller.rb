@@ -49,7 +49,7 @@ class OrdersController < ApplicationController
 
                 Stripe::Charge.create(charge_params) # return a Stripe::Charge object
 
-                  
+              
 
                   rescue Stripe::CardError => e
                     flash[:error] = e.message
@@ -79,25 +79,6 @@ class OrdersController < ApplicationController
     end
   end
 
-  # def update
-
-  #   @order = Order.find_by(params[:id])
-
-  #     respond_to do |format|
-  #     if @order.update_attributes(params[:order][:shipped])
-  #       UserMailer.shipped_email(@order.buyer).deliver
-  #       format.html { redirect_to sales_path, notice: 'Order was shipped the buyer will be notified. Thank you!' }
-        
-  #     else
-  #      format.html { redirect_to sales_path, notice: 'Order was not shipped successfully the buyer will not be notified.' }
-  #     end
-  #   end
-  # end
-
-  # def checkout
-  #   @product = Product.find_by_id(params[:product_id])
-  # end
-
   def shipped
     Order.where(id: params[:order_id]).update_all(shipped: true)
     @order = Order.find_by_id(params[:order_id])
@@ -110,7 +91,9 @@ class OrdersController < ApplicationController
     @orders = Order.all.where(seller: current_user).order("created_at DESC").page(params[:page])
     @nonshipped_orders = Order.nonshipped
     @complete_tasks = Order.shipped
+    # @total_sales = Order.all.where(seller: current_user).count
   end
+
 
   def purchases
     @orders = Order.all.where(buyer: current_user).order("created_at DESC").page(params[:page])

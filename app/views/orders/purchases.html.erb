@@ -1,44 +1,53 @@
-<div class="row" data-aos="fade-up" data-aos-duration="1500">
-    <div class="center">
-      <h2 style="color: #D4AF37">Your Purchase History:</h2>
-    </div>
-
-    <div id="no-more-tables">
-
-    <table class="col-md-12 table table-condensed" align="center">
-      <tr style="color: #D4AF37; font-size: 20px" align="center">
-        <!-- <th class="center" style="margin: 10%">Image</th> -->
-        <th class="center" style="margin: 10%">Item</th>
-        <th class="center" style="margin: 10%">Price</th>
-        <th class="center" style="margin: 10%">Shipping Cost </th>
-        <th class="center" style="margin: 10%">Seller</th>
-        <th class="center" style="margin: 10%">Color</th>
-        <th class="center" style="margin: 10%">Size</th>
-        <th class="center" style="margin: 10%">Quantity</th>
-        <th class="center" style="margin: 10%">Date Purchased</th>
-      </tr>
-
-      <% @orders.each do |order| %>
-        <tr class="business_table">
-   <!--        <td class="center" align="center" style="background-color: #D4AF37;"><%#= image_tag order.product.picture %></td> -->
-          <td class="center"><%= order.product.try(:title) %></td>
-          <td class="center"><%= number_to_currency(order.product.try(:price)) %></td>
-          <td class="center"><%= number_to_currency(order.product.try(:shipping_cost)) %></td>
-          <td class="center"><%= order.seller.username %> <br>Email: <%= order.seller.email %> <br> Message: <%= link_to order.seller.username, conversations_path(author_id: current_user.id, receiver_id: order.seller.id), method: :post, style: "color: #D4AF37" %></td>
-          <td class="center"><%= order.try(:color) %></td>
-          <td class="center"><%= order.try(:size) %></td>
-          <td class="center"><%= order.try(:quantity) %></td>
-          <td class="center"><%= order.created_at.strftime("%B %-d, %Y") %></td>
-        </tr>
-      <% end %>
-    </table>
-
-    </div>
-
-        <div class="row" style="margin-left: 5%">
-          <%= paginate @orders %>
-       </div>
+<div class="center">
+  <h2 style="color: #D4AF37">Your Purchase History:</h2>
 </div>
+
+<div class="row" data-aos="fade-up" data-aos-duration="1500">
+  <% @orders.each do |order| %>
+      <div class="row" align="center">      
+        <div style="border: solid; border-width: 1px; border-radius: 10px; border-color: #D4AF37; width: 100%; height: auto; padding: 1%; margin-top: 2%;">
+          <div class="row">
+            <div class="col-md-3">
+              <%= image_tag order.product.picture, style: "width: 150px; height: 150px; margin-top: 5%" %>
+            </div>
+            <div class="col-md-3">
+              <h4 style="color: #D4AF37">Order Details:</h4>
+              <p>Title: <%= order.product.title %></p>
+              <p>Price: <%= number_to_currency(order.product.price) %></p>
+              <p>Shipping Cost: <%= number_to_currency(order.product.shipping_cost) %></p>
+              <p>Quantity: <%= order.quantity %></p>
+              <p>Color: <%= order.try(:color) %></p>
+              <p>Size: <%= order.try(:size) %></p>
+            </div>
+            <div class="col-md-3">
+                <h4 style="color: #D4AF37">
+                  Shipper Information:
+                </h4>
+                <p>Username: <%= order.seller.username %></p>
+                <p>Email: <%= order.seller.email %></p> 
+                <p>Send a Message: <%= link_to order.seller.username, conversations_path(author_id: current_user.id, receiver_id: order.seller.id), method: :post, style: "color: #D4AF37" %></p>     
+            </div>
+            <div class="col-md-3">
+              <h4 style="color: #D4AF37">
+                Shipping Address:
+              </h4>
+              <p>Address: <%= order.address %></p>
+              <p>City: <%= order.city %></p>
+              <p>State: <%= order.state %></p>
+              <p>Zip: <%= order.zip %></p>
+              <p>Country: <%= order.country %></p>
+            </div>
+          </div>
+          
+        </div>
+
+        <div class="row" style="margin-left: 5%; margin-top: 10%">
+            <%= paginate @orders %>
+        </div>
+    </div>
+  <% end %>
+</div>
+
 
 <br>
 

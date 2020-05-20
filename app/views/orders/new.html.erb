@@ -1,76 +1,62 @@
-<div align="center" style="color: #D4AF37; margin-bottom: 2%">
-	<h2><strong>Place Your Order For:</strong><br> <%= @product.title %></h2>
+<% if @order.errors.any? %>
+  <div id="error_explanation" class="alert alert-danger alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <h4><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h4>
+
+    <ul>  
+    <% @order.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div id="stripe_error" class="alert alert-danger" style="display:none">
+  <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
 </div>
 
-  <% if @order.errors.any? %>
-    <div id="error_explanation" class="alert alert-danger alert-dismissable">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <h4><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h4>
+<div class="row" align="left" style="color: #D4AF37; margin-bottom: 5%; margin-top: 5%; width: 50%">
+  <h4><strong>Placing Your Order For:</strong></h4><br> 
+  <h2><%= @product.title %></h2>
+</div>
 
-      <ul>  
-      <% @order.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<div class="row" data-aos="fade-up" data-aos-duration="2000">
+
+  <div class="col-md-4" align="center">
+    <div class="row" style="margin-bottom: 5%">
+      <%= image_tag @product.picture, style: "width: 350px; height: 350px; border-radius: 5px;" %>
     </div>
-  <% end %>
-
-    <article>
-      <% if flash[:error].present? %>
-        <div id="error_explanation">
-          <p><%= flash[:error] %></p>
+    <div class="row" style="margin-top: 2%; margin-bottom: 5%; color: #D4AF37;">
+        <h3>
+          Product Seller:
+        </h3>
+        <br>
+        <div >
+          <%= image_tag (@product.user.avatar), style: "width: 75px; height: 75px; border-radius: 100px" %>
+          <h4><%= link_to @product.user.username, user_path(@product), :style => "color: #D4AF37;" %></h4>
         </div>
-      <% end %>
-    </article>
-
-      <div id="stripe_error" class="alert alert-danger" style="display:none">
-        <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
+    </div>
+    <div class="row" align="center">
+      <h4 style="color: #D4AF37;">
+        Gallery:
+      </h4>
+      <div style="margin-bottom: 5%">
+        <%= carousel_for(@product.images) %>
       </div>
+    </div>
+    
+  </div>
 
+  <div class="col-md-4">
+    <h3 style="color: #D4AF37;">How many do you need?</h3>
+    <h3 style="color: #D4AF37;">Don't forget to Update your Quantity!!!</h3>
 
-<div class="row" style="margin: 1%; margin-bottom: 5%;">
-
-	<div class="col-md-4"  style="color: #D4AF37;" data-aos="fade-right" data-aos-duration="1000">
-	    <div align="center" style="border-color: #D4AF37; border-width: 1px; border-style: solid; border-radius: 5px; padding:2%; width: 90%; height: auto; margin: 5%;">
-	        <div  style="border-color: #D4AF37; border-width: 1px; border-style: solid; border-radius: 5px; padding:1%;">
-	          <div>
-	            <%= image_tag @product.picture, style: "width: 60%; height: 40%; border-radius: 5px;" %>
-	          </div>
-	        </div>
-
-	        <div class="row" style="word-wrap: break-word; margin-bottom: 7%;">
-	          <h3><%= @product.title %></h3>
-	          <ul style="list-style-type: none; margin-left: -14%;">
-
-	            <li><h4>Seller: <%= link_to @product.user.username, user_path(@product), :style => "color: #D4AF37;" %></h4></li> 
-	              <li><em>Condition:</em> <%= @product.condition %></li>         
-	          </ul>
-	        </div>
-		</div>
-	</div>
-
-	<div class="col-md-4" style="background-color: #D4AF37; padding-top: 5%; padding-bottom: 5%; width: 100%; color: black;" data-aos="zoom-out" data-aos-duration="1300">	
-        <ul style="list-style-type: none; ">
-            <li><h3><strong><em>Price: </em><%= number_to_currency(@product.price) %></strong></h3></li> 
-            <li><h3><em>Shipping Price: </em><%= number_to_currency(@product.shipping_cost) %></h3></li> 
-            
-            <hr style="color: black">
-            <li><strong><h2 id="order_total">Total: $<span id="show_total"></span></h2></strong></li>
-        </ul>
-	</div>	
-
-	<div class="col-md-4"  style="" data-aos="fade-left" data-aos-duration="1500">
-		<h3 style="color: #D4AF37;">Don't forget to Update your Quantity!!!</h3>
-
-	
-			<div class="col-md-6">
-				<p style="color: #D4AF37;">Quantity</p>	
-				<div class="row">
-			       <button id="submit" class="btn btn-success" style="margin-top: 3%">Update Quantity</button> 
-			    </div> 
-			</div>
-		
-				
+ 
+      
+    
+        <div class="row" align="center">
+          <button id="submit" class="btn btn-success" style="margin-top: 2%">Update Quantity</button>
+        </div>
 
        <%= form_for([@product, @order], :html => {id: "order_form"})  do |f| %>
           
@@ -82,15 +68,13 @@
 
 
             
-			<div class="col-md-6">
-              <div class="form-group" style="margin-top: 11%">
-                
-                <%= f.number_field :quantity, class: "form-control", id: "quantity", value: 1, min: 1, step: 1 %>
-              </div>
-			</div>
-	
-		
-		
+      <div class="row" align="center">
+              
+                <%= f.number_field :quantity, class: "form-control", id: "quantity", style: "width: 50%; margin-top: 2%;", value: 1, min: 1, step: 1 %><br>
+                 
+      </div>
+  
+    
 
               <h3 style="color: #D4AF37;">Please Enter Your Shipping Information:</h3>
               
@@ -162,7 +146,7 @@
                 </div>
               </div>
 
-              <div class="row" align="center">
+              <div class="row" align="center" style="margin-bottom: 5%; margin-top: 5%;">
                         <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                                 data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
                                 data-description="NAME: <%= @product.title %>"
@@ -186,43 +170,48 @@
 
         <% end %>
 
-		
-	</div>
+    
+  </div>
 
-
+  <div class="col-md-4" align="center">
+    
+    <div style="width: 300px; height: 300px; border: solid; border-width: 1px; border-color: #D4AF37; border-radius: 10px; color: #D4AF37;">
+      <div class="row">
+        <ul style="list-style-type: none; width: 80%; margin-top: 15%; padding-inline-start: 0px !important;">
+              <li><h3><strong><em>Price: </em><br><%= number_to_currency(@product.price) %></strong></h3></li> 
+              <li><h3><em>Shipping Price: </em><br><%= number_to_currency(@product.shipping_cost) %></h3></li> 
+              
+              <hr style="color: black">
+              <li><strong><h2 id="order_total">Total: $<span id="show_total"></span></h2></strong></li>
+        </ul>
+      </div>
+      
+    </div>
+  </div>
 
 
 </div>
 
 
-        <script>
+<script>
+        $(document).ready(function(){
+        document.getElementById('submit').onclick=function(){
+          var quantity = parseInt(document.getElementById('quantity').value)
+          var cost = <%= @product.price %>
+          var s_cost = <%= @product.shipping_cost %>
+          total = (cost + s_cost) * quantity
+          document.getElementById("show_total").innerText = total
+        };
+       });
 
-                $(document).ready(function(){
-                document.getElementById('submit').onclick=function(){
-                  var quantity = parseInt(document.getElementById('quantity').value)
-                  var cost = <%= @product.price %>
-                  var s_cost = <%= @product.shipping_cost %>
-                  total = (cost + s_cost) * quantity
-                  document.getElementById("show_total").innerText = total
-                };
-               });
+        $(document).ready(function(){
+          var quantity = parseInt(document.getElementById('quantity').value)
+          var cost = <%= @product.price %>
+          var s_cost = <%= @product.shipping_cost %>
+          total = (cost + s_cost) * quantity 
+          document.getElementById("show_total").innerText = total
+        });
+</script>
 
-                $(document).ready(function(){
-                  var quantity = parseInt(document.getElementById('quantity').value)
-                  var cost = <%= @product.price %>
-                  var s_cost = <%= @product.shipping_cost %>
-                  total = (cost + s_cost) * quantity 
-                  document.getElementById("show_total").innerText = total
-                });
-        </script>
+<script src="https://checkout.stripe.com/checkout.js"></script>
 
-
-
-     
-
-    <script src="https://checkout.stripe.com/checkout.js"></script>
-
-
-
-
-<h4 style="color:#D4AF37"><</h4><%= link_to 'Back', product_orders_path(@product), :style => "color: #D4AF37;" %>

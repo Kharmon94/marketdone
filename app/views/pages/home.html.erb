@@ -1,3 +1,4 @@
+<!-- load page resources -->
 <script type="text/javascript">
   $(document).ready(function(){    
       //Check if the current URL contains '#'
@@ -12,7 +13,8 @@
   });
 </script>
 
-<div class="row" id="pic_row" data-aos="fade-up" data-aos-duration="1500">
+<!-- Carousel Row -->
+<div class="row" id="pic_row" data-aos="fade-up" data-aos-duration="1500" align="center">
 
   <div id="myCarousel" class="carousel slide" data-ride="carousel" style="height: 370px">
 
@@ -102,88 +104,93 @@
 </div>
 
 
+<!-- Product Row -->
 
-      <div class="row" style="margin-top: 15%; margin-bottom: 4%" align="center" >
-        <div class="col-md-12">
-            <div class="col-md-4 " align="center"  data-aos="fade-up-right" data-aos-duration="2000">
-              <img src="https://s3.amazonaws.com/tbwigsassets/assets/STORE+GOLD.png" style="width: 50%; height: 50%;" >
-            </div>
-            <div class="col-md-4" align="center" style="padding: 5%; color: #D4AF37; width: 60%;" data-aos="fade-up-left" data-aos-duration="2000">
-              <h3><strong>Welcome to the Black Social Marketplace</strong></h3>
-              
-                <p>Upload and sell your Products.</p>
-                <p>Follow/Unfollow your Clients and other Business Owners. </p>
-                <p>Grow your Business & Develop your Network!</p>
-              
-            </div>          
-        </div>
+<!-- Product Row header -->
+<div class="row" style="margin-top: 15%; margin-bottom: 4%" align="center" >
+  <div class="col-md-12">
+      <div data-aos="fade-up" data-aos-duration="2000">
+        <img src="https://s3.amazonaws.com/tbwigsassets/assets/STORE+GOLD.png" style="width: 25%; height: 25%;" >
       </div>
+      <div style="padding: 5%; color: #D4AF37; width: 60%;" data-aos="fade-up" data-aos-duration="2000">
+        <h3><strong>Welcome to the Black Social Marketplace</strong></h3>
+        
+          <p>Upload and sell your Products.</p>
+          <p>Follow/Unfollow your Clients and other Business Owners. </p>
+          <p>Grow your Business & Develop your Network!</p>
+        
+      </div>          
+  </div>
+</div>
 
-      <div class="row"  style="border-radius: 20px; margin-bottom: 10%" data-aos="zoom-in" data-aos-duration="2000">
-        <div class="col-xs-12" align="center">
-            <% @products.each do |product| %>
+<!-- Product Row Products -->
+<div class="row"  style="border-radius: 20px; margin-bottom: 10%" data-aos="fade-up" data-aos-duration="2000">
+  <div class="col-xs-12" align="center">
+      <% @products.each do |product| %>
 
-              <div  id="t_backdrop">
-                  <div class="col-md-3" style=" height: 100% !important">
-                      <div class="thumbnail" style="height: 60% !important;">
-                          <%= link_to product do %>
-                            <div style="height: 200px; width: 250px; opacity: 0.88; padding: 15px; background-color: #D4AF37; border-radius: 5px">
-                                <div style=" height: 110% !important">
-                                  <%= image_tag(product.picture, :class => "thumbs", :id => "thumbs") %>
-                                </div>
-                            </div>
-
-                           
-                          <% end %>
-                          <div class="caption" align="center" style=" width: 250px; height: 200px; padding: 3%; word-wrap: break-word; color: #D4AF37 !important; font-size: 17px; opacity: 0.85" >
-                            <h4><%= product.title %></h4>
-                            <h3><strong><%= number_to_currency(product.price) %></strong></h3>
-                            <p><%= product.category.name %></p>
-                            <p><em>Seller:</em><br> <%= link_to product.user.username, user_path(product.user), :style => "color: #D4AF37" %></p>
-                          </div>
+        <div  id="t_backdrop">
+            <div class="col-md-3" style=" height: 100% !important">
+                <div class="thumbnail" style="height: 65% !important;">
+                    <%= link_to product do %>
+                      <div style="height: 200px; width: 250px; background-color: black;">
+                          
+                            <%= image_tag(product.picture, :class => "thumbs", :id => "thumbs", :style => "width: 100%; height: 100%;") %>
+                        
                       </div>
-                  </div>
-              </div>  
 
-            <% end %> 
-          
-        </div>
-
-        <div class="row" align="center" >
-          <%= link_to "ENTER STORE", products_path, class: "btn", style: "background-color: #D4AF37; color: black; margin-bottom: 15px;" %>
-        </div>
-
-      </div>
-
-
-
-      <div class="row" id="homeproducts" style="margin-top: 15%; margin-bottom: 3%" align="center" >
-        <div class="col-md-12">
-            <div class="col-md-5" align="center" data-aos="fade-up-right" data-aos-duration="2000">
-                <img src="https://s3.amazonaws.com/tbwigsassets/assets/blkbuzservcblkgold2.png" style="width: 40%; height: 40%" >
+                     
+                    <% end %>
+                    <div class="caption" align="center" style=" width: 250px; height: 200px; padding: 3%; word-wrap: break-word; color: #D4AF37 !important; font-size: 17px; opacity: 0.85; margin-top: 5%" >
+                      <h4><%= product.title %></h4>
+                      <h3><strong><%= number_to_currency(product.price) %></strong></h3>
+                      <p><%= product.category.name %></p>
+                      <p><em>Seller:</em><br> <%= link_to product.user.username, user_path(product.user), :style => "color: #D4AF37" %></p>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-5" align="center" style="padding-top: 3%; color: #D4AF37; width: 55%;" data-aos="fade-up-left" data-aos-duration="2000">
-              <h3><strong>Advertise your business with us!</strong></h3>
-              
-                <p>Subscribe and Promote your Business with us!</p>
-                <p>We make finding Black Businesses in our <br>Network Across the United States and soon the World easy.</p>
-                <p>Join our Expanding Community!</p>
-             
-            </div>          
+        </div>  
+
+      <% end %> 
+    
+  </div>
+
+  <div class="row" align="center" style="margin-top: 3%">
+    <%= link_to "ENTER STORE", products_path, class: "btn", style: "background-color: #D4AF37; color: black; margin-bottom: 15px;" %>
+  </div>
+
+</div>
+
+<!-- Business Row -->
+
+  <div class="row" id="homeproducts" style="margin-top: 15%; margin-bottom: 3%" align="center" >
+    <div class="col-md-12">
+        <div align="center" data-aos="fade-up" data-aos-duration="2000">
+            <img src="https://s3.amazonaws.com/tbwigsassets/assets/blkbuzservcblkgold2.png" style="width: 25%; height: 25%" >
         </div>
+        <div align="center" style="padding-top: 3%; color: #D4AF37; width: 55%;" data-aos="fade-up" data-aos-duration="2000">
+          <h3><strong>Advertise your business with us!</strong></h3>
+          
+            <p>Subscribe and Promote your Business with us!</p>
+            <p>We make finding Black Businesses in our <br>Network Across the United States and soon the World easy.</p>
+            <p>Join our Expanding Community!</p>
+            <strong><h4>Click your state below to find a black business near you!</h4></strong>
+         
+        </div>          
+    </div>
 
-      </div>
+  </div>
   
-      <div class="row" align="center" data-aos="zoom-in" data-aos-duration="2000">
-        <script type="text/javascript" src="http://yoursite.com/mapdata.js"></script>   
-        <script  type="text/javascript" src="http://yoursite.com/worldmap.js"></script>
-        
-        <div class="row" align="center">
-        
-            <div class="usa" id="map"></div>
+  <div class="row" align="center" data-aos="zoom-in" data-aos-duration="2000">
+    <script type="text/javascript" src="http://yoursite.com/mapdata.js"></script>   
+    <script  type="text/javascript" src="http://yoursite.com/worldmap.js"></script>
+    
+    <div class="row" align="center">
+      <div class="usa" id="map"></div>
+      <strong><h4 style="margin-top: 10%; color: #D4AF37">Click your state above to find a black business near you!</h4></strong>
+    </div> 
 
-        </div> 
-      </div>
+
+  </div>
 
 
 

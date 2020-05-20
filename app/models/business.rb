@@ -13,7 +13,7 @@ class Business < ApplicationRecord
     has_one_attached :artwork, dependent: :destroy
     has_many_attached :selections, dependent: :destroy
     validates :artwork, presence: true, blob: { content_type: :image }
-    validates :selections, presence: true, blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg'], size_range: 1..5.megabytes }
+    validates :selections, presence: true, blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg', 'image/gif'], size_range: 1..5.megabytes }
     # validates_attachment_presence :image
 
   def self.search(find)

@@ -1,24 +1,54 @@
-<div class="container">
-  
-  <div class="row" align="center">
-
-    <div class="col-md-5" style="margin: 3%">
-      <h2 style="color: #D4AF37;"> <%= @business.title %></h2>
-      <h2><%= link_to @business.user.username, user_path(@business.user), :style => "color: #D4AF37" %></h2>
-      <%= image_tag @business.artwork, :style => "width: 75%; height: 75%; margin: 5%;" %> 
-      
+<div class="row" align="center" data-aos="fade-up" data-aos-duration="2000">
+    <div class="row" align="center">
+      <h1 style="color: #D4AF37; margin-bottom: 5%"> <%= @business.title %></h1>
     </div>
 
-    <div class="col-md-5" style="margin: 3%">
+    <div class="col-md-6" >
+      <%= image_tag @business.artwork, :style => "width: 65%; height: 65%;" %> 
 
-      <div class="row">
-        <div style="width: 100%; color: #D4AF37; background-color: rgba(212,175,55, 0.1); padding: 2%; width: 100%; word-wrap: break-word; margin-bottom: 5%; margin-top: 5%; border-radius: 5px; ">
-          <h3>Description</h3>
-          <p style="font-size: 18px"><%= @business.description %></p>
-          <p><strong><%= @business.business_category.name %></strong></p>
-        </div>
-
+      <div style="margin-top: 15%; color: #D4AF37">
+        <h2>
+          Business Owner:
+        </h2>
+        <%= image_tag (@business.user.avatar), style: "width: 50px; height: 50px; border-radius: 100px" %> 
+        <h2><%= link_to @business.user.username, user_path(@business.user), :style => "color: #D4AF37" %></h2>
       </div>
+
+      <div class="row" style="margin-top: 7%; margin-bottom: 5%" align="center">
+        <h3 style="color: #D4AF37; margin-bottom: 2%">
+          Share this Business:
+        </h3>
+          <div>
+            <!-- The text field -->
+            <input type= value="" id="myInput" class="form-control" style="color: black; width: 65%;"><br>
+
+            <!-- The button used to copy the text -->
+            <button onclick="myFunction()" class="btn" style="background-color: #D4AF37; color: black">Copy Link</button>
+
+            <script type="text/javascript">
+              document.getElementById("myInput").value = window.location.href
+              function myFunction() {
+                /* Get the text field */
+                var copyText = document.getElementById("myInput");
+                
+
+                /* Select the text field */
+                copyText.select();
+                copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+
+                /* Copy the text inside the text field */
+                document.execCommand("copy");
+
+                /* Alert the copied text */
+                alert("Copied the text: " + copyText.value);
+              }
+            </script>
+          </div>
+      </div>
+    </div>
+        
+    
+    <div class="col-md-6" >
 
       <div class="row" style="width: 80%; margin-top: 5%; margin-bottom: 5%; color: #D4AF37">
         <p><strong>Address:</strong> <%= @business.address %></p>
@@ -29,18 +59,23 @@
         <p><strong>Number:</strong><%= @business.number %></p>
       </div>
 
+
+      <div class="row" >
+        <div style="width: 100%; color: #D4AF37; background-color: rgba(212,175,55, 0.1); padding: 2%; width: 100%; word-wrap: break-word; margin-bottom: 10%; margin-top: 5%; border-radius: 5px; ">
+          <h3>Description</h3>
+          <p style="font-size: 18px"><%= @business.description %></p>
+          <p><strong><%= @business.business_category.name %></strong></p>
+        </div>
+      </div>
+
       <div class="row">
         <div align= "center" >
           <%= carousel_for(@business.selections) %>
         </div>
       </div>
-       
     </div>
-
-    
-  </div>
-
 </div>
+
 
 
 <div class="row" align="center">

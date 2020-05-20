@@ -1,39 +1,31 @@
-
-<div class="center">
-   <h2 style="color: #D4AF37">Followers</h2>
-</div>
-
-<% if @user_followers.any? %>
-  <% @user_followers.each do |f| %> 
-    <div class="row" data-aos="fade-up" data-aos-duration="1500">
-      
-      <table class="col-md-12 table" align="center">
-
-        <tr>
-          <td class="center" align="center" style="background-color: #D4AF37;"><%= image_tag f.avatar, style: "width: 100px; height:100px" %></td>
-                <td class="center" align="center"><%= link_to f.username, user_path(f.id), :style => "color: #D4AF37;" %></td>
-                <td class="center" align="center" style="word-wrap: break-word; color: #D4AF37"><%= f.bio %></td>
-                <td>
-                	
-                  <% if current_user.following?(f) %>
-
-                    <%= link_to('Unfollow', unfollow_user_path(f.id), :style => "color: black; background-color: #D4AF37", class: "btn", method: :post) %>
-
-                        <% else %>
-
-                    <%= link_to('Follow', follow_user_path(f.id), :style => "color: black; background-color: #D4AF37", class: "btn", method: :post) %>
-
-                  <% end %>
-          </td>
-
-            </tr>
-          </table>
+    <div class="row" align="center" style="margin-bottom: 5%">
+      <h2 style="color: #D4AF37">Followers</h2>
     </div>
-  <% end %>
-<% end %>
+    
+  <div class="row" data-aos="fade-up" data-aos-duration="1500">
+      <% if @user_followers.any? %>
+        <% @user_followers.each do |f| %> 
+          <div class="col-md-3" align="center">
+              <div style="width: 80%; height: auto; border-radius: 10px; background-color: #D4AF37; padding-top: 4%; padding-bottom: 4%; margin-bottom: 5%">
+               
+                  <div>
+                    <%= image_tag f.avatar, style: "width: 75px; height: 75px; border-radius: 100px;" %>
+                  </div>
+                  <p><%= link_to f.username, user_path(f.id), :style => "color: black;" %></p> 
+               
+               
+                  <div style="margin-top: 10%">
+                    <% if current_user.following?(f) %>
+                          <%= link_to('Unfollow', unfollow_user_path(f.id), :style => "color: #D4AF37; background-color: black", class: "btn", method: :post) %>
+                              <% else %>
+                          <%= link_to('Follow', follow_user_path(f.id), :style => "color: #D4AF37; background-color: black", class: "btn", method: :post) %>
+                    <% end %>
+                  </div>
+               
+              </div>
+          </div>
+          <% end %>
+        <% end %>   
+  </div>
 
-
-
-
-<br>
 
