@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
- before_action :authenticate_user!
+ before_action :authenticate_user!, only: [:create, :update, :follow, :unfollow]
 
   def show
     @user = User.find_by_id(params[:id])
@@ -26,32 +26,49 @@ class UsersController < ApplicationController
   end
 
   def follow
-    user = User.find_by_id(params[:id])
-    current_user.follow!(user) # => This assumes you have a variable current_user who is authenticated
-    redirect_to user_path(user)
+    @user = User.find_by_id(params[:id])
+    @follow = Follow.find_by(follower: @current_user, followable: @user)
+    current_user.follow(@user) # => This assumes you have a variable current_user who is authenticated
+    redirect_to user_path(@user)
   end
 
   def unfollow
-    user = User.find_by_id(params[:id])
-    current_user.unfollow!(user) # => This assumes you have a variable current_user who is authenticated
-    redirect_to user_path(user)
+    @user = User.find_by_id(params[:id])
+    current_user.stop_following(@user) # => This assumes you have a variable current_user who is authenticated
+    redirect_to user_path(@user)
+  end
+
+ 
+  def following
+    @users = User.all
+    @user = User.find_by_id(params[:id])
+    @user_following = @user.all_following(:order => 'created_at DESC')
   end
 
   def followers
-
-     @user = User.find_by(params[:user])
-     @followers = @user.followers(User)
-     @users = User.all
-
+    @users = User.all
+    @user = User.find_by_id(params[:id])
+    @user_followers = @user.followers(:order => 'created_at DESC')
   end
 
-  def following
+  # def followers
+  #    # @users = User.all
+  #    # @user = User.find_by_id(params[:id])
+  #    # @followers = @user.all_follows(User)
+  #    @user = User.find_by_username(params[:username])
+  #    @followers = follow.find_by_id(params[:id]).all_follows
 
-     @user = User.find_by(params[:user])
-     @following = @user.followees(User)
-     @users = User.all
+  # end
 
-  end
+  # def following
+  #    # @users = User.all
+  #    # @user = User.find_by(params[:user])
+  #    # @following = @user.all_following(User)
+  #    @user = User.find_by_username(params[:username])
+  #    @users = User.find_by_username(params[:username]).all_following
+     
+
+  # end
 
   def create
     @user = User.create(user_params)

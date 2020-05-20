@@ -14,6 +14,7 @@
   
     <link href="https://fonts.googleapis.com/css?family=Major+Mono+Display|Text+Me+One" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Audiowide|Gugi|Iceland|Monoton|Squada+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web:600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
     <script src="https://checkout.stripe.com/checkout.js"></script>
@@ -73,51 +74,34 @@
   </head>
 
   <body>
+        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        <script>
+          AOS.init();
+        </script>
+        
 
-  <div class="container-fluid">
-    <div class="row" align="left" style=" margin-top: 0%; margin-bottom: 0%;">
-      
-          <div class="footer-social-icons pull-left">
-
-              <ul class="social-icons">
-
-                  <li><a href="https://www.facebook.com/PharaohAten" target="_blank" class="social-icon"> <i class="fa fa-facebook"></i></a></li>
-
-                  <li><a href="https://twitter.com/PHARAOH_ATEN_" target="_blank" class="social-icon"> <i class="fa fa-twitter"></i></a></li>
-
-                  <li><a href="https://www.youtube.com/channel/UCtKtmiQ2GlWlqPDzXwrR4NA" target="_blank" class="social-icon"> <i class="fa fa-youtube"></i></a></li>
-
-                  <li><a href="https://www.instagram.com/tbwig_stores/?hl=en" target="_blank" class="social-icon"> <i class="fa fa-instagram"></i></a></li>
-
-              </ul>
-
-          </div>
-
-    </div>
+    <%= render 'partials/social' %>
 
     <%= render 'partials/navbar' %>
-
-      <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-      <script>
-        AOS.init();
-      </script>
       
 
+<div class="container">
 
-    <% flash.each do |name, msg| %>
-      <% if msg.is_a?(String) %>
-        <div class="alert alert-<%= name == :notice ? "success" : "danger" %> alert-dismissable">
-          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-          <%= content_tag :div, msg, :id => "flash_#{name}" %>
-        </div>
+
+      <% flash.each do |name, msg| %>
+        <% if msg.is_a?(String) %>
+          <div class="alert alert-<%= name == :notice ? "success" : "danger" %> alert-dismissable" role="alert" style="color: #D4AF37; background-color: black; padding: 3px; margin-top: 5%; margin-bottom: 10%">
+            <button type="button" style="color: #D4AF37; background-color: black; margin-right: 4%; margin-top: 0.7%;" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <%= content_tag :div, msg, :id => "flash_#{name}" %>
+          </div>
+        <% end %>
       <% end %>
-    <% end %>
 
-    <%= yield %>
+      <%= yield %>
 
+
+    </div>
     <%= render 'partials/footer' %>
-  </div>
-
    
   </body>
 </html>

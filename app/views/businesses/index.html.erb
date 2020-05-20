@@ -1,138 +1,130 @@
+<script type="text/javascript">
+	$(document).ready(function(){    
+	    //Check if the current URL contains '#'
+	    if(document.URL.indexOf("#")==-1){
+	        // Set the URL to whatever it was plus "#".
+	        url = document.URL+"#";
+	        location = "#";
 
+	        //Reload the page
+	        location.reload(true);
+	    }
+	});
+</script>
 
-<div class="row">
-	<div class="col-md-8 center" align="center" data-aos="fade-right" data-aos-duration="1500">
+<div class="row" align="center" data-aos="fade-up" data-aos-duration="2000">
 		
 		<script type="text/javascript" src="http://yoursite.com/mapdata.js"></script>   
 		<script  type="text/javascript" src="http://yoursite.com/worldmap.js"></script>
 
 		<div class="usa" id="map"></div><br>
+</div>
+<div class="row business_cat" data-aos="fade-up" align="center" data-aos-duration="2000" style="color: #D4AF37">
 
-		<strong><h5>If map is not showing please press this button. Thank You!</h5></strong>
-			        <div>
-			          <button class="btn" style="background-color: #D4AF37; color: black;" onclick="myFunction()">Activate Map</button>
-
-			          <script>
-			            function myFunction(){
-			              location.reload();
-			            }
-			          </script>
-			        </div>
-		<strong><h4>Double Click your state to find business near you!</h4></strong>
-
-	</div>
-
-	<div class="col-md-4" data-aos="fade-left" align="center" data-aos-duration="1500">
-
-		<div class="business_cat">
 			<%= form_tag businesses_path, method: 'get' do %>
-				<div class="form-group" style="color: #D4AF37">
-					<h4>Search A Business:</h4>
-					<%= text_field_tag :find, params[:find], class: "form-control" %>
-					<br>
-					<br>
-					<h4 style="color: #D4AF37">Filter Results:</h4>
-					<br>
-					<br>
-					<%= label_tag :business_category %>
-					<div style="color: black;">
-				  	<%= select_tag(:business_category, options_from_collection_for_select(BusinessCategory.all, :id, :name, params[:business_category]), { include_blank: true, style: "width: 100%" }) %>
-				    </div>
-					<br>
-					<br>
-					<%= label_tag :state %>
-					<div style="color: black">
-				  	<%= select_tag(:state, options_from_collection_for_select(State.all, :id, :name, params[:state]), { include_blank: true, style: "width: 80%" }) %>
-				    </div>
-					<br>
-					<br>
-					<%= submit_tag "Search", :name => nil, :class => "btn btn-primary", :style => "background-color: #D4AF37; color: black;" %>  
-				</div>
+					<div class="row" style="margin-bottom: 2%;">
+						<h4>Search & Filter A Business:</h4>
+					</div>
+				
+					<div class="col-md-4">
+						
+						<%= text_field_tag :find, params[:find], class: "form-control" %>
+						<p>Search</p>
+					</div>
+					<div class="col-md-4">	
+						
+						<div style="color: black;">
+						  	<%= select_tag(:business_category, options_from_collection_for_select(BusinessCategory.all, :id, :name, params[:business_category]), { include_blank: true, style: "width: 100%", class: "form-control" }) %>
+						</div>
+						<p><%= label_tag :business_category %></p>
+					</div>
+					<div class="col-md-4">
+						
+						<div style="color: black">
+						  	<%= select_tag(:state, options_from_collection_for_select(State.all, :id, :name, params[:state]), { include_blank: true, style: "width: 80%", class: "form-control" }) %>
+						</div>
+						<p><%= label_tag :state %></p>
+					</div>
+					<div class="row" align="center">
+						<%= submit_tag "Search", :name => nil, :class => "btn btn-primary", :style => "background-color: #D4AF37; color: black;" %>
+					</div>
 
 				     
 			<% end %>
-		</div>
+		
 
 		<hr style="color: #D4AF37">
 
-		<div style="width: 350px; color: #D4AF37;">
-			<h3>Peace Peace Family!</h3>
-			<p style="font-size: 20px">If You would like your business to be posted on The Black Woman Is God Stores please click here: </p>
-
-		
-
-					<%= link_to 'Add Your Business', new_business_path, class: "btn", style: "background-color: #D4AF37; color: black; margin-bottom: 15px;" %>
-
-	
-
-	
+		<div class="row" style="color: #D4AF37;">
+			<div style="width: 50%"> 
+				<h3>Peace Peace Family!</h3>
+				<p style="font-size: 20px">If You would like your business to be posted on The Black Woman Is God Stores please click here: </p>
+				<%= link_to 'Add Your Business', new_business_path, class: "btn", style: "background-color: #D4AF37; color: black; margin-bottom: 15px;" %>
+			</div>
 		</div>
 
-	</div>
 </div>
 
 
 
 
-
-
-<div class="row" style="margin-top: 3%" data-aos="fade-up" data-aos-duration="1500">
-
-
+<% @businesses.each do |business| %>
+	<% unless business.user.subscribed == false %>
 		
-		<div id="no-more-tables" align="center">
-	  	<table class="col-md-12 table table-condensed">
-			
-
-			<% @businesses.each do |business| %>
-			<% unless business.user.subscribed == false %>
-					<div style="overflow: auto;">
-						<tr class="business_table">
-						<th scope="row" style="background-color: #D4AF37;">
-							<%= link_to business do %>
-			       				<%= image_tag(business.artwork, :style => "width: 60%; height 60%;") %>
-			    			<% end %>
-						</th>
-
-						<th scope="row">
-							<h3><%= link_to business.title, business_path(business), style: "color: #D4AF37;" %></h3>
-						</th>
-
-						<th scope="row">
-							<p><%= business.description %></p>
-						</th>
-
-						<th scope="row">
-							<p><%= business.business_category.name %></p>
-						</th>
-
-						<th scope="row">
-							<strong><p><em>Owner:</em> <%= link_to business.user.username, user_path(business.user), style: "color: #D4AF37;" %></p></strong>
-						</th>
-
-						<th scope="row">
-							<p> <%= business.city %></p>
-						</th>
+			<div class="col-md-4" align="center">
+				<div data-aos="zoom-in" data-aos-duration="2000" style=" width: 100%; height: auto; border: solid; border-width: 1px; border-radius: 10px; border-color: #D4AF37; margin-top: 3%">
+					<div class="row">
+						<div class="col-md-6" align="center">
+							<div>
+								<%= link_to business do %>
+				       				<%= image_tag(business.artwork, :style => "width: 65%; height: 65%; margin-top: 20%;") %>
+				    			<% end %>
+							</div>
 							
-						<th scope="row">
-							<p> <%= business.state.name %></p>
-						</th>
-
-
-								
-					</tr>
+						</div>
+						<div class="col-md-6">
+							<div style="margin: 2%">
+								<h4><strong style="color: #D4AF37">State:</strong> <br><%= business.state.name %></h4>
+								<h4><strong style="color: #D4AF37">City:</strong> <br><%= business.city %></h4>
+								<h4><strong style="color: #D4AF37">Business Category:</strong> <br><%= business.business_category.name %></h4>
+							</div>
+							
+						</div>
 					</div>
+					<div class="row" style="margin-top: 1%; margin-bottom: 1%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; word-wrap: break-word;">
+						<h3><%= link_to business.title, business_path(business), style: "color: #D4AF37;" %></h3>
+					</div>
+					<div class="row" style="margin: 3%;">
+						<h4 style="color: #D4AF37">Description:</h4>
+						<div style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; word-wrap: break-word;">
+							<%= business.description %>
+						</div>
+					</div>
+					<div class="row">
+						<h4 style="color: #D4AF37">Business Owner:</h4>
+						<br>
+						<div>
+							<%= image_tag (business.user.avatar), style: "width: 50px; height: 50px; border-radius: 100px" %> 
+						</div>
+						<h4><%= link_to business.user.username, user_path(business.user), style: "color: #D4AF37;" %></h4>
+					</div>
+					<div class="row" align="center" style="margin-top: 3%; margin-bottom: 1%;">
+						<%= link_to "View Business Details", business_path(business), style: "color: black; background-color: #D4AF37", class: "btn" %>
+					</div>
+					
+				</div>
+			</div>
+	
 
-				<% end %>
-			<% end %> 
-	  	</table>
-	 
-	  </div>
-    <div class="row" style="margin-left: 5%">
-      		<%= paginate @businesses %>
-   		 </div>
-</div>
 
-</div>
+
+
+
+
+
+<%= paginate @businesses %>
+	<% end %>
+<% end %> 	
+		
 
 

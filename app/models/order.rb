@@ -1,5 +1,5 @@
 class Order < ApplicationRecord
-	validates :address, :city, :state, :zip, :quantity, presence: true
+	validates :address, :city, :state, :zip, :quantity, :shipping_name, :shipping_last_name, presence: true
 	belongs_to :product
 	belongs_to :buyer, class_name: "User"
   	belongs_to :seller, class_name: "User"
@@ -13,4 +13,6 @@ class Order < ApplicationRecord
 	def self.shipped
 	  where(shipped: true).order('id DESC')
 	end  
+
+
 end

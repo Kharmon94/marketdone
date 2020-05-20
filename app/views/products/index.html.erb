@@ -1,102 +1,120 @@
-
-  <div class="row" id="prod_row">
-      <div class="col-md-3 form-group" id="catrow" data-aos="fade-right" data-aos-duration="1000">
-          <br>
-          <br>
-
-          <%= form_tag products_path, method: 'get' do %>
-              <h3>Search A Product</h3>
-              <%= text_field_tag :search, params[:search], class: "form-control" %>
-              <br>
-             
-              <h3>Filter Products:</h3>
-              <br>
-              <br>
-              <%= label_tag :category %>
-              <div style="color: black">
-               <%= select_tag(:category, options_from_collection_for_select(Category.all, :id, :name, params[:category]), { include_blank: true, style: "width: 300px;" }) %> 
-              </div>
-              
-              <br>
-              <br>
-              
-              <div class="row">
-                <div class="col-xs-6">
-                  <%= label_tag :min_price %>
-                  <div style="color: black">
-                  <%= number_field_tag :min_price, params[:min_price], style: "width: 140px;" %>
-                  </div>
-                </div>
-                <div class="col-xs-6">
-                  <%= label_tag :max_price %>
-                  <div style="color: black">
-                  <%= number_field_tag :max_price, params[:max_price], style: "width: 140px;" %>
-                  </div>
-                </div>
-
-              </div>
-
-
-              <br>
-              <br>
-              <%= submit_tag "Search", :name => nil, :class => "btn btn-primary", :style => "background-color: #D4AF37; color: black;" %>  
-          <% end %>
-
-              <hr style="color: #D4AF37">
-
-          <div style="width: 300px; color: #D4AF37;">
-            <h3>Peace Peace Family!</h3>
-            <p style="font-size: 20px">If You would like to sell your products to the The Black Woman Is God Stores community please click here: </p>
-
+<div class="row" id="catrow" align="center" data-aos="fade-up" data-aos-duration="2000">
+  <%= form_tag products_path, method: 'get' do %>
+    <div class="row" align="left" style="margin-bottom: 2.5%; margin-left: 5%">
+      <h3>Filter Products:</h3>
+    </div>
+    <div class="row">
+        
+        <div class="col-md-3" style="margin-bottom: 1%;">
           
-
-                <%= link_to 'Sell Yor Product', new_product_path, class: "btn", style: "background-color: #D4AF37; color: black; margin-bottom: 15px;" %>
-
-        
-
-        
+          <div>
+            <%= text_field_tag :search, params[:search], class: "form-control" %>
           </div>
-      </div>
+          <h4>Search Product Name</h4>
+          <svg class="bi bi-search" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z" clip-rule="evenodd"/>
+            <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z" clip-rule="evenodd"/>
+          </svg>
+          
+        </div>
+        <div class="col-md-3" style="margin-bottom: 1%;">
+          <div>
+             
+            <div style="color: black">
+               <%= select_tag(:category, options_from_collection_for_select(Category.all, :id, :name, params[:category]), { include_blank: true, style: "width: 100%;", class: "form-control"  }) %> 
+            </div> 
+            <h4>Select by Category</h4>
+            <svg class="bi bi-book" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M3.214 1.072C4.813.752 6.916.71 8.354 2.146A.5.5 0 018.5 2.5v11a.5.5 0 01-.854.354c-.843-.844-2.115-1.059-3.47-.92-1.344.14-2.66.617-3.452 1.013A.5.5 0 010 13.5v-11a.5.5 0 01.276-.447L.5 2.5l-.224-.447.002-.001.004-.002.013-.006a5.017 5.017 0 01.22-.103 12.958 12.958 0 012.7-.869zM1 2.82v9.908c.846-.343 1.944-.672 3.074-.788 1.143-.118 2.387-.023 3.426.56V2.718c-1.063-.929-2.631-.956-4.09-.664A11.958 11.958 0 001 2.82z" clip-rule="evenodd"/>
+              <path fill-rule="evenodd" d="M12.786 1.072C11.188.752 9.084.71 7.646 2.146A.5.5 0 007.5 2.5v11a.5.5 0 00.854.354c.843-.844 2.115-1.059 3.47-.92 1.344.14 2.66.617 3.452 1.013A.5.5 0 0016 13.5v-11a.5.5 0 00-.276-.447L15.5 2.5l.224-.447-.002-.001-.004-.002-.013-.006-.047-.023a12.582 12.582 0 00-.799-.34 12.96 12.96 0 00-2.073-.609zM15 2.82v9.908c-.846-.343-1.944-.672-3.074-.788-1.143-.118-2.387-.023-3.426.56V2.718c1.063-.929 2.631-.956 4.09-.664A11.956 11.956 0 0115 2.82z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+          
+        </div>
+        <div class="col-md-3" style="margin-bottom: 1%;">
+           <div>
+                <div style="color: black">
+                <%= number_field_tag :min_price, params[:min_price], style: "width: 100%;", class: "form-control"  %>
+                </div>
+                <h4>Minimum Price</h4>
+                <svg class="bi bi-arrow-down" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M4.646 9.646a.5.5 0 01.708 0L8 12.293l2.646-2.647a.5.5 0 01.708.708l-3 3a.5.5 0 01-.708 0l-3-3a.5.5 0 010-.708z" clip-rule="evenodd"/>
+                  <path fill-rule="evenodd" d="M8 2.5a.5.5 0 01.5.5v9a.5.5 0 01-1 0V3a.5.5 0 01.5-.5z" clip-rule="evenodd"/>
+                </svg>
+            </div>
+        </div>
+        <div class="col-md-3" style="margin-bottom: 1%;">
+           <div>
+              <div style="color: black">
+              <%= number_field_tag :max_price, params[:max_price], style: "width: 100%;", class: "form-control"  %>
+              </div>
+              <h4>Maximum Price</h4>
+              <svg class="bi bi-arrow-up" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M8 3.5a.5.5 0 01.5.5v9a.5.5 0 01-1 0V4a.5.5 0 01.5-.5z" clip-rule="evenodd"/>
+                <path fill-rule="evenodd" d="M7.646 2.646a.5.5 0 01.708 0l3 3a.5.5 0 01-.708.708L8 3.707 5.354 6.354a.5.5 0 11-.708-.708l3-3z" clip-rule="evenodd"/>
+              </svg>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row" align="center" style="margin-top: 1%">
+      <%= submit_tag "Search", :name => nil, :class => "btn", :style => "background-color: #D4AF37; color: black;" %>
+    </div>
+  <% end %>
+  
+</div>
+<!--  <div class="row" style=" color: #D4AF37; padding-right: 2%; padding-left: 2%" align="center">
+    <h3>Peace Peace Family!</h3>
+    <br>
+    <p style="font-size: 20px">If You would like to sell your products to the The Black Woman Is God Stores community please click here: </p>
+    <br>
+    <br>
+
+        <#%= link_to 'Sell Yor Product', new_product_path, class: "btn", style: "background-color: #D4AF37; color: black; margin-bottom: 15px;" %>
+
+    <br>
+    <br>
+
+</div> -->
 
 
   
 
-        <div class="col-md-9" style="padding: 20px;" align="center">
-                <% @products.each do |product| %>
-                  <% if product.price >= 1 %>
-                  
+<div class="row" style="" align="center" style="margin-top: 10%">
+  <% @products.each do |product| %>
+    <% if product.price >= 1 %>
+     
+        <div class="col-md-3" style="height: 100% !important" data-aos="zoom-in" data-aos-duration="1500">
+            <div class="thumbnail">
 
-                    <div  id="t_backdrop">
-                        <div class="col-md-3" style=" height: 100% !important" data-aos="zoom-in" data-aos-duration="1500">
-                            <div class="thumbnail" style="height: 60% !important;">
-                                <%= link_to product do %>
-                                  <div style="height: 200px; width: 190px; opacity: 0.88; padding: 3px; background-color: #D4AF37; border-radius: 5px">
-                                      <div style=" height: 110% !important">
-                                        <%= image_tag(product.picture, :class => "thumbs", :id => "thumbs") %>
-                                      </div>
-                                  </div>
+                <%= link_to product do %>
+                  <div style="height: 200px; width: 200px;">
+                      <div style=" height: 100% !important">
+                        <%= image_tag(product.picture, :class => "thumbs", :id => "thumbs") %>
+                      </div>
+                  </div>
+                <% end %>
 
-                                 
-                                <% end %>
-                                <div class="caption" style=" width: 200px; height: 200px; padding: 3%; word-wrap: break-word; color: #D4AF37 !important; font-size: 17px; opacity: 0.85; text-overflow: ellipsis;" >
-                                  <h4><%= product.title %></h4>
-                                  <h3><strong><%= number_to_currency(product.price) %></strong></h3>
-                                  <p><%= product.category.name %></p>
-                                  <p><em>Seller:</em><br> <%= link_to product.user.username, user_path(product.user), :style => "color: #D4AF37" %></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>  
-                  <% end %>
-                <% end %> 
-              
-              </div> 
-    </div>
+                <div class="caption" style=" width: 200px; height: 200px; padding: 3%;  color: #D4AF37 !important; font-size: 17px; opacity: 0.85; " >
+                  <h4 style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; word-wrap: break-word;"><%= product.title %></h4>
+                  <h2><strong><%= number_to_currency(product.price) %></strong></h2>
+                  <h5><%= product.category.name %></h5>
+                  <div>
+                    <%= image_tag (product.user.avatar), style: "width: 50px; height: 50px; border-radius: 100px" %> 
+                  </div>
+                  <h5 style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; word-wrap: break-word;"><%= link_to product.user.username, user_path(product.user), :style => "color: #D4AF37" %></h5>
+                </div>
+            </div>
+        </div>
+     
+    <% end %>
+  <% end %>      
+</div> 
+   
 
-    <div class="row" align="center">
-      <%= paginate @products %>
-    </div>
+<div class="row" align="center">
+  <%= paginate @products %>
+</div>
     
- </div>     
 
 

@@ -26,11 +26,12 @@ gem 'country_select', '~> 3.1'
 gem 'kaminari'
 gem 'activeadmin'
 gem 'sendgrid-ruby'
+gem 'make_permalink', '~> 0.2.0'
 # gem "letter_opener", :group => :development
 # gem 'effective_obfuscation'
 gem 'activestorage-validator'
 gem "puma_worker_killer"
-gem "socialization"
+gem 'acts_as_follower', github: 'tcocca/acts_as_follower', branch: 'master'
 gem 'gon'
 gem "figaro"
 gem 'emoji'

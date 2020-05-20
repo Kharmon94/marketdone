@@ -15,7 +15,7 @@ class PagesController < ApplicationController
   end
 
   def home
-  	@products = Product.all.order("created_at DESC").page(params[:page]).take(4)
+  	@products = Product.all.order("sold DESC").page(params[:page]).take(4)
   end
 
   	private

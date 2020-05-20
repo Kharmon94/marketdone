@@ -31,6 +31,9 @@ class Ability
         end
         can :read, Review
 
+        # # Users
+        can :read, User
+
 
 
         # # Orders

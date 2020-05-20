@@ -1,8 +1,10 @@
 <div class="center" align="center" style="border-style: solid; border-color: black; border-radius: 10px; border-width: 0.5px; margin-top: 2%; padding: 2%">
-	
+	<div>
+		<%= image_tag (review.user.avatar), style: "width: 75px; height: 75px; border-radius: 100px; margin-top: 1%; margin-bottom: 2%;" %>
+	</div>
 	<div class="review-rating" data-score= <%= review.rating %> style= "margin-top: 1.5%"></div>
+	<h4 style="margin-bottom: 2%"><%= link_to review.user.try(:username), user_path(review.user), class: "rev" %></h4>
 	<strong><h5>Comment:</h5></strong>
-	<p><%= link_to review.user.try(:username), user_path(review.user), class: "rev" %></p>
-	<p><%= review.comment %></p>
+	<p style="width: 45%"><%= review.comment %></p>
 </div>
 

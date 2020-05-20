@@ -8,8 +8,6 @@ class User < ApplicationRecord
   acts_as_follower
   acts_as_followable
 
-
-
   has_many :products, dependent: :destroy
   has_many :businesses, dependent: :destroy
   has_many :charges
@@ -30,6 +28,11 @@ class User < ApplicationRecord
   has_many :received_conversations, class_name: 'Conversation', foreign_key: 'received_id'
   paginates_per 40
  
+  make_permalink :username    
+
+  def to_param
+    permalink
+  end
 
   def self.search(lookup)
     if lookup

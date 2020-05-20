@@ -1,190 +1,197 @@
-  <!-- ################# Bio ################# -->
-<div class="row">
-  <div class="col-md-5" align="center">
-    <div style="width: 70%; height: auto">
-        <% if @user.id == current_user.id %>
+<div class="row" style="margin-top: 5%">
+ <div class="col-md-3" align="center">
+
+   <div class="row">
+    <% if @user.id == current_user.id %>
         <% if @user.avatar.attached? %>
             <%= image_tag (@user.avatar), id: "profile_pic" %> 
         <% end %>
-            <h2 style="color: #D4AF37">&nbsp Hello <%= @user.username %>!</h2>
-            <%= link_to 'CHAT', conversations_path, :class => "btn", :style => "color: black; background-color: #D4AF37; width: 180px; font-size:20px " %>
-
-
+          <h3 style="color: #D4AF37">&nbsp Hello <%= @user.username %>!</h3>
+          <%= link_to 'CHAT', conversations_path, :class => "btn", :style => "color: black; background-color: #D4AF37; width: 180px; font-size:20px " %>
 
           <% else %>
+
+
           <% if @user.avatar.attached? %> 
             <%= image_tag (@user.avatar), id: "profile_pic" %> 
           <% end %>
-            <strong><h3><%= @user.username %>'s Profile</h3></strong>
-          
-              <%= link_to 'Message', conversations_path(author_id: current_user.id, receiver_id: @user.id), method: :post %>         
-        <% end %>
-    </div>
-  </div>
+          <strong><h3 style="color: #D4AF37"><%= @user.username %>'s Profile</h3></strong>
+          <%= link_to 'Message', conversations_path(author_id: current_user.id, receiver_id: @user.id), style: "color: black; background-color: #D4AF37; width: 180px; font-size:20px ", class: "btn", method: :post %>         
+     <% end %>
+   </div>
 
-  <div class="col-md-5" align="center" style="color: #D4AF37; margin-left: 10%; margin-top: 5%;">
+  <div class="row" style="margin-bottom: 5%; margin-top: 5%">
+      <div style="background-color: #D4AF37; border-radius: 10px; color: black; padding: 10px; width: 90%">
+        <div class="row" align="center"> 
 
-   
-      <div class="row" style="margin-bottom: 10%">
-        <div style="background-color: #D4AF37; border-radius: 10px; color: black; padding: 10px; width: 90%">
-          <div class="row" align="center"> 
-
-            <div class="col-md-6">
-                <h4>Followers</h4>
-                <h4><%= link_to @user.followers_count, followers_path(@user), :style => "color:black;" %></h4>
-            </div>
-            <div class="col-md-6">
-                <h4>Following</h4>
-               <h4><%= link_to @user.followees_count, following_path(@user), :style => "color:black;" %></h4>
-            </div>
-
-
+          <div class="col-md-6">
+              <h4>Followers</h4>
+              <h4><%= link_to @user.followers_count, followers_user_path(@user), :style => "color:black;" %></h4>
+          </div>
+          <div class="col-md-6">
+              <h4>Following</h4>
+             <h4><%= link_to @user.follow_count, following_user_path(@user), :style => "color:black;" %></h4>
           </div>
 
-          <div class="row" align="center" style="font-size: 25px; margin: 2%;">
-
-            <% if current_user.follows?(@user) %>
-
-              <%= link_to('Unfollow', unfollow_user_path(@user), :style => "color: #D4AF37; background-color: black", class: "btn", method: :post) %>
-
-                  <% else %>
-
-              <%= link_to('Follow', follow_user_path(@user), :style => "color: #D4AF37; background-color: black", class: "btn", method: :post) %>
-
-            <% end %>
-          </div> 
-        </div>
-
-    
 
         </div>
 
+        <div class="row" align="center" style="font-size: 25px; margin: 2%;">
 
-    <div class="row">
-        <h3><strong>Bio</strong></h3>
-      <div style="width: 100%">
-         <p class="" style="font-size: 15px; word-wrap: break-word;"><%= @user.bio %></p>
-      </div>
-        
-       
-    </div>
+          <% if current_user.following?(@user) %>
 
-  </div>
-</div>
+            <!-- <#%= link_to('Unfollow', unfollow_user_path(@user), :style => "color: #D4AF37; background-color: black", class: "btn", method: :post) %> -->
+            <%= button_to "Following", {action: 'unfollow', id: @user.id}, method: 'post', class: 'btn', style: 'background-color: black; color: #D4AF37;' %>
 
-  <!-- ################# Business ################# -->
+                <% else %>
 
+            <!-- <#%= link_to('Follow', follow_user_path(@user), :style => "color: #D4AF37; background-color: black", class: "btn", method: :post) %> -->
+            <%= button_to "Follow", {action: 'follow', id: @user.id}, method: 'post', class: 'btn', style: 'background-color: black; color: #D4AF37;' %>
 
-
-<div class="row" align="center">
-  <div class="col-md-12">
-    <% @businesses.each do |business| %>
-      <% if business.user.id == @user.id %>
-
-        <div class="row" style="margin-top: 10%; color: #D4AF37;" align="center">
-          <% if @user.id == current_user.id %>
-            <h2 class="font-heading text-center">My Business</h2>
-            <% else %>
-            <h3 class="font-heading text-center"><%= @user.username %>'s Business</h3>
           <% end %>
         </div> 
-
-          <div class="col-md-12" align="center">
-            <%= image_tag (business.artwork), class: "product-overview-image", style: "width: 400px; height: 400px;" %>
-                <h2 style="color: #D4AF37;">
-                  <%= business.title %>
-                </h2>
-            <%= link_to "View Details", business, target: "_blank", class: "btn", style: "background-color: black; color: #D4AF37;", :method => :get %>
-            <% if @user.id == current_user.id %>
-              <div class="btn-group">
-                <button type="button" class="btn" style="background-color: #D4AF37; color: black;" data-toggle="dropdown">
-                  Action <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                  <li><%= link_to "View", business, class: "btn btn-link", style: "color: #D4AF37" %></li>
-                  <li><%= link_to "Edit", edit_business_path(business), class: "btn btn-link", style: "color: #D4AF37" %></li>
-                  <li><%= link_to 'Delete', business, method: :delete, data: { confirm: "Are you sure? Remember to cancel subscription please visit your User settings. You Are only allowed ONE business on the site if subscribed" }, class: "btn btn-link", style: "color: #D4AF37" %></li>
-                </ul>
-
-              </div>
-            <% end %>
-          </div>
-              
-      <% end %>
-    <% end %>
+      </div>
   </div>
-</div>
+  <div style="color: #D4AF37" class="row">
+      <h3><strong>Bio</strong></h3>
+    <div>
+       <p style="font-size: 15px; width: 80%; word-wrap: break-word;"><%= @user.bio %></p>
+    </div>
+  </div>
+  <div class="row">
+    <h3 style="color: #D4AF37">Share This Profile:</h3>
+    <div style="margin-top: 5%; margin-bottom: 5%">
+      <!-- The text field -->
+      <input type= value="" id="myInput" class="form-contol" style="color: black;">
 
-<!-- ################## Product ################### -->
+      <!-- The button used to copy the text -->
+      <button onclick="myFunction()" class="btn" style="background-color: #D4AF37; color: black">Copy text</button>
 
-<div class="row" style="color: #D4AF37; margin-top: 10%;">
-    <% if @user.id == current_user.id %>
-      <h3 class="font-heading text-center">My Products</h3>
+      <script type="text/javascript">
+        document.getElementById("myInput").value = window.location.href
+        function myFunction() {
+          /* Get the text field */
+          var copyText = document.getElementById("myInput");
+          
 
-      <% else %>
-      <h3 class="font-heading text-center"><%= @user.username %>'s Products</h3>
-    <% end %>
-      
-    <% if @user.provider == nil %>
-        
-        <% if @user.id == current_user.id %>
-          <div class="panel" style="background-color: black">
-            <div class="panel-header text-center">
-              <h4>
-                You wont be able to sell items until you register with Stripe!
-              </h4>
-            </div>
-            <div class="panel-body text-center">
-              <%= link_to 'Connect', stripe_url, class: 'btn btn-lg', style: 'background-color: #D4AF37; color: black;', target: '_blank' %>
-            </div>
-          </div>
-        <% end %>  
+          /* Select the text field */
+          copyText.select();
+          copyText.setSelectionRange(0, 99999); /*For mobile devices*/
 
-      
-    <% end %>
+          /* Copy the text inside the text field */
+          document.execCommand("copy");
 
-</div>
+          /* Alert the copied text */
+          alert("Copied the text: " + copyText.value);
+        }
+      </script>
+    </div>
+  </div>
 
-<div class="row" style="margin-top: 5%">
-  <div class="col-md-12">
-    <% @products.each do |product| %>
-      <% if product.user.id == @user.id %>
-        
+   <div class="row" align="center" style="margin-bottom: 10%">
+      <div>
+        <% @businesses.each do |business| %>
+          <% if business.user.id == @user.id %>
 
-              <div  id="t_backdrop">
-                  <div class="col-md-3" style=" height: 100% !important" align="center">
-                      <div class="thumbnail" style="height: 60% !important;">
-                       
-                            <div style="height: 200px; width: 200px; opacity: 0.88; padding: 15px; background-color: #D4AF37; border-radius: 5px">
-                                <div style=" height: 110% !important">
-                                  <%= link_to image_tag(product.picture, :class => "thumbs", :id => "thumbs"), product_path(product) %>
-                                </div>
-                            </div>
+            <div class="row" style="margin-top: 10%; color: #D4AF37;" align="center">
+              <% if @user.id == current_user.id %>
+                <h2 class="font-heading text-center">My Business</h2>
+                <% else %>
+                <h3 class="font-heading text-center"><%= @user.username %>'s Business</h3>
+              <% end %>
+            </div> 
 
-                   
-                          <div class="caption" style=" width: 200px; height: 200px; padding: 3%; word-wrap: break-word; color: #D4AF37 !important; font-size: 17px; opacity: 0.85; text-overflow: ellipsis;" >
-                            <h4><%= product.title %></h4>
-                            <h3><strong><%= number_to_currency(product.price) %></strong></h3>
-                            <p><%= product.category.name %></p>
-                              <div class="btn-group">
-                                    <% if @user.id == current_user.id %>
-                                    <button type="button" class="btn dropdown-toggle" style="background-color: #D4AF37; color: black;" data-toggle="dropdown">
-                                      Action <span class="caret"></span>
-                                    </button>
-                                     
-                                    <ul class="dropdown-menu" role="menu">
-                                          <li><%= link_to "Edit", edit_product_path(product), class: "btn btn-link", style: "color: #D4AF37" %></li>
-                                          <li><%= link_to 'Delete', product, method: :delete, data: { confirm: "Are you sure? Once you delete your product, you will not be able to get it back!" }, class: "btn btn-link", style: "color: #D4AF37" %></li>
-                                    <% end %>
-                                    </ul>
-                              </div>
-                          </div>
-                      </div>
+              <div class="row" align="center">
+                <%= image_tag (business.artwork), class: "product-overview-image", style: "width: 250px; height: 250px;" %>
+                    <h2 style="color: #D4AF37;">
+                      <%= business.title %>
+                    </h2>
+                <%= link_to "View Details", business, target: "_blank", class: "btn", style: "background-color: black; color: #D4AF37;", :method => :get %>
+                <% if @user.id == current_user.id %>
+                  <div class="btn-group">
+                    <button type="button" class="btn" style="background-color: #D4AF37; color: black;" data-toggle="dropdown">
+                      Action <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><%= link_to "View", business, class: "btn btn-link", style: "color: #D4AF37" %></li>
+                      <li><%= link_to "Edit", edit_business_path(business), class: "btn btn-link", style: "color: #D4AF37" %></li>
+                      <li><%= link_to 'Delete', business, method: :delete, data: { confirm: "Are you sure? Remember to cancel subscription please visit your User settings. You Are only allowed ONE business on the site if subscribed" }, class: "btn btn-link", style: "color: #D4AF37" %></li>
+                    </ul>
                   </div>
-              </div> 
+                <% end %>
+              </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+</div>
 
+<div class="col-md-9">
+   <div class="row" style="color: #D4AF37;">
+      <% if @user.id == current_user.id %>
+        <h3 class="font-heading text-center">My Products</h3>
 
-      <% end %> 
-    <% end %>  
+        <% else %>
+        <h3 class="font-heading text-center"><%= @user.username %>'s Products</h3>
+      <% end %>
+        
+      <% if @user.provider == nil %>
+          
+          <% if @user.id == current_user.id %>
+            <div class="panel" style="background-color: black">
+              <div class="panel-header text-center">
+                <h4>
+                  You wont be able to sell items until you register with Stripe!
+                </h4>
+              </div>
+              <div class="panel-body text-center">
+                <%= link_to 'Connect', stripe_url, class: 'btn btn-lg', style: 'background-color: #D4AF37; color: black;', target: '_blank' %>
+              </div>
+            </div>
+          <% end %>  
+      <% end %>
+  </div>
+  <div class="row" style="margin-top: 2%">
+      <% @products.each do |product| %>
+        <% if product.user.id == @user.id %>
+          <div class="col-md-3" style=" height: 100% !important" align="center">
+              <div data-aos="zoom-in" data-aos-duration="1500">
+               
+                    <div style="height: 200px; width: 200px;">
+                        <div style=" height: 100% !important">
+                          <%= link_to image_tag(product.picture, :class => "thumbs", :id => "thumbs"), product_path(product) %>
+                        </div>
+                    </div>
+
+           
+                  <div class="caption" style=" width: 200px; height: 200px; padding: 3%; color: #D4AF37 !important; opacity: 0.85;" >
+                    <div class="row">
+                      <h4 style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; word-wrap: break-word;"><%= product.title %></h4>
+                      <h3><strong><%= number_to_currency(product.price) %></strong></h3>
+                      <p style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; word-wrap: break-word;"><%= product.category.name %></p>
+                    </div>
+                    
+                    <div class="row" style="margin-top: 0.5%;">
+                      <div class="btn-group">
+                            <% if @user.id == current_user.id %>
+                            <button type="button" class="btn dropdown-toggle" style="background-color: #D4AF37; color: black;" data-toggle="dropdown">
+                              Action <span class="caret"></span>
+                            </button>
+                             
+                            <ul class="dropdown-menu" role="menu">
+                                  <li><%= link_to "Edit", edit_product_path(product), class: "btn btn-link", style: "color: #D4AF37" %></li>
+                                  <li><%= link_to 'Delete', product, method: :delete, data: { confirm: "Are you sure? Once you delete your product, you will not be able to get it back!" }, class: "btn btn-link", style: "color: #D4AF37" %></li>
+                            <% end %>
+                            </ul>
+                      </div>
+                    </div>
+                      
+                  </div>
+              </div>
+          </div>
+        <% end %> 
+      <% end %>  
+    </div>
   </div>
 </div>
+

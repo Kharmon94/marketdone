@@ -40,7 +40,7 @@ module CarouselHelper
 
     def slides
       items = images.map.with_index { |image, index| slide_tag(image, index.zero?) }
-      content_tag(:div, safe_join(items), class: 'carousel-inner', style: "width: 80%; height: 400px")
+      content_tag(:div, safe_join(items), class: 'carousel-inner', style: "width: 80%; height: 300px")
     end
 
     def slide_tag(image, is_active)
