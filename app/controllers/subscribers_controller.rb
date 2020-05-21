@@ -22,10 +22,13 @@ class SubscribersController < ApplicationController
     
     subscription = Stripe::Subscription.create({
       customer: customer.id,
-      items: [{plan: 'plan_CfIMakVxUJCgRv'}],
+      items: [{plan: 'plan_HJvUtrqSNQIGQQ'}],
     })
-# live: 
+# live $50: plan_CfIMakVxUJCgRv
+# live $20: 
 # test: plan_Ch1gdqOXtOmc7o
+# test 20: 
+
     current_user.uuid = subscription.id
     current_user.subscribed = true
     UserMailer.subscriber_email(current_user).deliver

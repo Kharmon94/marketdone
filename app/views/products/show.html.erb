@@ -1,9 +1,14 @@
 <div class="row" style="margin-top: 10%; color: #D4AF37" data-aos="fade-up" data-aos-duration="2000">
   <div class="col-md-4" align="center">
     <div class="row">
-      <%= image_tag @product.picture, style: "width: 350px; height: 350px; border-radius: 5px; margin-bottom: 5%;" %>
+      <div>
+        <%= image_tag @product.picture, style: "width: 85%; height: 85%; border-radius: 5px; margin-bottom: 5%;" %>
+      </div>
     </div>
     <div class="row">
+      <h4 style="color: #D4AF37;">
+        Gallery:
+      </h4>
       <div style="margin-bottom: 5%">
         <%= carousel_for(@product.images) %>
       </div>
