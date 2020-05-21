@@ -200,7 +200,7 @@
           var cost = <%= @product.price %>
           var s_cost = <%= @product.shipping_cost %>
           total = (cost + s_cost) * quantity
-          document.getElementById("show_total").innerText = total
+          document.getElementById("show_total").innerText = total.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
         };
        });
 
@@ -208,8 +208,8 @@
           var quantity = parseInt(document.getElementById('quantity').value)
           var cost = <%= @product.price %>
           var s_cost = <%= @product.shipping_cost %>
-          total = (cost + s_cost) * quantity 
-          document.getElementById("show_total").innerText = total
+          total = (cost + s_cost) * quantity
+          document.getElementById("show_total").innerText = total.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
         });
 </script>
 
