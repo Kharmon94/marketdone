@@ -15,15 +15,18 @@
       <h2><%= @product.title %></h2>
     </div>
     <div class="row">
-      <h3>
-        <strong><em>Price:</em>  <%= number_to_currency(@product.price) %></strong>
-      </h3>
-      <h3>
-        <strong><em>Shipping Price:</em>  <%= number_to_currency(@product.shipping_cost) %></strong>
-      </h3>
-      <h3 style="width: 80%">
-         <em>Condition:</em> <%= @product.condition %>
-      </h3>
+      <div align="center">
+        <h3>
+          <strong><em>Price:</em>  <%= number_to_currency(@product.price) %></strong>
+        </h3>
+        <h3>
+          <strong><em>Shipping Price:</em>  <%= number_to_currency(@product.shipping_cost) %></strong>
+        </h3>
+        <h3 style="width: 80%">
+           <em>Condition:</em> <%= @product.condition %>
+        </h3>
+      </div>
+      
         <div class="row" align="center">
             <div class="col-md-6" style="font-size: 25px; color: #D4AF37; margin-top: 3%" >
               <h4> Colors Available: </h4> 
