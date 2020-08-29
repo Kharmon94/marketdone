@@ -19,6 +19,14 @@ gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'omniauth-stripe-connect'
+
+# Spree
+
+gem 'spree', '~> 3.7.0'
+gem 'spree_auth_devise', '~> 3.5'
+gem 'spree_gateway', '~> 3.4'
+gem 'spree_multi_vendor', github: 'spree-contrib/spree_multi_vendor'
+
 gem 'cocoon'
 gem 'has_scope'
 gem 'simple_form'
@@ -35,7 +43,7 @@ gem 'acts_as_follower', github: 'tcocca/acts_as_follower', branch: 'master'
 gem 'gon'
 gem "figaro"
 gem 'emoji'
-gem "devise", ">= 4.7.1"
+gem "devise"
 gem "mini_magick"
 # gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
 # gem 'bootstrap', '~> 4.0.0'
