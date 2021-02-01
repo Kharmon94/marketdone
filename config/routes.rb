@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   # root to: "pages#home"
    root to: "pages#home"
+   mount Spree::Core::Engine, at: '/store'
 
   resources :products do
     resources :orders, only: [:new, :create] 

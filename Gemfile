@@ -27,6 +27,18 @@ gem 'kaminari'
 gem 'activeadmin'
 gem 'sendgrid-ruby'
 gem 'make_permalink', '~> 0.2.0'
+
+# spree
+gem 'spree', '~> 3.7.0'
+gem 'spree_auth_devise', '~> 3.5'
+gem 'spree_gateway', '~> 3.4'
+gem 'spree_multi_vendor', github: 'spree-contrib/spree_multi_vendor'
+
+# bootstrap
+gem 'bootstrap', '~> 5.0.0.alpha1'
+gem 'mini_racer'
+gem "libv8"
+
 # gem "letter_opener", :group => :development
 # gem 'effective_obfuscation'
 gem 'activestorage-validator'
@@ -35,7 +47,7 @@ gem 'acts_as_follower', github: 'tcocca/acts_as_follower', branch: 'master'
 gem 'gon'
 gem "figaro"
 gem 'emoji'
-gem "devise", ">= 4.7.1"
+gem "devise"
 gem "mini_magick"
 # gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
 # gem 'bootstrap', '~> 4.0.0'
