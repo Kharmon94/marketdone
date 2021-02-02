@@ -149,14 +149,18 @@
               </div>
 
               <div class="row" align="center" style="margin-bottom: 5%; margin-top: 5%;">
-                        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                                data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-                                data-description="NAME: <%= @product.title %>"
+                <h1>
+                  Checkout Not Available
+                  Please view notice on Home Page!
+                </h1>
+            <!--             <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                data-key="<#%= Rails.configuration.stripe[#:publishable_key] %>"
+                                data-description="NAME: <#%= @product.title %>"
 
 
-                                <% if user_signed_in? %>
-                                  data-email="<%= current_user.email %>"
-                                <% end %>
+                                <#% if user_signed_in? %>
+                                  data-email="<#%= current_user.email %>"
+                                <#% end %>
                                 data-allow-remember-me="true"
                                 data-locale="auto"
                                 data-billing-address="true"
@@ -166,7 +170,7 @@
                                 >
 
 
-                        </script>
+                        </script> -->
               </div>
 
 
