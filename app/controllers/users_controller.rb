@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
- before_action :authenticate_user!, only: [:create, :update, :follow, :unfollow]
+ before_action :authenticate_user!, only: [:create, :update, :follow, :unfollow, :show]
 
   def show
     @user = User.find_by_id(params[:id])
